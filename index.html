@@ -1,0 +1,828 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TheBigFungie's Soundboard</title>
+<meta name="description" content="La soundboard per tutte le occasioni: call, live, partite, feste. Pad, scorciatoie e i tuoi suoni dritti nel microfono. Mac e Windows, gratis.">
+<link rel="icon" href="icon.png">
+<meta property="og:title" content="TheBigFungie's Soundboard">
+<meta property="og:description" content="Spara suoni ovunque. Ridono tutti.">
+<meta property="og:image" content="icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Rubik:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blurple: #5b4bff;
+  --deep: #1d1450;
+  --night: #120c33;
+  --ink: #2b1d14;
+  --cream: #fff6e8;
+  --green: #57f287;
+  --pink: #ff5fa2;
+  --yellow: #ffd23f;
+  --red: #ff4d5e;
+  --text: #ffffff;
+  --muted: #c9c3ff;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; color: var(--text); background: var(--night);
+  font: 400 18px/1.55 Rubik, system-ui, sans-serif; overflow-x: hidden;
+}
+img, svg { display: block; }
+a { color: inherit; }
+h1, h2, h3 { font-family: "Dela Gothic One", Rubik, sans-serif; font-weight: 400; line-height: 1.02; margin: 0; letter-spacing: -.01em; }
+.wrap { width: min(1180px, 100% - 32px); margin-inline: auto; }
+
+/* ---------- cursore luminoso ---------- */
+.glow {
+  position: fixed; left: 0; top: 0; width: 520px; height: 520px; margin: -260px 0 0 -260px; pointer-events: none; z-index: 1;
+  background: radial-gradient(circle, rgba(87,242,135,.18), transparent 60%); mix-blend-mode: screen;
+  transform: translate3d(-999px,-999px,0); transition: opacity .3s;
+}
+
+/* ---------- nav ---------- */
+nav.top {
+  position: fixed; inset: 0 0 auto 0; z-index: 50; transition: background .3s, backdrop-filter .3s;
+}
+nav.top.scrolled { background: rgba(18,12,51,.7); backdrop-filter: blur(14px); }
+nav.top .wrap { display: flex; align-items: center; gap: 22px; height: 76px; }
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: "Dela Gothic One"; font-size: 18px; }
+.logo img { width: 40px; height: 40px; }
+nav.top .links { display: flex; gap: 26px; margin-left: auto; font-weight: 700; }
+nav.top .links a { text-decoration: none; opacity: .85; }
+nav.top .links a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 6px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 10px; border: 0; cursor: pointer; text-decoration: none;
+  font: 700 18px Rubik, sans-serif; padding: 16px 30px; border-radius: 999px; color: #23272a; background: #fff;
+  transition: translate .2s cubic-bezier(.3,1.6,.5,1), scale .2s cubic-bezier(.3,1.6,.5,1), box-shadow .2s, background .2s; white-space: nowrap;
+}
+.btn:hover { translate: 0 -3px; scale: 1.03; box-shadow: 0 12px 30px rgba(0,0,0,.35); color: var(--blurple); }
+.btn.dark { background: #23272a; color: #fff; }
+.btn.dark:hover { background: #36393f; color: #fff; }
+.btn.small { padding: 10px 20px; font-size: 15px; }
+.btn svg { width: 22px; height: 22px; }
+@media (max-width: 760px) { nav.top .links { display: none; } nav.top .btn.small { margin-left: auto; } }
+
+/* ---------- hero ---------- */
+.hero {
+  position: relative; min-height: 100vh; padding: 130px 0 0; overflow: hidden; isolation: isolate;
+  background: radial-gradient(1200px 700px at 70% 10%, #7b6bff 0%, transparent 60%),
+              radial-gradient(900px 600px at 10% 30%, #ff5fa233 0%, transparent 60%),
+              linear-gradient(180deg, #4a3bf0 0%, #2a1c8f 55%, var(--night) 100%);
+}
+.stars { position: absolute; inset: 0; z-index: -1; }
+.blob { position: absolute; border-radius: 50%; filter: blur(60px); opacity: .55; z-index: -1; animation: drift 18s ease-in-out infinite alternate; }
+.blob.a { width: 420px; height: 420px; background: #ff5fa2; left: -120px; top: 40%; }
+.blob.b { width: 360px; height: 360px; background: #57f287; right: -100px; top: 18%; animation-duration: 22s; opacity: .35; }
+.blob.c { width: 300px; height: 300px; background: #ffd23f; left: 40%; top: 70%; animation-duration: 26s; opacity: .3; }
+@keyframes drift { to { transform: translate(80px, -60px) scale(1.15); } }
+
+.hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; align-items: center; gap: 20px; }
+.hero h1 { font-size: clamp(42px, 6vw, 88px); text-transform: uppercase; }
+.hero h1 .line { display: block; overflow: hidden; padding-bottom: .06em; }
+.hero h1 .line span { display: inline-block; }
+.hero h1 em { font-style: normal; color: var(--green); }
+.hero p.lead { font-size: clamp(18px, 1.6vw, 22px); max-width: 560px; margin: 26px 0 34px; color: #e6e2ff; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+.other-dl { font-size: 15px; color: var(--muted); margin-top: 16px; }
+.other-dl a { color: #fff; font-weight: 700; }
+
+.mascot-stage { position: relative; aspect-ratio: 1 / 1.05; }
+.mascot { position: absolute; inset: 4% 8% 6% 8%; will-change: transform; }
+.mascot svg { width: 100%; height: 100%; filter: drop-shadow(0 30px 40px rgba(0,0,0,.4)); }
+.ring {
+  position: absolute; left: 50%; top: 52%; width: 60%; aspect-ratio: 1; border-radius: 50%;
+  border: 3px solid rgba(87,242,135,.7); transform: translate(-50%,-50%) scale(.6); opacity: 0;
+  animation: ring 2.4s cubic-bezier(.2,.6,.3,1) infinite; z-index: -1;
+}
+.ring:nth-child(2) { animation-delay: .8s; border-color: rgba(255,95,162,.7); }
+.ring:nth-child(3) { animation-delay: 1.6s; border-color: rgba(255,210,63,.7); }
+@keyframes ring { 0% { transform: translate(-50%,-50%) scale(.55); opacity: .9; } 100% { transform: translate(-50%,-50%) scale(1.7); opacity: 0; } }
+.note { position: absolute; font-size: 34px; animation: note 4s ease-in-out infinite; opacity: 0; }
+@keyframes note { 0% { transform: translate(0,0) rotate(0); opacity: 0; } 15% { opacity: 1; } 100% { transform: translate(var(--dx), -220px) rotate(var(--r)); opacity: 0; } }
+
+/* parata */
+.parade { position: relative; height: 210px; margin-top: 10px; }
+.parade .ground {
+  position: absolute; left: -5%; right: -5%; bottom: -60px; height: 130px; border-radius: 50% 50% 0 0;
+  background: linear-gradient(#2e9e57, #1d6b3a); box-shadow: 0 -10px 0 #45c472 inset;
+}
+.walker { position: absolute; bottom: 38px; width: 110px; height: 160px; animation: walk 26s linear infinite; }
+.walker .body { animation: bob .5s ease-in-out infinite alternate; transform-origin: 50% 100%; }
+.walker svg { width: 100%; height: 100%; overflow: visible; }
+@keyframes walk { from { left: -160px; } to { left: calc(100% + 160px); } }
+@keyframes bob { from { transform: translateY(0) rotate(-3deg); } to { transform: translateY(-8px) rotate(3deg); } }
+.foot-l { animation: stepL .5s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: 50% 100%; }
+.foot-r { animation: stepR .5s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: 50% 100%; }
+@keyframes stepL { from { transform: translateY(0); } to { transform: translateY(-10px) rotate(-8deg); } }
+@keyframes stepR { from { transform: translateY(-10px) rotate(8deg); } to { transform: translateY(0); } }
+
+/* ---------- marquee ---------- */
+.marquee { background: var(--yellow); color: #23272a; transform: rotate(-2deg); margin: -10px -20px 0; position: relative; z-index: 5; box-shadow: 0 10px 0 #23272a; }
+.marquee .track { display: flex; gap: 46px; padding: 18px 0; width: max-content; animation: marq 28s linear infinite; font-family: "Dela Gothic One"; font-size: 30px; text-transform: uppercase; white-space: nowrap; }
+.marquee.rev { background: var(--pink); color: #fff; transform: rotate(1.5deg); margin-top: 18px; box-shadow: 0 10px 0 #23272a; }
+.marquee.rev .track { animation-direction: reverse; animation-duration: 34s; }
+@keyframes marq { to { transform: translateX(-50%); } }
+
+/* ---------- sezioni ---------- */
+section { position: relative; }
+.feature { padding: 140px 0; }
+.feature .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
+.feature.flip .art { order: 2; }
+.feature h2 { font-size: clamp(36px, 4.6vw, 64px); margin-bottom: 22px; }
+.feature p { font-size: 20px; color: #ddd8ff; max-width: 520px; }
+.feature .kicker { display: inline-block; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; font-size: 14px; padding: 6px 14px; border-radius: 999px; margin-bottom: 18px; color: #23272a; }
+.art { position: relative; aspect-ratio: 1.15; border-radius: 40px; display: grid; place-items: center; overflow: hidden; }
+.art .chr { width: 62%; height: 86%; will-change: transform; }
+.art .chr svg { width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 22px 26px rgba(0,0,0,.35)); }
+.art .deco { position: absolute; font-size: 44px; }
+.bg-green { background: radial-gradient(circle at 30% 30%, #8cffb0, #2ec46a); }
+.bg-yellow { background: radial-gradient(circle at 30% 30%, #fff1a6, #ffbf1f); }
+.bg-pink { background: radial-gradient(circle at 30% 30%, #ffb3d4, #ff4f97); }
+.bg-blue { background: radial-gradient(circle at 30% 30%, #a9b2ff, #4b56ff); }
+.k-green { background: var(--green); } .k-yellow { background: var(--yellow); } .k-pink { background: var(--pink); color: #fff !important; } .k-blue { background: #a9b2ff; }
+@media (max-width: 860px) {
+  .hero-grid, .feature .wrap { grid-template-columns: 1fr; }
+  .feature.flip .art { order: 0; }
+  .feature { padding: 90px 0; }
+  .mascot-stage { max-width: 440px; margin: 0 auto; }
+}
+
+/* ---------- soundboard demo ---------- */
+.demo { padding: 150px 0 120px; text-align: center; background: linear-gradient(180deg, var(--night), #241873 40%, #241873 60%, var(--night)); }
+.demo h2 { font-size: clamp(40px, 5.6vw, 80px); }
+.demo p.sub { color: var(--muted); font-size: 20px; margin: 18px auto 50px; max-width: 640px; }
+.stage-row { display: flex; justify-content: center; align-items: flex-end; gap: clamp(4px, 2vw, 26px); margin-bottom: 44px; min-height: 190px; }
+.stage-row .chr { width: clamp(64px, 11vw, 120px); height: clamp(100px, 17vw, 180px); }
+.stage-row .chr svg { width: 100%; height: 100%; overflow: visible; }
+.stage-row .chr.jump { animation: jump .55s cubic-bezier(.3,1.6,.5,1); }
+@keyframes jump { 0% { transform: translateY(0) scale(1,1); } 20% { transform: translateY(0) scale(1.15,.85); } 50% { transform: translateY(-60px) scale(.9,1.12) rotate(-6deg); } 80% { transform: translateY(0) scale(1.1,.9); } 100% { transform: none; } }
+.pads { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; max-width: 860px; margin: 0 auto; }
+.pad {
+  --c: var(--blurple); position: relative; border: 0; cursor: pointer; border-radius: 22px; padding: 26px 14px 20px;
+  color: #fff; font: 900 18px Rubik, sans-serif; text-align: left; overflow: hidden;
+  background: color-mix(in srgb, var(--c) 70%, #120c33); box-shadow: 0 8px 0 color-mix(in srgb, var(--c) 45%, #000), 0 14px 30px rgba(0,0,0,.35);
+  transition: translate .08s, box-shadow .08s; min-height: 118px; display: flex; flex-direction: column; justify-content: space-between;
+}
+.pad:hover { background: color-mix(in srgb, var(--c) 85%, #120c33); }
+.pad:active, .pad.hit { translate: 0 6px; box-shadow: 0 2px 0 color-mix(in srgb, var(--c) 45%, #000), 0 6px 14px rgba(0,0,0,.35); }
+.pad .em { font-size: 30px; }
+.pad kbd { position: absolute; top: 12px; right: 12px; font: 700 12px ui-monospace, Menlo, monospace; background: rgba(0,0,0,.3); padding: 3px 7px; border-radius: 6px; }
+.pad .bar { position: absolute; left: 0; bottom: 0; height: 5px; width: 0; background: #fff; opacity: .8; }
+.hint { margin-top: 26px; color: var(--muted); font-size: 15px; }
+@media (max-width: 640px) { .pads { grid-template-columns: repeat(2, 1fr); } }
+.shake { animation: shake .35s; }
+@keyframes shake { 20% { transform: translate(-6px, 3px) rotate(-.4deg); } 40% { transform: translate(6px, -3px) rotate(.4deg); } 60% { transform: translate(-4px, 2px); } 80% { transform: translate(3px, -1px); } }
+
+/* ---------- gang ---------- */
+.gang { padding: 120px 0 160px; text-align: center; }
+.gang h2 { font-size: clamp(40px, 5.6vw, 80px); margin-bottom: 14px; }
+.gang p.sub { color: var(--muted); font-size: 20px; margin-bottom: 60px; }
+.cards { display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; }
+.card {
+  border-radius: 28px; padding: 26px 16px 22px; position: relative; transform-style: preserve-3d;
+  box-shadow: 0 20px 40px rgba(0,0,0,.35); cursor: pointer;
+}
+.card .chr { height: 190px; transform: translateZ(40px); }
+.card .chr svg { width: 100%; height: 100%; overflow: visible; }
+.card h3 { font-size: 22px; margin-top: 14px; color: #23272a; transform: translateZ(30px); }
+.card .role { color: #23272a; opacity: .7; font-weight: 700; font-size: 14px; transform: translateZ(20px); }
+.card:hover .chr { animation: wiggle .6s ease-in-out infinite; }
+@keyframes wiggle { 0%,100% { rotate: -4deg; } 50% { rotate: 4deg; } }
+@media (max-width: 980px) { .cards { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 600px) { .cards { grid-template-columns: repeat(2, 1fr); } }
+
+/* ---------- download ---------- */
+.download { padding: 150px 0 120px; background: linear-gradient(180deg, var(--night), #3a2bd6); text-align: center; overflow: hidden; }
+.download h2 { font-size: clamp(44px, 6.4vw, 96px); text-transform: uppercase; }
+.download p.sub { font-size: 20px; color: #e6e2ff; margin: 18px auto 46px; max-width: 640px; }
+.dl-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; max-width: 980px; margin: 0 auto; text-align: left; }
+.dl {
+  background: #fff; color: #23272a; border-radius: 26px; padding: 26px; text-decoration: none; position: relative;
+  transition: translate .25s cubic-bezier(.3,1.6,.5,1), rotate .25s, box-shadow .25s; box-shadow: 0 10px 0 #1d1450;
+}
+.dl:hover { translate: 0 -8px; rotate: -1deg; box-shadow: 0 18px 0 #1d1450; }
+.dl.mine { outline: 4px solid var(--green); }
+.dl.mine::after { content: "Il tuo sistema"; position: absolute; top: -14px; right: 18px; background: var(--green); color: #23272a; font: 900 12px Rubik; padding: 5px 10px; border-radius: 999px; text-transform: uppercase; letter-spacing: .06em; }
+.dl .os { font-family: "Dela Gothic One"; font-size: 26px; }
+.dl .det { color: #5c5f66; font-size: 15px; margin: 6px 0 18px; }
+.dl .go { display: inline-flex; gap: 8px; align-items: center; font-weight: 900; color: var(--blurple); }
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; max-width: 980px; margin: 60px auto 0; text-align: left; }
+.step { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15); border-radius: 22px; padding: 22px; }
+.step .num { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: var(--yellow); color: #23272a; font-family: "Dela Gothic One"; margin-bottom: 12px; }
+.step p b { color: #fff; }
+.step p { margin: 0; font-size: 16px; color: #ece9ff; }
+.step code { background: rgba(0,0,0,.3); padding: 1px 6px; border-radius: 5px; font-size: 14px; }
+.version { margin-top: 40px; color: #d9d4ff; font-size: 15px; }
+@media (max-width: 860px) { .dl-grid, .steps { grid-template-columns: 1fr; } }
+
+footer { background: #0b0722; padding: 50px 0; color: #9d97cc; font-size: 15px; }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between; }
+
+/* particelle */
+#fx { position: fixed; inset: 0; pointer-events: none; z-index: 60; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001s !important; animation-iteration-count: 1 !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ======================= PERSONAGGI (SVG riutilizzabili) ======================= -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="gCap" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff6b6b"/><stop offset="1" stop-color="#d62839"/></linearGradient>
+    <linearGradient id="gStem" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#f3dfc1"/><stop offset=".45" stop-color="#fff6e8"/><stop offset="1" stop-color="#ead2ae"/></linearGradient>
+    <linearGradient id="gCup" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a3d45"/><stop offset="1" stop-color="#1c1d22"/></linearGradient>
+    <linearGradient id="gZuc" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#1f6b2c"/><stop offset=".5" stop-color="#3fa34d"/><stop offset="1" stop-color="#1c5e27"/></linearGradient>
+    <linearGradient id="gBan" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff07a"/><stop offset="1" stop-color="#f5c400"/></linearGradient>
+    <linearGradient id="gEgg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9b5de5"/><stop offset="1" stop-color="#4a1d7a"/></linearGradient>
+    <linearGradient id="gCuc" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2d7d46"/><stop offset=".5" stop-color="#5cc46f"/><stop offset="1" stop-color="#2a6e3e"/></linearGradient>
+
+    <!-- faccina standard (centrata in 0,0) -->
+    <g id="face">
+      <ellipse cx="-22" cy="0" rx="9" ry="12" fill="#2b1d14"/>
+      <ellipse cx="22" cy="0" rx="9" ry="12" fill="#2b1d14"/>
+      <circle cx="-19" cy="-5" r="3.4" fill="#fff"/>
+      <circle cx="25" cy="-5" r="3.4" fill="#fff"/>
+      <ellipse cx="-36" cy="20" rx="10" ry="5.5" fill="#ff8fa3" opacity=".8"/>
+      <ellipse cx="36" cy="20" rx="10" ry="5.5" fill="#ff8fa3" opacity=".8"/>
+      <path d="M-13 22 Q0 36 13 22" fill="none" stroke="#2b1d14" stroke-width="5" stroke-linecap="round"/>
+    </g>
+
+    <!-- FUNGO con cuffie e microfono -->
+    <symbol id="c-fungo" viewBox="120 0 790 900">
+      <path class="foot-l" d="M318 868 A92 92 0 0 1 502 868 Z" fill="#f6e4c6" stroke="#3a2a1f" stroke-width="14" stroke-linejoin="round"/>
+      <path class="foot-r" d="M522 868 A92 92 0 0 1 706 868 Z" fill="#f6e4c6" stroke="#3a2a1f" stroke-width="14" stroke-linejoin="round"/>
+      <g class="body">
+        <path d="M384 500 C362 620 362 760 402 826 Q512 862 622 826 C662 760 662 620 640 500 Z" fill="url(#gStem)" stroke="#3a2a1f" stroke-width="14" stroke-linejoin="round"/>
+        <use href="#face" transform="translate(512 655) scale(2.1)"/>
+        <path d="M178 540 C178 300 338 168 512 168 C686 168 846 300 846 540 C846 576 802 592 762 576 C702 556 642 572 602 562 C562 552 462 552 422 562 C382 572 322 556 262 576 C222 592 178 576 178 540 Z" fill="url(#gCap)" stroke="#3a2a1f" stroke-width="14" stroke-linejoin="round"/>
+        <path d="M300 300 C340 240 410 205 470 196" fill="none" stroke="#fff" stroke-width="16" stroke-linecap="round" opacity=".35"/>
+        <circle cx="404" cy="318" r="46" fill="#fff7ee"/><circle cx="604" cy="282" r="38" fill="#fff7ee"/><circle cx="706" cy="420" r="50" fill="#fff7ee"/><circle cx="318" cy="452" r="34" fill="#fff7ee"/><circle cx="520" cy="436" r="28" fill="#fff7ee"/>
+        <path d="M206 470 C206 26 818 26 818 470" fill="none" stroke="#1c1d22" stroke-width="50" stroke-linecap="round"/>
+        <path d="M206 470 C206 26 818 26 818 470" fill="none" stroke="#4a4e58" stroke-width="16" stroke-linecap="round"/>
+        <!-- asta del microfono -->
+        <path d="M206 560 C210 690 300 760 410 748" fill="none" stroke="#1c1d22" stroke-width="22" stroke-linecap="round"/>
+        <rect x="396" y="722" width="62" height="50" rx="25" fill="#57f287" stroke="#111216" stroke-width="10"/>
+        <rect x="148" y="410" width="116" height="190" rx="48" fill="url(#gCup)" stroke="#111216" stroke-width="10"/>
+        <rect x="760" y="410" width="116" height="190" rx="48" fill="url(#gCup)" stroke="#111216" stroke-width="10"/>
+        <rect x="176" y="446" width="60" height="118" rx="28" fill="#57f287"/>
+        <rect x="788" y="446" width="60" height="118" rx="28" fill="#57f287"/>
+      </g>
+    </symbol>
+
+    <!-- ZUCCHINO con cuffie -->
+    <symbol id="c-zucchino" viewBox="0 0 240 470">
+      <path class="foot-l" d="M52 452 A34 34 0 0 1 120 452 Z" fill="#f6e4c6" stroke="#2b1d14" stroke-width="8" stroke-linejoin="round"/>
+      <path class="foot-r" d="M124 452 A34 34 0 0 1 192 452 Z" fill="#f6e4c6" stroke="#2b1d14" stroke-width="8" stroke-linejoin="round"/>
+      <g class="body">
+        <rect x="104" y="18" width="30" height="44" rx="10" fill="#9bbf3a" stroke="#2b1d14" stroke-width="8"/>
+        <path d="M80 60 C70 40 168 34 170 62 C192 170 194 310 178 392 C168 440 76 444 66 396 C48 310 52 170 80 60 Z" fill="url(#gZuc)" stroke="#2b1d14" stroke-width="9" stroke-linejoin="round"/>
+        <path d="M100 90 C92 180 92 300 100 380" stroke="#8fe39b" stroke-width="7" fill="none" stroke-linecap="round" opacity=".55"/>
+        <path d="M150 90 C158 180 158 300 150 380" stroke="#8fe39b" stroke-width="5" fill="none" stroke-linecap="round" opacity=".35"/>
+        <use href="#face" transform="translate(122 230) scale(1.05)"/>
+        <path d="M58 160 C58 70 186 70 186 160" fill="none" stroke="#1c1d22" stroke-width="16" stroke-linecap="round"/>
+        <rect x="36" y="140" width="40" height="66" rx="18" fill="url(#gCup)" stroke="#111216" stroke-width="5"/>
+        <rect x="168" y="140" width="40" height="66" rx="18" fill="url(#gCup)" stroke="#111216" stroke-width="5"/>
+        <rect x="44" y="152" width="20" height="42" rx="10" fill="#ff5fa2"/>
+        <rect x="180" y="152" width="20" height="42" rx="10" fill="#ff5fa2"/>
+      </g>
+    </symbol>
+
+    <!-- BANANA con occhiali da sole -->
+    <symbol id="c-banana" viewBox="0 0 300 460">
+      <path class="foot-l" d="M92 444 A34 34 0 0 1 160 444 Z" fill="#f6e4c6" stroke="#2b1d14" stroke-width="8" stroke-linejoin="round"/>
+      <path class="foot-r" d="M166 444 A34 34 0 0 1 234 444 Z" fill="#f6e4c6" stroke="#2b1d14" stroke-width="8" stroke-linejoin="round"/>
+      <g class="body">
+        <path d="M118 22 L140 20 L146 54 L122 58 Z" fill="#6b4a1f" stroke="#2b1d14" stroke-width="7" stroke-linejoin="round"/>
+        <path d="M122 54 C70 150 70 300 130 380 C168 430 240 432 262 400 C270 388 262 378 250 378 C188 372 150 300 146 54 Z" fill="url(#gBan)" stroke="#2b1d14" stroke-width="9" stroke-linejoin="round"/>
+        <path d="M110 130 C96 220 104 300 140 350" stroke="#fff9c4" stroke-width="8" fill="none" stroke-linecap="round" opacity=".7"/>
+        <use href="#face" transform="translate(150 262) scale(.95)"/>
+        <!-- occhiali -->
+        <g transform="translate(150 258)">
+          <rect x="-46" y="-16" width="38" height="24" rx="9" fill="#1c1d22"/>
+          <rect x="8" y="-16" width="38" height="24" rx="9" fill="#1c1d22"/>
+          <path d="M-8 -6 H8" stroke="#1c1d22" stroke-width="5"/>
+          <path d="M-40 -10 L-26 -10" stroke="#fff" stroke-width="3" opacity=".6" stroke-linecap="round"/>
+          <path d="M14 -10 L28 -10" stroke="#fff" stroke-width="3" opacity=".6" stroke-linecap="round"/>
+        </g>
+      </g>
+    </symbol>
+
+    <!-- MELANZANA col microfono in mano -->
+    <symbol id="c-melanzana" viewBox="0 0 280 470">
+      <path class="foot-l" d="M64 452 A34 34 0 0 1 132 452 Z" fill="#f6e4c6" stroke="#2b1d14" stroke-width="8" stroke-linejoin="round"/>
+      <path class="foot-r" d="M148 452 A34 34 0 0 1 216 452 Z" fill="#f6e4c6" stroke="#2b1d14" stroke-width="8" stroke-linejoin="round"/>
+      <g class="body">
+        <path d="M140 110 C204 110 214 172 220 222 C232 306 248 356 206 400 C174 432 106 432 74 400 C32 356 48 306 60 222 C66 172 76 110 140 110 Z" fill="url(#gEgg)" stroke="#2b1d14" stroke-width="9" stroke-linejoin="round"/>
+        <path d="M92 170 C80 230 78 300 92 350" stroke="#c9a2ff" stroke-width="9" fill="none" stroke-linecap="round" opacity=".5"/>
+        <path d="M140 20 L148 20 L150 70 L138 70 Z" fill="#3d7a2a" stroke="#2b1d14" stroke-width="6"/>
+        <path d="M84 132 C100 82 128 74 140 64 C152 74 180 82 196 132 C172 116 160 128 140 112 C120 128 108 116 84 132 Z" fill="#4fa83a" stroke="#2b1d14" stroke-width="8" stroke-linejoin="round"/>
+        <use href="#face" transform="translate(140 262) scale(1.05)"/>
+        <!-- braccio + microfono -->
+        <path d="M216 290 C246 280 254 250 250 226" fill="none" stroke="#2b1d14" stroke-width="8" stroke-linecap="round"/>
+        <rect x="236" y="182" width="30" height="46" rx="13" fill="#1c1d22" transform="rotate(14 251 205)"/>
+        <circle cx="254" cy="178" r="20" fill="#d9dde6" stroke="#2b1d14" stroke-width="7"/>
+        <circle cx="250" cy="228" r="12" fill="#fff6e8" stroke="#2b1d14" stroke-width="6"/>
+      </g>
+    </symbol>
+
+    <!-- CETRIOLO coi bitorzoli e la cresta -->
+    <symbol id="c-cetriolo" viewBox="0 0 240 470">
+      <path class="foot-l" d="M52 452 A34 34 0 0 1 120 452 Z" fill="#f6e4c6" stroke="#2b1d14" stroke-width="8" stroke-linejoin="round"/>
+      <path class="foot-r" d="M124 452 A34 34 0 0 1 192 452 Z" fill="#f6e4c6" stroke="#2b1d14" stroke-width="8" stroke-linejoin="round"/>
+      <g class="body">
+        <path d="M86 40 C110 24 140 24 160 40 C186 130 192 300 176 390 C166 440 80 444 68 392 C52 300 58 130 86 40 Z" fill="url(#gCuc)" stroke="#2b1d14" stroke-width="9" stroke-linejoin="round"/>
+        <g fill="#a6f0b0" opacity=".75">
+          <circle cx="96" cy="110" r="5"/><circle cx="150" cy="150" r="5"/><circle cx="90" cy="330" r="5"/><circle cx="156" cy="350" r="5"/><circle cx="160" cy="90" r="4"/><circle cx="84" cy="200" r="4"/><circle cx="162" cy="280" r="4"/>
+        </g>
+        <path d="M96 30 C100 4 112 14 118 2 C124 14 134 4 146 30" fill="#ffd23f" stroke="#2b1d14" stroke-width="7" stroke-linejoin="round"/>
+        <use href="#face" transform="translate(122 236) scale(1.05)"/>
+        <path d="M100 196 l-14 -10 M144 196 l14 -10" stroke="#2b1d14" stroke-width="6" stroke-linecap="round"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="glow" id="glow"></div>
+<canvas id="fx"></canvas>
+
+<!-- ======================= NAV ======================= -->
+<nav class="top" id="nav">
+  <div class="wrap">
+    <a class="logo" href="#top"><img src="icon.png" alt="">TheBigFungie's</a>
+    <div class="links">
+      <a href="#prova">Prova</a>
+      <a href="#funzioni">Funzioni</a>
+      <a href="#gang">La gang</a>
+      <a href="#scarica">Scarica</a>
+    </div>
+    <a class="btn small" href="#scarica">Scarica</a>
+  </div>
+</nav>
+
+<!-- ======================= HERO ======================= -->
+<header class="hero" id="top">
+  <canvas class="stars" id="stars"></canvas>
+  <div class="blob a"></div><div class="blob b"></div><div class="blob c"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <h1>
+        <span class="line"><span>Spara suoni</span></span>
+        <span class="line"><span><em>ovunque.</em></span></span>
+        <span class="line"><span>Ridono tutti.</span></span>
+      </h1>
+      <p class="lead">La soundboard per tutte le occasioni: carichi i tuoi audio, li tagli dove vuoi e con un tasto partono. Nelle call, nelle live, nelle partite con gli amici o alla festa: li sentono tutti.</p>
+      <div class="cta-row">
+        <a class="btn" id="heroDl" href="#scarica"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3a1 1 0 0 1 1 1v9.6l3.3-3.3a1 1 0 1 1 1.4 1.4l-5 5a1 1 0 0 1-1.4 0l-5-5a1 1 0 1 1 1.4-1.4L11 13.6V4a1 1 0 0 1 1-1Zm-8 15a1 1 0 0 1 1 1v1h14v-1a1 1 0 1 1 2 0v2a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1Z"/></svg><span id="heroDlLabel">Scarica</span></a>
+        <a class="btn dark" href="#prova">Provala qui 👇</a>
+      </div>
+      <div class="other-dl" id="otherDl"></div>
+    </div>
+    <div class="mascot-stage" id="mascotStage">
+      <div class="ring"></div><div class="ring"></div><div class="ring"></div>
+      <div class="mascot" id="mascot"><svg><use href="#c-fungo"/></svg></div>
+    </div>
+  </div>
+  <div class="parade" id="parade"><div class="ground"></div></div>
+</header>
+
+<div class="marquee"><div class="track" id="marq1"></div></div>
+
+<!-- ======================= DEMO ======================= -->
+<section class="demo" id="prova">
+  <div class="wrap">
+    <h2 class="reveal">Premi. Un. Pad.</h2>
+    <p class="sub reveal">Questa è una soundboard vera: clicca i pad o usa i tasti <b>1–8</b>. Nell'app i suoni li scegli tu e partono anche quando stai giocando.</p>
+    <div class="stage-row" id="stageRow"></div>
+    <div class="pads" id="pads"></div>
+    <p class="hint">🔊 Alza il volume. La gang non si fa pregare.</p>
+  </div>
+</section>
+
+<div class="marquee rev"><div class="track" id="marq2"></div></div>
+
+<!-- ======================= FUNZIONI ======================= -->
+<div id="funzioni">
+  <section class="feature">
+    <div class="wrap">
+      <div class="art bg-green reveal-art"><span class="deco" style="left:8%;top:10%">🎛️</span><span class="deco" style="right:10%;bottom:12%">⌨️</span><div class="chr float"><svg><use href="#c-zucchino"/></svg></div></div>
+      <div>
+        <span class="kicker k-green">Pad + scorciatoie</span>
+        <h2 class="reveal">Un tasto.<br>Il caos.</h2>
+        <p class="reveal">Trascina dentro mp3, wav, opus, quello che vuoi. Ogni pad ha la sua combinazione di tasti che funziona anche con il gioco in primo piano. Colori, volume, loop, play/stop: decidi tu.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="feature flip">
+    <div class="wrap">
+      <div class="art bg-yellow reveal-art"><span class="deco" style="right:8%;top:10%">🎧</span><span class="deco" style="left:10%;bottom:14%">📞</span><div class="chr float"><svg><use href="#c-banana"/></svg></div></div>
+      <div>
+        <span class="kicker k-yellow">Dritto nel microfono</span>
+        <h2 class="reveal">Lo sentono<br>tutti. Davvero.</h2>
+        <p class="reveal">La tua voce e i suoni escono insieme da un microfono virtuale: qualsiasi app che usa il microfono lo vede come un microfono normale. Call di lavoro, chat vocale del gioco, live, podcast. Si installa con un clic, e tu li senti in cuffia.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="feature">
+    <div class="wrap">
+      <div class="art bg-pink reveal-art"><span class="deco" style="left:8%;top:12%">✂️</span><span class="deco" style="right:10%;bottom:12%">〰️</span><div class="chr float"><svg><use href="#c-melanzana"/></svg></div></div>
+      <div>
+        <span class="kicker k-pink">Taglia & registra</span>
+        <h2 class="reveal">Solo la parte<br>che fa ridere.</h2>
+        <p class="reveal">Forma d'onda con zoom al millesimo: metti in pausa, «Fine qui», fatto. E con ⏺ REC registri l'audio di un'app, di tutto il computer o della call: diventa subito un pad.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="feature flip">
+    <div class="wrap">
+      <div class="art bg-blue reveal-art"><span class="deco" style="right:8%;top:12%">🍄</span><span class="deco" style="left:10%;bottom:12%">🔁</span><div class="chr float"><svg><use href="#c-cetriolo"/></svg></div></div>
+      <div>
+        <span class="kicker k-blue">Si aggiorna da sola</span>
+        <h2 class="reveal">Mai più<br>"scaricala di nuovo".</h2>
+        <p class="reveal">Quando esce una novità compare «🍄 È uscito l'aggiornamento». Un clic e l'app si aggiorna da sola. Pad, persone e tagli restano al sicuro nel database, con un backup ogni giorno.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ======================= GANG ======================= -->
+<section class="gang" id="gang">
+  <div class="wrap">
+    <h2 class="reveal">Conosci la gang</h2>
+    <p class="sub reveal">Hanno tutti i piedi. Nessuno sa perché.</p>
+    <div class="cards" id="cards"></div>
+  </div>
+</section>
+
+<!-- ======================= DOWNLOAD ======================= -->
+<section class="download" id="scarica">
+  <div class="wrap">
+    <h2 class="reveal">Pronto a fare<br>casino?</h2>
+    <p class="sub reveal">Gratis, per Mac e Windows. Pesa poco e si aggiorna da sola.</p>
+    <div class="dl-grid">
+      <a class="dl" data-os="mac-arm64" href="https://github.com/aldos1981/thebigfungie-soundboard-releases/releases/latest/download/soundboard-mac-arm64.zip">
+        <div class="os">Mac</div><div class="det">Mac recenti (dal 2020 in poi)</div><span class="go">Scarica ⬇</span></a>
+      <a class="dl" data-os="mac-x64" href="https://github.com/aldos1981/thebigfungie-soundboard-releases/releases/latest/download/soundboard-mac-x64.zip">
+        <div class="os">Mac classico</div><div class="det">Mac meno recenti</div><span class="go">Scarica ⬇</span></a>
+      <a class="dl" data-os="win" href="https://github.com/aldos1981/thebigfungie-soundboard-releases/releases/latest/download/soundboard-win-x64.exe">
+        <div class="os">Windows</div><div class="det">Versioni 10 e 11</div><span class="go">Scarica ⬇</span></a>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><span class="num">1</span><p><b>Mac:</b> apri lo zip e trascina l'app in Applicazioni. Al primo avvio: Impostazioni di Sistema → Privacy e sicurezza → <b>Apri comunque</b>.<br><b>Windows:</b> «Ulteriori informazioni» → <b>Esegui comunque</b>.</p></div>
+      <div class="step reveal"><span class="num">2</span><p>Nell'avviso giallo dell'app clicca <b>Installa microfono virtuale</b>. Su Mac chiede la password, su Windows poi riavvii il PC.</p></div>
+      <div class="step reveal"><span class="num">3</span><p>Nell'app dove vuoi far sentire i suoni (call, gioco, live…) scegli come microfono <code>BlackHole 2ch</code> (Mac) o <code>CABLE Output</code> (Windows). Se c'è, spegni la soppressione del rumore. Fine!</p></div>
+    </div>
+    <p class="version" id="version">Ultima versione: …</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a class="logo" href="#top"><img src="icon.png" alt="">TheBigFungie's Soundboard</a>
+    <span>Fatto per gli amici, con amore e un pizzico di vergogna. 🍄🥒🍌🍆</span>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+'use strict';
+const $ = (s, r = document) => r.querySelector(s);
+const REPO = 'aldos1981/thebigfungie-soundboard-releases';
+const CHARS = {
+  fungo:     { name: 'Big Fungie',  role: 'Il boss, sempre in cuffia', bg: '#ffb3c1' },
+  zucchino:  { name: 'Zucchino',    role: 'Bassista. Lungo e verde.',  bg: '#a6f0b0' },
+  banana:    { name: 'Banana Drop', role: 'DJ. Occhiali anche di notte', bg: '#fff1a6' },
+  melanzana: { name: 'Melanzana',   role: 'Voce solista. Imbarazzante.', bg: '#d6b8ff' },
+  cetriolo:  { name: 'Cetriolo',    role: 'Hype man. Bitorzoluto.',    bg: '#b9e6ff' },
+};
+const charSvg = (id) => `<svg><use href="#c-${id}"/></svg>`;
+
+/* ---------- OS ---------- */
+function detectOS() {
+  const ua = navigator.userAgent;
+  if (/Windows/i.test(ua)) return 'win';
+  if (/Mac/i.test(ua)) {
+    try {
+      const gl = document.createElement('canvas').getContext('webgl');
+      const ext = gl && gl.getExtension('WEBGL_debug_renderer_info');
+      const r = ext ? gl.getParameter(ext.UNMASKED_RENDERER_WEBGL) : '';
+      if (/Intel/i.test(r)) return 'mac-x64';
+    } catch {}
+    return 'mac-arm64';
+  }
+  return null;
+}
+(function setupDownloads() {
+  const os = detectOS();
+  const label = { 'mac-arm64': 'Scarica per Mac', 'mac-x64': 'Scarica per Mac classico', win: 'Scarica per Windows' };
+  const link = document.querySelector(`.dl[data-os="${os}"]`);
+  if (link) {
+    link.classList.add('mine');
+    $('#heroDl').href = link.href;
+    $('#heroDlLabel').textContent = label[os];
+    const others = [...document.querySelectorAll('.dl')].filter((a) => a !== link)
+      .map((a) => `<a href="${a.href}">${label[a.dataset.os].replace('Scarica per ', '')}</a>`).join(' · ');
+    $('#otherDl').innerHTML = `Oppure: ${others}`;
+  } else {
+    $('#otherDl').textContent = 'Disponibile per Mac e Windows.';
+  }
+  fetch(`https://api.github.com/repos/${REPO}/releases/latest`).then((r) => r.json()).then((r) => {
+    if (r && r.tag_name) $('#version').textContent = `Ultima versione: ${r.tag_name} · ${new Date(r.published_at).toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' })}`;
+  }).catch(() => { $('#version').textContent = ''; });
+})();
+
+/* ---------- marquee ---------- */
+const words = ['🍄 Airhorn', '🥒 Ba-dum-tss', '🍌 Boing', '🍆 Pernacchia', '🎧 Call', '🎮 Partite', '🎉 Feste', '📺 Live', '⌨️ Scorciatoie', '✂️ Taglio al millesimo', '⏺ Registra', '🔁 Si aggiorna da sola'];
+for (const id of ['marq1', 'marq2']) {
+  const t = $('#' + id);
+  const list = id === 'marq2' ? [...words].reverse() : words;
+  t.innerHTML = [...list, ...list].map((w) => `<span>${w}</span>`).join('');
+}
+
+/* ---------- parata ---------- */
+(function parade() {
+  const box = $('#parade');
+  const order = ['zucchino', 'banana', 'melanzana', 'cetriolo', 'fungo'];
+  order.forEach((id, i) => {
+    const w = document.createElement('div');
+    w.className = 'walker';
+    w.style.animationDelay = `${-i * 5.2}s`;
+    if (id === 'fungo') { w.style.width = '150px'; w.style.height = '170px'; }
+    w.innerHTML = charSvg(id);
+    box.appendChild(w);
+  });
+})();
+
+/* ---------- note musicali attorno alla mascotte ---------- */
+(function notes() {
+  const st = $('#mascotStage');
+  ['🎵', '🎶', '🔊', '💥', '🎵', '😂'].forEach((n, i) => {
+    const s = document.createElement('span');
+    s.className = 'note';
+    s.textContent = n;
+    s.style.left = `${15 + Math.random() * 70}%`;
+    s.style.top = `${55 + Math.random() * 25}%`;
+    s.style.setProperty('--dx', `${(Math.random() - .5) * 160}px`);
+    s.style.setProperty('--r', `${(Math.random() - .5) * 90}deg`);
+    s.style.animationDelay = `${i * .7}s`;
+    st.appendChild(s);
+  });
+})();
+
+/* ---------- stelle ---------- */
+(function stars() {
+  const c = $('#stars');
+  const g = c.getContext('2d');
+  let W, H, pts;
+  const resize = () => {
+    W = c.width = c.offsetWidth * devicePixelRatio;
+    H = c.height = c.offsetHeight * devicePixelRatio;
+    pts = Array.from({ length: 140 }, () => ({ x: Math.random() * W, y: Math.random() * H, r: Math.random() * 1.8 + .3, s: Math.random() * 2 + .5, p: Math.random() * 6 }));
+  };
+  resize();
+  addEventListener('resize', resize);
+  (function frame(t) {
+    g.clearRect(0, 0, W, H);
+    for (const p of pts) {
+      g.globalAlpha = .35 + .65 * Math.abs(Math.sin(t / 1000 * p.s + p.p));
+      g.fillStyle = '#fff';
+      g.beginPath(); g.arc(p.x, p.y, p.r * devicePixelRatio, 0, 7); g.fill();
+    }
+    requestAnimationFrame(frame);
+  })(0);
+})();
+
+/* ---------- cursore luminoso + parallasse mascotte ---------- */
+const glow = $('#glow');
+addEventListener('pointermove', (e) => {
+  glow.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+  const r = $('#mascotStage').getBoundingClientRect();
+  const dx = (e.clientX - (r.left + r.width / 2)) / innerWidth;
+  const dy = (e.clientY - (r.top + r.height / 2)) / innerHeight;
+  gsap.to('#mascot', { x: dx * 40, y: dy * 30, rotate: dx * 8, duration: .8, ease: 'power3.out', overwrite: 'auto' });
+});
+addEventListener('scroll', () => $('#nav').classList.toggle('scrolled', scrollY > 30), { passive: true });
+
+/* ---------- particelle ---------- */
+const fx = $('#fx');
+const fg = fx.getContext('2d');
+let parts = [];
+const sizeFx = () => { fx.width = innerWidth * devicePixelRatio; fx.height = innerHeight * devicePixelRatio; };
+sizeFx(); addEventListener('resize', sizeFx);
+function burst(x, y, emojis, n = 18) {
+  for (let i = 0; i < n; i++) {
+    const a = Math.random() * Math.PI * 2;
+    const v = 6 + Math.random() * 9;
+    parts.push({ x, y, vx: Math.cos(a) * v, vy: Math.sin(a) * v - 7, life: 1, rot: Math.random() * 6, vr: (Math.random() - .5) * .3, e: emojis[i % emojis.length], s: 22 + Math.random() * 22 });
+  }
+}
+(function fxFrame() {
+  fg.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+  fg.clearRect(0, 0, innerWidth, innerHeight);
+  parts = parts.filter((p) => p.life > 0);
+  for (const p of parts) {
+    p.x += p.vx; p.y += p.vy; p.vy += .45; p.vx *= .99; p.rot += p.vr; p.life -= .013;
+    fg.save(); fg.globalAlpha = Math.max(0, p.life); fg.translate(p.x, p.y); fg.rotate(p.rot);
+    fg.font = `${p.s}px serif`; fg.textAlign = 'center'; fg.textBaseline = 'middle'; fg.fillText(p.e, 0, 0); fg.restore();
+  }
+  requestAnimationFrame(fxFrame);
+})();
+document.querySelectorAll('.dl, #heroDl').forEach((a) => a.addEventListener('click', (e) => {
+  burst(e.clientX, e.clientY, ['🍄', '🥒', '🍌', '🍆', '🎉', '✨'], 40);
+}));
+
+/* ---------- motore audio della demo (tutti suoni sintetizzati, niente file) ---------- */
+let ac = null;
+const ctx = () => (ac ||= new (window.AudioContext || window.webkitAudioContext)());
+function noiseBuf(sec) {
+  const a = ctx(); const b = a.createBuffer(1, a.sampleRate * sec, a.sampleRate); const d = b.getChannelData(0);
+  for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+  return b;
+}
+function env(g, t, a, peak, dec) { g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(peak, t + a); g.gain.exponentialRampToValueAtTime(0.0001, t + a + dec); }
+const out = () => { const a = ctx(); if (!out.m) { out.m = a.createDynamicsCompressor(); out.m.connect(a.destination); } return out.m; };
+const SFX = {
+  airhorn() {
+    const a = ctx(); const t = a.currentTime;
+    [0, .32, .64].forEach((off, k) => {
+      const len = k === 2 ? .9 : .26;
+      [440, 554, 659].forEach((f) => {
+        const o = a.createOscillator(); o.type = 'sawtooth'; o.frequency.value = f; o.detune.value = (Math.random() - .5) * 18;
+        const g = a.createGain(); const lp = a.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 2600;
+        o.connect(lp).connect(g).connect(out());
+        g.gain.setValueAtTime(0.0001, t + off); g.gain.exponentialRampToValueAtTime(.16, t + off + .02);
+        g.gain.setValueAtTime(.16, t + off + len - .05); g.gain.exponentialRampToValueAtTime(0.0001, t + off + len);
+        o.start(t + off); o.stop(t + off + len + .02);
+      });
+    });
+    return 1.6;
+  },
+  boing() {
+    const a = ctx(); const t = a.currentTime;
+    const o = a.createOscillator(); o.type = 'triangle';
+    o.frequency.setValueAtTime(140, t); o.frequency.exponentialRampToValueAtTime(620, t + .12); o.frequency.exponentialRampToValueAtTime(180, t + .7);
+    const lfo = a.createOscillator(); lfo.frequency.value = 24; const lg = a.createGain(); lg.gain.value = 40; lfo.connect(lg).connect(o.frequency);
+    const g = a.createGain(); env(g, t, .01, .5, .75); o.connect(g).connect(out());
+    o.start(t); lfo.start(t); o.stop(t + .8); lfo.stop(t + .8); return .8;
+  },
+  pernacchia() {
+    const a = ctx(); const t = a.currentTime;
+    const o = a.createOscillator(); o.type = 'sawtooth';
+    o.frequency.setValueAtTime(95, t); o.frequency.linearRampToValueAtTime(70, t + .9);
+    const lfo = a.createOscillator(); lfo.type = 'square'; lfo.frequency.value = 26;
+    const am = a.createGain(); am.gain.value = .5; const lg = a.createGain(); lg.gain.value = .5; lfo.connect(lg).connect(am.gain);
+    const lp = a.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 900; lp.Q.value = 6;
+    const n = a.createBufferSource(); n.buffer = noiseBuf(1); const ng = a.createGain(); ng.gain.value = .15;
+    const g = a.createGain(); env(g, t, .03, .7, .95);
+    o.connect(am); n.connect(ng).connect(am); am.connect(lp).connect(g).connect(out());
+    o.start(t); lfo.start(t); n.start(t); o.stop(t + 1); lfo.stop(t + 1); n.stop(t + 1); return 1;
+  },
+  badumtss() {
+    const a = ctx(); const t = a.currentTime;
+    const drum = (tt, f) => { const o = a.createOscillator(); o.frequency.setValueAtTime(f, tt); o.frequency.exponentialRampToValueAtTime(f * .4, tt + .25); const g = a.createGain(); env(g, tt, .005, .9, .3); o.connect(g).connect(out()); o.start(tt); o.stop(tt + .35); };
+    drum(t, 180); drum(t + .18, 140);
+    const n = a.createBufferSource(); n.buffer = noiseBuf(1.2); const hp = a.createBiquadFilter(); hp.type = 'highpass'; hp.frequency.value = 6500;
+    const g = a.createGain(); env(g, t + .42, .005, .5, .9); n.connect(hp).connect(g).connect(out()); n.start(t + .42); n.stop(t + 1.4);
+    return 1.4;
+  },
+  laser() {
+    const a = ctx(); const t = a.currentTime;
+    for (let k = 0; k < 3; k++) {
+      const tt = t + k * .16; const o = a.createOscillator(); o.type = 'square';
+      o.frequency.setValueAtTime(1800, tt); o.frequency.exponentialRampToValueAtTime(120, tt + .22);
+      const g = a.createGain(); env(g, tt, .005, .18, .22); o.connect(g).connect(out()); o.start(tt); o.stop(tt + .25);
+    }
+    return .6;
+  },
+  sirena() {
+    const a = ctx(); const t = a.currentTime;
+    const o = a.createOscillator(); o.type = 'sawtooth';
+    const lfo = a.createOscillator(); lfo.frequency.value = 1.6; const lg = a.createGain(); lg.gain.value = 260; lfo.connect(lg).connect(o.frequency); o.frequency.value = 760;
+    const lp = a.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 2200;
+    const g = a.createGain(); env(g, t, .05, .14, 1.9); o.connect(lp).connect(g).connect(out());
+    o.start(t); lfo.start(t); o.stop(t + 2); lfo.stop(t + 2); return 2;
+  },
+  applausi() {
+    const a = ctx(); const t = a.currentTime;
+    for (let i = 0; i < 46; i++) {
+      const tt = t + Math.random() * 1.6; const n = a.createBufferSource(); n.buffer = noiseBuf(.06);
+      const bp = a.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 1200 + Math.random() * 1800; bp.Q.value = 1.2;
+      const g = a.createGain(); env(g, tt, .002, .35, .05); n.connect(bp).connect(g).connect(out()); n.start(tt);
+    }
+    return 1.8;
+  },
+  ding() {
+    const a = ctx(); const t = a.currentTime;
+    [[1320, .35], [2640, .12], [3960, .06]].forEach(([f, v]) => {
+      const o = a.createOscillator(); o.frequency.value = f; const g = a.createGain(); env(g, t, .004, v, 1.6); o.connect(g).connect(out()); o.start(t); o.stop(t + 1.7);
+    });
+    return 1.7;
+  },
+};
+const PADS = [
+  { key: 'airhorn', label: 'Airhorn', em: '📯', c: '#ff4d5e', who: 'fungo' },
+  { key: 'badumtss', label: 'Ba-dum-tss', em: '🥁', c: '#5b4bff', who: 'zucchino' },
+  { key: 'boing', label: 'Boing', em: '🦘', c: '#ffbf1f', who: 'banana' },
+  { key: 'pernacchia', label: 'Pernacchia', em: '💨', c: '#9b5de5', who: 'melanzana' },
+  { key: 'laser', label: 'Pew pew', em: '🔫', c: '#00b0f4', who: 'cetriolo' },
+  { key: 'sirena', label: 'Sirena', em: '🚨', c: '#ff5fa2', who: 'zucchino' },
+  { key: 'applausi', label: 'Applausi', em: '👏', c: '#3ba55d', who: 'banana' },
+  { key: 'ding', label: 'Ding!', em: '🔔', c: '#faa61a', who: 'fungo' },
+];
+(function buildDemo() {
+  const row = $('#stageRow');
+  for (const id of ['zucchino', 'banana', 'fungo', 'melanzana', 'cetriolo']) {
+    const d = document.createElement('div');
+    d.className = 'chr'; d.dataset.who = id; d.innerHTML = charSvg(id);
+    if (id === 'fungo') { d.style.width = 'clamp(90px, 15vw, 170px)'; }
+    row.appendChild(d);
+  }
+  const grid = $('#pads');
+  PADS.forEach((p, i) => {
+    const b = document.createElement('button');
+    b.className = 'pad'; b.style.setProperty('--c', p.c);
+    b.innerHTML = `<kbd>${i + 1}</kbd><span class="em">${p.em}</span><span>${p.label}</span><span class="bar"></span>`;
+    b.addEventListener('pointerdown', (e) => play(i, e.clientX, e.clientY));
+    grid.appendChild(b);
+  });
+  addEventListener('keydown', (e) => {
+    const n = parseInt(e.key, 10);
+    if (n >= 1 && n <= PADS.length && !e.repeat) {
+      const r = grid.children[n - 1].getBoundingClientRect();
+      play(n - 1, r.left + r.width / 2, r.top + r.height / 2);
+    }
+  });
+})();
+function play(i, x, y) {
+  const p = PADS[i];
+  const dur = SFX[p.key]();
+  const pad = $('#pads').children[i];
+  pad.classList.add('hit'); setTimeout(() => pad.classList.remove('hit'), 120);
+  const bar = pad.querySelector('.bar');
+  gsap.fromTo(bar, { width: '0%' }, { width: '100%', duration: dur, ease: 'none', onComplete: () => gsap.set(bar, { width: 0 }) });
+  const who = document.querySelector(`#stageRow .chr[data-who="${p.who}"]`);
+  who.classList.remove('jump'); void who.offsetWidth; who.classList.add('jump');
+  burst(x, y, [p.em, '✨', '💥', '🎵'], 20);
+  if (p.key === 'airhorn' || p.key === 'pernacchia') {
+    document.body.classList.remove('shake'); void document.body.offsetWidth; document.body.classList.add('shake');
+  }
+}
+
+/* ---------- gang ---------- */
+(function gang() {
+  const box = $('#cards');
+  for (const [id, c] of Object.entries(CHARS)) {
+    const d = document.createElement('div');
+    d.className = 'card'; d.style.background = c.bg;
+    d.innerHTML = `<div class="chr">${charSvg(id)}</div><h3>${c.name}</h3><div class="role">${c.role}</div>`;
+    d.addEventListener('pointermove', (e) => {
+      const r = d.getBoundingClientRect();
+      const rx = ((e.clientY - r.top) / r.height - .5) * -18;
+      const ry = ((e.clientX - r.left) / r.width - .5) * 22;
+      d.style.transform = `perspective(700px) rotateX(${rx}deg) rotateY(${ry}deg) scale(1.04)`;
+    });
+    d.addEventListener('pointerleave', () => { d.style.transform = ''; });
+    d.addEventListener('click', (e) => {
+      const i = PADS.findIndex((p) => p.who === id);
+      play(i >= 0 ? i : 0, e.clientX, e.clientY);
+    });
+    box.appendChild(d);
+  }
+})();
+
+/* ---------- animazioni GSAP ---------- */
+gsap.registerPlugin(ScrollTrigger);
+gsap.from('.hero h1 .line span', { yPercent: 110, rotate: 6, duration: 1, ease: 'expo.out', stagger: .09, delay: .1 });
+gsap.from('.hero .lead, .hero .cta-row, .other-dl', { y: 30, opacity: 0, duration: .9, ease: 'power3.out', stagger: .1, delay: .5 });
+gsap.from('#mascot', { scale: .2, rotate: -40, opacity: 0, duration: 1.4, ease: 'elastic.out(1, .5)', delay: .3 });
+gsap.to('#mascot svg', { y: -18, duration: 2.2, ease: 'sine.inOut', repeat: -1, yoyo: true });
+gsap.to('#mascotStage', { yPercent: 25, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+
+document.querySelectorAll('.reveal').forEach((el) => {
+  gsap.from(el, { y: 60, opacity: 0, duration: .9, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%' } });
+});
+document.querySelectorAll('.reveal-art').forEach((el) => {
+  const chr = el.querySelector('.chr');
+  gsap.from(el, { scale: .85, rotate: el.closest('.flip') ? 6 : -6, opacity: 0, duration: 1, ease: 'back.out(1.6)', scrollTrigger: { trigger: el, start: 'top 85%' } });
+  gsap.from(chr, { y: 260, rotate: 25, duration: 1.2, ease: 'elastic.out(1, .6)', scrollTrigger: { trigger: el, start: 'top 80%' } });
+  gsap.to(chr, { y: -40, ease: 'none', scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: true } });
+  el.querySelectorAll('.deco').forEach((d, i) => gsap.to(d, { y: i ? -90 : 90, rotate: i ? 30 : -30, ease: 'none', scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: true } }));
+});
+gsap.fromTo('#cards .card', { y: 120, opacity: 0, rotate: () => gsap.utils.random(-12, 12) }, { y: 0, opacity: 1, rotate: 0, duration: 1, ease: 'back.out(1.7)', stagger: .1, clearProps: 'transform,opacity', scrollTrigger: { trigger: '#cards', start: 'top 85%' } });
+gsap.fromTo('#stageRow .chr', { y: 140, opacity: 0 }, { y: 0, opacity: 1, duration: .9, ease: 'back.out(2)', stagger: .08, clearProps: 'transform,opacity', scrollTrigger: { trigger: '#stageRow', start: 'top 85%' } });
+gsap.fromTo('#pads .pad', { scale: 0, rotate: () => gsap.utils.random(-25, 25) }, { scale: 1, rotate: 0, duration: .6, ease: 'back.out(2.2)', stagger: { each: .05, from: 'random' }, clearProps: 'transform', scrollTrigger: { trigger: '#pads', start: 'top 88%' } });
+gsap.fromTo('.dl', { y: 100, opacity: 0, rotate: (i) => [-8, 0, 8][i] }, { y: 0, opacity: 1, rotate: 0, duration: 1, ease: 'back.out(1.6)', stagger: .12, clearProps: 'transform,opacity', scrollTrigger: { trigger: '.dl-grid', start: 'top 88%' } });
+</script>
+</body>
+</html>
