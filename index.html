@@ -11,7 +11,7 @@
 <meta property="og:image" content="icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Rubik:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Press+Start+2P&family=Rubik:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
 :root {
   --blurple: #5b4bff;
@@ -111,7 +111,7 @@ nav.top .links a:hover { opacity: 1; text-decoration: underline; text-underline-
   position: absolute; left: -5%; right: -5%; bottom: -60px; height: 130px; border-radius: 50% 50% 0 0;
   background: linear-gradient(#2e9e57, #1d6b3a); box-shadow: 0 -10px 0 #45c472 inset;
 }
-.walker { position: absolute; bottom: 38px; width: 110px; height: 160px; animation: walk 26s linear infinite; }
+.walker { position: absolute; bottom: 38px; width: 100px; height: 150px; animation: walk 44s linear infinite; }
 .walker .body { animation: bob .5s ease-in-out infinite alternate; transform-origin: 50% 100%; }
 .walker svg { width: 100%; height: 100%; overflow: visible; }
 @keyframes walk { from { left: -160px; } to { left: calc(100% + 160px); } }
@@ -135,7 +135,7 @@ section { position: relative; }
 .feature.flip .art { order: 2; }
 .feature h2 { font-size: clamp(36px, 4.6vw, 64px); margin-bottom: 22px; }
 .feature p { font-size: 20px; color: #ddd8ff; max-width: 520px; }
-.feature .kicker { display: inline-block; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; font-size: 14px; padding: 6px 14px; border-radius: 999px; margin-bottom: 18px; color: #23272a; }
+.kicker { display: inline-block; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; font-size: 14px; padding: 6px 14px; border-radius: 999px; margin-bottom: 18px; color: #23272a; }
 .art { position: relative; aspect-ratio: 1.15; border-radius: 40px; display: grid; place-items: center; overflow: hidden; }
 .art .chr { width: 62%; height: 86%; will-change: transform; }
 .art .chr svg { width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 22px 26px rgba(0,0,0,.35)); }
@@ -156,15 +156,16 @@ section { position: relative; }
 .demo { padding: 150px 0 120px; text-align: center; background: linear-gradient(180deg, var(--night), #241873 40%, #241873 60%, var(--night)); }
 .demo h2 { font-size: clamp(40px, 5.6vw, 80px); }
 .demo p.sub { color: var(--muted); font-size: 20px; margin: 18px auto 50px; max-width: 640px; }
-.stage-row { display: flex; justify-content: center; align-items: flex-end; gap: clamp(4px, 2vw, 26px); margin-bottom: 44px; min-height: 190px; }
-.stage-row .chr { width: clamp(64px, 11vw, 120px); height: clamp(100px, 17vw, 180px); }
+.stage-row { display: flex; justify-content: center; align-items: flex-end; gap: clamp(6px, 1.6vw, 22px); margin-bottom: 44px; min-height: 170px; }
+.stage-row .chr { width: clamp(26px, 6.4vw, 82px); height: clamp(60px, 12vw, 160px); }
 .stage-row .chr svg { width: 100%; height: 100%; overflow: visible; }
 .stage-row .chr.jump { animation: jump .55s cubic-bezier(.3,1.6,.5,1); }
 @keyframes jump { 0% { transform: translateY(0) scale(1,1); } 20% { transform: translateY(0) scale(1.15,.85); } 50% { transform: translateY(-60px) scale(.9,1.12) rotate(-6deg); } 80% { transform: translateY(0) scale(1.1,.9); } 100% { transform: none; } }
-.pads { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; max-width: 860px; margin: 0 auto; }
+.pads { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; max-width: 980px; margin: 0 auto; }
 .pad {
   --c: var(--blurple); position: relative; border: 0; cursor: pointer; border-radius: 22px; padding: 26px 14px 20px;
   color: #fff; font: 900 18px Rubik, sans-serif; text-align: left; overflow: hidden;
+  user-select: none; -webkit-user-select: none; -webkit-tap-highlight-color: transparent;
   background: color-mix(in srgb, var(--c) 70%, #120c33); box-shadow: 0 8px 0 color-mix(in srgb, var(--c) 45%, #000), 0 14px 30px rgba(0,0,0,.35);
   transition: translate .08s, box-shadow .08s; min-height: 118px; display: flex; flex-direction: column; justify-content: space-between;
 }
@@ -226,6 +227,74 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; j
 /* particelle */
 #fx { position: fixed; inset: 0; pointer-events: none; z-index: 60; }
 
+/* ---------- gaming ---------- */
+.press { display: inline-block; font: 400 13px "Press Start 2P", monospace; color: var(--yellow); margin-bottom: 24px; letter-spacing: .04em; text-shadow: 3px 3px 0 #23272a; }
+.blink { animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.sprite { position: absolute; z-index: -1; pointer-events: none; animation: floaty 5s ease-in-out infinite alternate; }
+.sprite svg { width: 100%; height: 100%; shape-rendering: crispEdges; filter: drop-shadow(4px 4px 0 rgba(0,0,0,.35)); }
+.sprite.txt { font: 400 18px "Press Start 2P", monospace; color: #fff; text-shadow: 3px 3px 0 #23272a; }
+@media (max-width: 760px) { .sprite.txt { display: none; } .sprite { opacity: .55; } }
+@keyframes floaty { from { transform: translateY(0) rotate(-6deg); } to { transform: translateY(-34px) rotate(8deg); } }
+.hud {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 30px; max-width: 860px; margin: 0 auto 34px; padding: 16px 20px;
+  font: 400 13px/1.6 "Press Start 2P", monospace; background: #0b0722; border: 4px solid #fff; border-radius: 6px; box-shadow: 6px 6px 0 var(--green);
+}
+.hud b { font-weight: 400; color: var(--yellow); }
+.hud .hearts { color: var(--red); letter-spacing: 3px; }
+.hud .hearts.hurt { animation: blink .2s steps(1) 4; }
+.pop { position: fixed; z-index: 61; pointer-events: none; font: 400 16px "Press Start 2P", monospace; color: var(--yellow); text-shadow: 3px 3px 0 #23272a; white-space: nowrap; translate: -50% -50%; }
+.pop.big { font-size: 26px; color: var(--green); }
+.demo::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: repeating-linear-gradient(0deg, rgba(255,255,255,.04) 0 2px, transparent 2px 4px); }
+.card { border: 4px solid #23272a; }
+.card .p1 { position: absolute; top: 12px; left: 12px; font: 400 10px "Press Start 2P", monospace; background: #23272a; color: #fff; padding: 6px 7px; border-radius: 4px; opacity: 0; transition: opacity .15s; }
+.card:hover .p1 { opacity: 1; animation: blink .6s steps(1) infinite; }
+.stats { margin-top: 14px; display: grid; gap: 7px; text-align: left; transform: translateZ(20px); }
+.stat { display: grid; grid-template-columns: 74px 1fr; align-items: center; gap: 8px; font: 400 8px "Press Start 2P", monospace; color: #23272a; }
+.stat i { position: relative; display: block; height: 12px; border: 2px solid #23272a; background: rgba(255,255,255,.45); }
+.stat i::after { content: ""; position: absolute; inset: 0 auto 0 0; width: var(--v); background: repeating-linear-gradient(90deg, #23272a 0 8px, transparent 8px 10px); }
+.coin-line { font: 400 14px "Press Start 2P", monospace; color: var(--yellow); margin-top: 26px; text-shadow: 3px 3px 0 #23272a; }
+
+/* ---------- voce ---------- */
+.voice { padding: 140px 0 120px; background: radial-gradient(900px 500px at 20% 30%, #ff5fa233, transparent 60%), radial-gradient(800px 500px at 90% 70%, #57f28722, transparent 60%); }
+.voice .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.voice h2 { font-size: clamp(36px, 4.8vw, 68px); margin-bottom: 20px; }
+.voice p { font-size: 20px; color: #ddd8ff; max-width: 540px; }
+.pic { border-radius: 36px; overflow: hidden; border: 5px solid #fff; box-shadow: 10px 10px 0 var(--pink), 0 30px 60px rgba(0,0,0,.4); rotate: -2deg; background: #2a1c8f; }
+.pic img { width: 100%; height: auto; }
+.fx-grid { display: flex; flex-wrap: wrap; gap: 10px; margin: 26px 0 18px; }
+.fx-btn { border: 3px solid #fff; background: transparent; color: #fff; font: 700 16px Rubik, sans-serif; padding: 10px 16px; border-radius: 999px; cursor: pointer; transition: background .15s, color .15s, scale .15s; }
+.fx-btn:hover { scale: 1.06; }
+.fx-btn.on { background: var(--green); border-color: var(--green); color: #23272a; }
+.fx-btn.app { border-style: dashed; opacity: .75; }
+.mic-row { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+.meter { width: 160px; height: 14px; border: 3px solid #fff; border-radius: 999px; overflow: hidden; }
+.meter i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--green), var(--yellow), var(--red)); }
+.voice small { display: block; color: var(--muted); font-size: 14px; margin-top: 14px; }
+@media (max-width: 860px) { .voice .wrap { grid-template-columns: 1fr; } }
+
+/* ---------- gang foto ---------- */
+.gang-pic { max-width: 980px; margin: 70px auto 0; rotate: 1deg; box-shadow: 10px 10px 0 var(--yellow), 0 30px 60px rgba(0,0,0,.4); }
+
+/* ---------- changelog ---------- */
+.log { padding: 130px 0; background: linear-gradient(180deg, var(--night), #1d1450 50%, var(--night)); }
+.log .head { display: grid; grid-template-columns: 1.1fr .9fr; gap: 50px; align-items: center; margin-bottom: 50px; }
+.log h2 { font-size: clamp(38px, 5vw, 72px); margin-bottom: 16px; }
+.log .head p { color: var(--muted); font-size: 20px; }
+.log .pic { box-shadow: 10px 10px 0 var(--green), 0 30px 60px rgba(0,0,0,.4); rotate: 2deg; }
+.entries { display: grid; gap: 18px; max-width: 900px; margin: 0 auto; }
+.entry { display: grid; grid-template-columns: 120px 1fr; gap: 22px; background: rgba(255,255,255,.07); border: 3px solid rgba(255,255,255,.18); border-radius: 22px; padding: 22px 24px; }
+.entry .v { font: 400 14px/1.5 "Press Start 2P", monospace; color: var(--yellow); }
+.entry .v small { display: block; font: 700 13px Rubik, sans-serif; color: var(--muted); margin-top: 8px; }
+.entry .v .new { display: inline-block; margin-top: 8px; font: 400 9px "Press Start 2P", monospace; background: var(--pink); color: #fff; padding: 5px 6px; border-radius: 4px; }
+.entry h3 { font-size: 24px; margin-bottom: 8px; }
+.entry ul { margin: 0; padding-left: 20px; color: #e6e2ff; font-size: 17px; }
+.entry li + li { margin-top: 4px; }
+.entry.hidden { display: none; }
+.log .more { display: block; margin: 30px auto 0; }
+@media (max-width: 860px) { .log .head { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .entry { grid-template-columns: 1fr; gap: 10px; } }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001s !important; animation-iteration-count: 1 !important; transition: none !important; }
 }
@@ -244,6 +313,24 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; j
     <linearGradient id="gEgg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9b5de5"/><stop offset="1" stop-color="#4a1d7a"/></linearGradient>
     <linearGradient id="gCuc" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2d7d46"/><stop offset=".5" stop-color="#5cc46f"/><stop offset="1" stop-color="#2a6e3e"/></linearGradient>
 
+    <linearGradient id="gShaft" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7a7f8c"/><stop offset=".45" stop-color="#e3e6ee"/><stop offset="1" stop-color="#6c7180"/></linearGradient>
+    <radialGradient id="gBall" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#ff8a94"/><stop offset=".55" stop-color="#ff3348"/><stop offset="1" stop-color="#b3162b"/></radialGradient>
+    <linearGradient id="gRocket" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#b8bfcc"/><stop offset=".45" stop-color="#ffffff"/><stop offset="1" stop-color="#aab1c0"/></linearGradient>
+    <linearGradient id="gPin" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#d5d9e2"/><stop offset=".4" stop-color="#ffffff"/><stop offset="1" stop-color="#c9ced9"/></linearGradient>
+    <linearGradient id="gPop" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7fd3ff"/><stop offset=".5" stop-color="#7b6bff"/><stop offset="1" stop-color="#ff5fa2"/></linearGradient>
+    <linearGradient id="gLip" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffc1da"/><stop offset=".45" stop-color="#fff0f6"/><stop offset="1" stop-color="#ffaccd"/></linearGradient>
+    <linearGradient id="gBullet" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#c2185b"/><stop offset=".4" stop-color="#ff3b7a"/><stop offset="1" stop-color="#a3124a"/></linearGradient>
+
+    <!-- SCARPA da gamer (punta verso destra, base in 0,0) -->
+    <g id="shoe">
+      <path d="M-46 -12 C-50 -50 -26 -62 -2 -62 C18 -62 22 -44 36 -38 C60 -30 72 -24 72 -12 Z" style="fill:var(--shoe,#ff4d5e)" stroke="#2b1d14" stroke-width="7" stroke-linejoin="round"/>
+      <path d="M-38 -30 C-20 -36 2 -30 24 -22" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" opacity=".9"/>
+      <path d="M-8 -54 L8 -44 M-16 -46 L2 -36" stroke="#2b1d14" stroke-width="5" stroke-linecap="round"/>
+      <path d="M34 -36 C48 -30 60 -26 64 -18" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".45"/>
+      <rect x="-52" y="-18" width="128" height="20" rx="10" fill="#fff" stroke="#2b1d14" stroke-width="7"/>
+      <path d="M-38 -8 H62" stroke="#c9cdd6" stroke-width="3" stroke-dasharray="8 6"/>
+    </g>
+
     <!-- faccina standard (centrata in 0,0) -->
     <g id="face">
       <ellipse cx="-22" cy="0" rx="9" ry="12" fill="#2b1d14"/>
@@ -257,8 +344,8 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; j
 
     <!-- FUNGO con cuffie e microfono -->
     <symbol id="c-fungo" viewBox="120 0 790 900">
-      <path class="foot-l" d="M318 868 A92 92 0 0 1 502 868 Z" fill="#f6e4c6" stroke="#3a2a1f" stroke-width="14" stroke-linejoin="round"/>
-      <path class="foot-r" d="M522 868 A92 92 0 0 1 706 868 Z" fill="#f6e4c6" stroke="#3a2a1f" stroke-width="14" stroke-linejoin="round"/>
+      <g class="foot-l" style="--shoe:#ff4d5e"><use href="#shoe" transform="translate(372 870) scale(-2.7 2.7)"/></g>
+      <g class="foot-r" style="--shoe:#ff4d5e"><use href="#shoe" transform="translate(652 870) scale(2.7 2.7)"/></g>
       <g class="body">
         <path d="M384 500 C362 620 362 760 402 826 Q512 862 622 826 C662 760 662 620 640 500 Z" fill="url(#gStem)" stroke="#3a2a1f" stroke-width="14" stroke-linejoin="round"/>
         <use href="#face" transform="translate(512 655) scale(2.1)"/>
@@ -279,8 +366,8 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; j
 
     <!-- ZUCCHINO con cuffie -->
     <symbol id="c-zucchino" viewBox="0 0 240 470">
-      <path class="foot-l" d="M52 452 A34 34 0 0 1 120 452 Z" fill="#f6e4c6" stroke="#2b1d14" stroke-width="8" stroke-linejoin="round"/>
-      <path class="foot-r" d="M124 452 A34 34 0 0 1 192 452 Z" fill="#f6e4c6" stroke="#2b1d14" stroke-width="8" stroke-linejoin="round"/>
+      <g class="foot-l" style="--shoe:#ff5fa2"><use href="#shoe" transform="translate(72 454) scale(-1 1)"/></g>
+      <g class="foot-r" style="--shoe:#ff5fa2"><use href="#shoe" transform="translate(172 454) scale(1 1)"/></g>
       <g class="body">
         <rect x="104" y="18" width="30" height="44" rx="10" fill="#9bbf3a" stroke="#2b1d14" stroke-width="8"/>
         <path d="M80 60 C70 40 168 34 170 62 C192 170 194 310 178 392 C168 440 76 444 66 396 C48 310 52 170 80 60 Z" fill="url(#gZuc)" stroke="#2b1d14" stroke-width="9" stroke-linejoin="round"/>
@@ -297,8 +384,8 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; j
 
     <!-- BANANA con occhiali da sole -->
     <symbol id="c-banana" viewBox="0 0 300 460">
-      <path class="foot-l" d="M92 444 A34 34 0 0 1 160 444 Z" fill="#f6e4c6" stroke="#2b1d14" stroke-width="8" stroke-linejoin="round"/>
-      <path class="foot-r" d="M166 444 A34 34 0 0 1 234 444 Z" fill="#f6e4c6" stroke="#2b1d14" stroke-width="8" stroke-linejoin="round"/>
+      <g class="foot-l" style="--shoe:#5b4bff"><use href="#shoe" transform="translate(112 446) scale(-1 1)"/></g>
+      <g class="foot-r" style="--shoe:#5b4bff"><use href="#shoe" transform="translate(214 446) scale(1 1)"/></g>
       <g class="body">
         <path d="M118 22 L140 20 L146 54 L122 58 Z" fill="#6b4a1f" stroke="#2b1d14" stroke-width="7" stroke-linejoin="round"/>
         <path d="M122 54 C70 150 70 300 130 380 C168 430 240 432 262 400 C270 388 262 378 250 378 C188 372 150 300 146 54 Z" fill="url(#gBan)" stroke="#2b1d14" stroke-width="9" stroke-linejoin="round"/>
@@ -317,8 +404,8 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; j
 
     <!-- MELANZANA col microfono in mano -->
     <symbol id="c-melanzana" viewBox="0 0 280 470">
-      <path class="foot-l" d="M64 452 A34 34 0 0 1 132 452 Z" fill="#f6e4c6" stroke="#2b1d14" stroke-width="8" stroke-linejoin="round"/>
-      <path class="foot-r" d="M148 452 A34 34 0 0 1 216 452 Z" fill="#f6e4c6" stroke="#2b1d14" stroke-width="8" stroke-linejoin="round"/>
+      <g class="foot-l" style="--shoe:#57f287"><use href="#shoe" transform="translate(84 454) scale(-1 1)"/></g>
+      <g class="foot-r" style="--shoe:#57f287"><use href="#shoe" transform="translate(196 454) scale(1 1)"/></g>
       <g class="body">
         <path d="M140 110 C204 110 214 172 220 222 C232 306 248 356 206 400 C174 432 106 432 74 400 C32 356 48 306 60 222 C66 172 76 110 140 110 Z" fill="url(#gEgg)" stroke="#2b1d14" stroke-width="9" stroke-linejoin="round"/>
         <path d="M92 170 C80 230 78 300 92 350" stroke="#c9a2ff" stroke-width="9" fill="none" stroke-linecap="round" opacity=".5"/>
@@ -335,8 +422,8 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; j
 
     <!-- CETRIOLO coi bitorzoli e la cresta -->
     <symbol id="c-cetriolo" viewBox="0 0 240 470">
-      <path class="foot-l" d="M52 452 A34 34 0 0 1 120 452 Z" fill="#f6e4c6" stroke="#2b1d14" stroke-width="8" stroke-linejoin="round"/>
-      <path class="foot-r" d="M124 452 A34 34 0 0 1 192 452 Z" fill="#f6e4c6" stroke="#2b1d14" stroke-width="8" stroke-linejoin="round"/>
+      <g class="foot-l" style="--shoe:#ffd23f"><use href="#shoe" transform="translate(72 454) scale(-1 1)"/></g>
+      <g class="foot-r" style="--shoe:#ffd23f"><use href="#shoe" transform="translate(172 454) scale(1 1)"/></g>
       <g class="body">
         <path d="M86 40 C110 24 140 24 160 40 C186 130 192 300 176 390 C166 440 80 444 68 392 C52 300 58 130 86 40 Z" fill="url(#gCuc)" stroke="#2b1d14" stroke-width="9" stroke-linejoin="round"/>
         <g fill="#a6f0b0" opacity=".75">
@@ -345,6 +432,102 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; j
         <path d="M96 30 C100 4 112 14 118 2 C124 14 134 4 146 30" fill="#ffd23f" stroke="#2b1d14" stroke-width="7" stroke-linejoin="round"/>
         <use href="#face" transform="translate(122 236) scale(1.05)"/>
         <path d="M100 196 l-14 -10 M144 196 l14 -10" stroke="#2b1d14" stroke-width="6" stroke-linecap="round"/>
+      </g>
+    </symbol>
+
+    <!-- JOYSTICK da sala giochi -->
+    <symbol id="c-joystick" viewBox="0 0 260 470">
+      <g class="foot-l" style="--shoe:#00b0f4"><use href="#shoe" transform="translate(80 452) scale(-1 1)"/></g>
+      <g class="foot-r" style="--shoe:#00b0f4"><use href="#shoe" transform="translate(180 452) scale(1 1)"/></g>
+      <g class="body">
+        <path d="M40 330 Q40 300 70 298 L190 298 Q220 300 220 330 L228 404 Q230 426 206 426 L54 426 Q30 426 32 404 Z" fill="url(#gCup)" stroke="#111216" stroke-width="9" stroke-linejoin="round"/>
+        <path d="M66 314 H194" stroke="#5a5f6b" stroke-width="6" stroke-linecap="round"/>
+        <g stroke="#111216" stroke-width="5">
+          <circle cx="68" cy="370" r="14" fill="#ff4d5e"/><circle cx="192" cy="370" r="14" fill="#57f287"/>
+          <circle cx="100" cy="400" r="12" fill="#ffd23f"/><circle cx="160" cy="400" r="12" fill="#00b0f4"/>
+        </g>
+        <rect x="106" y="150" width="48" height="160" rx="20" fill="url(#gShaft)" stroke="#111216" stroke-width="8"/>
+        <ellipse cx="130" cy="304" rx="46" ry="15" fill="#2b2d33" stroke="#111216" stroke-width="8"/>
+        <circle cx="130" cy="112" r="78" fill="url(#gBall)" stroke="#2b1d14" stroke-width="9"/>
+        <path d="M82 84 C94 58 118 46 142 46" stroke="#fff" stroke-width="10" fill="none" stroke-linecap="round" opacity=".5"/>
+        <use href="#face" transform="translate(130 122) scale(.9)"/>
+      </g>
+    </symbol>
+
+    <!-- RAZZO -->
+    <symbol id="c-razzo" viewBox="0 0 260 470">
+      <g class="foot-l" style="--shoe:#ff5fa2"><use href="#shoe" transform="translate(80 452) scale(-1 1)"/></g>
+      <g class="foot-r" style="--shoe:#ff5fa2"><use href="#shoe" transform="translate(180 452) scale(1 1)"/></g>
+      <g class="body">
+        <path d="M82 286 L30 370 L30 414 L84 388 Z" fill="#ff4d5e" stroke="#2b1d14" stroke-width="8" stroke-linejoin="round"/>
+        <path d="M178 286 L230 370 L230 414 L176 388 Z" fill="#ff4d5e" stroke="#2b1d14" stroke-width="8" stroke-linejoin="round"/>
+        <path d="M130 14 C182 56 188 150 186 230 L184 392 C184 422 76 422 76 392 L74 230 C72 150 78 56 130 14 Z" fill="url(#gRocket)" stroke="#2b1d14" stroke-width="9" stroke-linejoin="round"/>
+        <path d="M130 14 C158 37 172 70 179 108 Q130 124 81 108 C88 70 102 37 130 14 Z" fill="#ff4d5e" stroke="#2b1d14" stroke-width="9" stroke-linejoin="round"/>
+        <circle cx="130" cy="166" r="25" fill="#7fd3ff" stroke="#2b1d14" stroke-width="8"/>
+        <path d="M118 158 Q124 150 134 150" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <use href="#face" transform="translate(130 262)"/>
+        <text x="130" y="372" text-anchor="middle" font-family="'Press Start 2P', monospace" font-size="20" fill="#5b4bff">1UP</text>
+      </g>
+    </symbol>
+
+    <!-- BIRILLO -->
+    <symbol id="c-birillo" viewBox="0 0 240 470">
+      <g class="foot-l" style="--shoe:#5b4bff"><use href="#shoe" transform="translate(70 452) scale(-1 1)"/></g>
+      <g class="foot-r" style="--shoe:#5b4bff"><use href="#shoe" transform="translate(170 452) scale(1 1)"/></g>
+      <g class="body">
+        <path d="M120 16 C152 16 162 46 160 78 C158 110 146 130 148 160 C150 196 196 236 196 316 C196 380 172 420 120 422 C68 420 44 380 44 316 C44 236 90 196 92 160 C94 130 82 110 80 78 C78 46 88 16 120 16 Z" fill="url(#gPin)" stroke="#2b1d14" stroke-width="9" stroke-linejoin="round"/>
+        <path d="M88 116 Q120 128 152 116" stroke="#ff4d5e" stroke-width="11" fill="none"/>
+        <path d="M92 142 Q120 154 148 142" stroke="#ff4d5e" stroke-width="11" fill="none"/>
+        <!-- fascia da campione -->
+        <path d="M84 52 Q120 66 156 52" stroke="#57f287" stroke-width="12" fill="none" stroke-linecap="round"/>
+        <use href="#face" transform="translate(120 300)"/>
+      </g>
+    </symbol>
+
+    <!-- GHIACCIOLO -->
+    <symbol id="c-ghiacciolo" viewBox="0 0 240 470">
+      <g class="foot-l" style="--shoe:#ffd23f"><use href="#shoe" transform="translate(70 452) scale(-1 1)"/></g>
+      <g class="foot-r" style="--shoe:#ffd23f"><use href="#shoe" transform="translate(170 452) scale(1 1)"/></g>
+      <g class="body">
+        <rect x="104" y="330" width="32" height="76" rx="14" fill="#e0b97a" stroke="#2b1d14" stroke-width="8"/>
+        <path d="M64 76 C64 22 176 22 176 76 L178 338 C178 364 62 364 62 338 Z" fill="url(#gPop)" stroke="#2b1d14" stroke-width="9" stroke-linejoin="round"/>
+        <path d="M80 70 C80 50 96 40 112 38" stroke="#fff" stroke-width="9" fill="none" stroke-linecap="round" opacity=".6"/>
+        <path d="M66 130 Q120 150 176 130 M64 290 Q120 310 178 290" stroke="#fff" stroke-width="8" fill="none" opacity=".35"/>
+        <use href="#face" transform="translate(120 214) scale(.95)"/>
+        <!-- occhiali da sole a pixel -->
+        <g transform="translate(120 210)" fill="#1c1d22">
+          <rect x="-46" y="-14" width="36" height="20"/><rect x="10" y="-14" width="36" height="20"/><rect x="-10" y="-10" width="20" height="6"/>
+          <rect x="-40" y="-10" width="8" height="6" fill="#fff"/><rect x="16" y="-10" width="8" height="6" fill="#fff"/>
+        </g>
+      </g>
+    </symbol>
+
+    <!-- PAD (controller, rigorosamente in verticale) -->
+    <symbol id="c-pad" viewBox="0 0 240 470">
+      <defs>
+        <linearGradient id="gPad" x1="0" x2="1"><stop offset="0" stop-color="#7b6cff"/><stop offset=".55" stop-color="#5b4bff"/><stop offset="1" stop-color="#3a2bd6"/></linearGradient>
+      </defs>
+      <g class="foot-l" style="--shoe:#57f287"><use href="#shoe" transform="translate(70 452) scale(-1 1)"/></g>
+      <g class="foot-r" style="--shoe:#57f287"><use href="#shoe" transform="translate(170 452) scale(1 1)"/></g>
+      <g class="body">
+        <!-- impugnature in basso -->
+        <ellipse cx="78" cy="388" rx="34" ry="40" fill="#3a2bd6" stroke="#2b1d14" stroke-width="9"/>
+        <ellipse cx="162" cy="388" rx="34" ry="40" fill="#3a2bd6" stroke="#2b1d14" stroke-width="9"/>
+        <!-- corpo lungo e dritto -->
+        <rect x="70" y="22" width="100" height="390" rx="50" fill="url(#gPad)" stroke="#2b1d14" stroke-width="9"/>
+        <path d="M88 76 C88 52 100 40 116 36" stroke="#fff" stroke-width="9" fill="none" stroke-linecap="round" opacity=".5"/>
+        <!-- croce direzionale -->
+        <g transform="translate(120 98)" fill="#1c1d22" stroke="#2b1d14" stroke-width="3">
+          <rect x="-11" y="-30" width="22" height="60" rx="5"/><rect x="-30" y="-11" width="60" height="22" rx="5"/>
+        </g>
+        <use href="#face" transform="translate(120 228) scale(.9)"/>
+        <!-- tasti -->
+        <g stroke="#2b1d14" stroke-width="5">
+          <circle cx="120" cy="312" r="12" fill="#ffd23f"/><circle cx="120" cy="364" r="12" fill="#57f287"/>
+          <circle cx="94" cy="338" r="12" fill="#00b0f4"/><circle cx="146" cy="338" r="12" fill="#ff4d5e"/>
+        </g>
+        <!-- spia accesa: è sempre pronto -->
+        <circle cx="120" cy="160" r="6" fill="#57f287"/>
       </g>
     </symbol>
   </defs>
@@ -359,8 +542,10 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; j
     <a class="logo" href="#top"><img src="icon.png" alt="">TheBigFungie's</a>
     <div class="links">
       <a href="#prova">Prova</a>
+      <a href="#voce">Voce</a>
       <a href="#funzioni">Funzioni</a>
       <a href="#gang">La gang</a>
+      <a href="#novita">Novità</a>
       <a href="#scarica">Scarica</a>
     </div>
     <a class="btn small" href="#scarica">Scarica</a>
@@ -373,6 +558,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; j
   <div class="blob a"></div><div class="blob b"></div><div class="blob c"></div>
   <div class="wrap hero-grid">
     <div>
+      <span class="press blink">▶ PRESS START</span>
       <h1>
         <span class="line"><span>Spara suoni</span></span>
         <span class="line"><span><em>ovunque.</em></span></span>
@@ -399,20 +585,39 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; j
 <section class="demo" id="prova">
   <div class="wrap">
     <h2 class="reveal">Premi. Un. Pad.</h2>
-    <p class="sub reveal">Questa è una soundboard vera: clicca i pad o usa i tasti <b>1–8</b>. Nell'app i suoni li scegli tu e partono anche quando stai giocando.</p>
+    <p class="sub reveal">Questa è una soundboard vera: clicca i pad o usa i tasti <b>1–9</b> e <b>0</b>. Più li premi in fretta, più sale la combo. Nell'app i suoni li scegli tu e partono anche quando stai giocando.</p>
+    <div class="hud" id="hud"><span>P1 <span class="hearts" id="hearts">♥♥♥</span></span><span>SCORE <b id="score">000000</b></span><span>HI <b id="hi">000000</b></span><span>COMBO <b id="combo">x0</b></span></div>
     <div class="stage-row" id="stageRow"></div>
     <div class="pads" id="pads"></div>
-    <p class="hint">🔊 Alza il volume. La gang non si fa pregare.</p>
+    <p class="hint">🔊 Alza il volume. E se conosci il codice segreto… ⬆⬆⬇⬇⬅➡⬅➡ B A</p>
   </div>
 </section>
 
 <div class="marquee rev"><div class="track" id="marq2"></div></div>
 
+<!-- ======================= VOCE DAL VIVO ======================= -->
+<section class="voice" id="voce">
+  <div class="wrap">
+    <div class="pic reveal-pic"><img src="img/voce.jpg" alt="Big Fungie canta nel microfono e la sua voce diventa un robot" loading="lazy"></div>
+    <div>
+      <span class="kicker k-pink" style="color:#fff">✨ Novità · Voce modificata</span>
+      <h2 class="reveal">Parla come<br>un robot. In call.</h2>
+      <p class="reveal">Accendi ✨ Voce e quello che dici esce cambiato, dal vivo, mentre lo dici. Robot, Scoiattolo, Orco, Eco, Radio, Megafono e pure tre voci di donna. Gli amici non capiranno mai se sei tu o un tostapane posseduto.</p>
+      <div class="fx-grid" id="fxGrid"></div>
+      <div class="mic-row">
+        <button class="btn" id="micBtn">🎙️ Prova con la tua voce</button>
+        <div class="meter" aria-hidden="true"><i id="micLevel"></i></div>
+      </div>
+      <small id="micNote">Metti le cuffie, se no fischia tutto e ti odi. Qui nel browser ci sono gli effetti base; quelli tratteggiati sono solo nell'app (più seri, si fa per dire).</small>
+    </div>
+  </div>
+</section>
+
 <!-- ======================= FUNZIONI ======================= -->
 <div id="funzioni">
   <section class="feature">
     <div class="wrap">
-      <div class="art bg-green reveal-art"><span class="deco" style="left:8%;top:10%">🎛️</span><span class="deco" style="right:10%;bottom:12%">⌨️</span><div class="chr float"><svg><use href="#c-zucchino"/></svg></div></div>
+      <div class="art bg-green reveal-art"><span class="deco" style="left:8%;top:10%">🕹️</span><span class="deco" style="right:10%;bottom:12%">⌨️</span><div class="chr float"><svg><use href="#c-zucchino"/></svg></div></div>
       <div>
         <span class="kicker k-green">Pad + scorciatoie</span>
         <h2 class="reveal">Un tasto.<br>Il caos.</h2>
@@ -423,7 +628,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; j
 
   <section class="feature flip">
     <div class="wrap">
-      <div class="art bg-yellow reveal-art"><span class="deco" style="right:8%;top:10%">🎧</span><span class="deco" style="left:10%;bottom:14%">📞</span><div class="chr float"><svg><use href="#c-banana"/></svg></div></div>
+      <div class="art bg-yellow reveal-art"><span class="deco" style="right:8%;top:10%">🎧</span><span class="deco" style="left:10%;bottom:14%">🎮</span><div class="chr float"><svg><use href="#c-banana"/></svg></div></div>
       <div>
         <span class="kicker k-yellow">Dritto nel microfono</span>
         <h2 class="reveal">Lo sentono<br>tutti. Davvero.</h2>
@@ -458,9 +663,26 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; j
 <!-- ======================= GANG ======================= -->
 <section class="gang" id="gang">
   <div class="wrap">
-    <h2 class="reveal">Conosci la gang</h2>
-    <p class="sub reveal">Hanno tutti i piedi. Nessuno sa perché.</p>
+    <h2 class="reveal">Scegli il tuo player</h2>
+    <p class="sub reveal">Piedi enormi, scarpe da gara. Nessuno sa perché.</p>
     <div class="cards" id="cards"></div>
+    <div class="pic gang-pic reveal-pic"><img src="img/gang.jpg" alt="Tutta la gang sul divano che gioca ai videogiochi" loading="lazy"></div>
+  </div>
+</section>
+
+<!-- ======================= CHANGELOG ======================= -->
+<section class="log" id="novita">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <span class="kicker k-yellow">Patch notes</span>
+        <h2 class="reveal">Cosa abbiamo<br>combinato</h2>
+        <p class="reveal">Ogni aggiornamento, spiegato come lo spiegheremmo al bar. L'app si aggiorna da sola, tu leggi e annuisci.</p>
+      </div>
+      <div class="pic reveal-pic"><img src="img/changelog.jpg" alt="Stick, il joystick, legge un papiro lunghissimo di novità" loading="lazy"></div>
+    </div>
+    <div class="entries" id="entries"></div>
+    <button class="btn dark more" id="moreLog">📜 Srotola tutto il papiro</button>
   </div>
 </section>
 
@@ -482,6 +704,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; j
       <div class="step reveal"><span class="num">2</span><p>Nell'avviso giallo dell'app clicca <b>Installa microfono virtuale</b>. Su Mac chiede la password, su Windows poi riavvii il PC.</p></div>
       <div class="step reveal"><span class="num">3</span><p>Nell'app dove vuoi far sentire i suoni (call, gioco, live…) scegli come microfono <code>BlackHole 2ch</code> (Mac) o <code>CABLE Output</code> (Windows). Se c'è, spegni la soppressione del rumore. Fine!</p></div>
     </div>
+    <p class="coin-line blink">INSERT COIN · FREE PLAY</p>
     <p class="version" id="version">Ultima versione: …</p>
   </div>
 </section>
@@ -489,7 +712,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; j
 <footer>
   <div class="wrap">
     <a class="logo" href="#top"><img src="icon.png" alt="">TheBigFungie's Soundboard</a>
-    <span>Fatto per gli amici, con amore e un pizzico di vergogna. 🍄🥒🍌🍆</span>
+    <span>Fatto per gli amici, con amore e un pizzico di vergogna. 🍄🥒🍌🍆🕹️🚀🎳🍭💄 GG.</span>
   </div>
 </footer>
 
@@ -500,11 +723,16 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; j
 const $ = (s, r = document) => r.querySelector(s);
 const REPO = 'aldos1981/thebigfungie-soundboard-releases';
 const CHARS = {
-  fungo:     { name: 'Big Fungie',  role: 'Il boss, sempre in cuffia', bg: '#ffb3c1' },
-  zucchino:  { name: 'Zucchino',    role: 'Bassista. Lungo e verde.',  bg: '#a6f0b0' },
-  banana:    { name: 'Banana Drop', role: 'DJ. Occhiali anche di notte', bg: '#fff1a6' },
-  melanzana: { name: 'Melanzana',   role: 'Voce solista. Imbarazzante.', bg: '#d6b8ff' },
-  cetriolo:  { name: 'Cetriolo',    role: 'Hype man. Bitorzoluto.',    bg: '#b9e6ff' },
+  fungo:      { name: 'Big Fungie',  role: 'Il boss, sempre in cuffia',      bg: '#ffb3c1', st: [90, 80, 60] },
+  zucchino:   { name: 'Zucchino',    role: 'Bassista. Lungo e verde.',       bg: '#a6f0b0', st: [70, 60, 85] },
+  banana:     { name: 'Banana Drop', role: 'DJ. Occhiali anche di notte',    bg: '#fff1a6', st: [85, 75, 70] },
+  melanzana:  { name: 'Melanzana',   role: 'Voce solista. Imbarazzante.',    bg: '#d6b8ff', st: [95, 70, 100] },
+  cetriolo:   { name: 'Cetriolo',    role: 'Hype man. Bitorzoluto.',         bg: '#b9e6ff', st: [80, 95, 75] },
+  joystick:   { name: 'Stick',       role: 'Pro player. Impugnatura salda.', bg: '#ffc2c8', st: [75, 100, 90] },
+  razzo:      { name: 'Missile',     role: 'Parte prima del countdown.',     bg: '#e3e6ee', st: [100, 90, 80] },
+  birillo:    { name: 'Strike',      role: 'Cade sempre in piedi. Più o meno.', bg: '#c9f7d6', st: [60, 85, 70] },
+  ghiacciolo: { name: 'Freezer',     role: 'Sangue freddo nei ranked.',      bg: '#cdd2ff', st: [55, 65, 95] },
+  pad:        { name: 'Big Pad',     role: 'Controller. Sempre in verticale.', bg: '#d4d0ff', st: [85, 80, 100] },
 };
 const charSvg = (id) => `<svg><use href="#c-${id}"/></svg>`;
 
@@ -543,7 +771,7 @@ function detectOS() {
 })();
 
 /* ---------- marquee ---------- */
-const words = ['🍄 Airhorn', '🥒 Ba-dum-tss', '🍌 Boing', '🍆 Pernacchia', '🎧 Call', '🎮 Partite', '🎉 Feste', '📺 Live', '⌨️ Scorciatoie', '✂️ Taglio al millesimo', '⏺ Registra', '🔁 Si aggiorna da sola'];
+const words = ['🍄 Airhorn', '🥒 Ba-dum-tss', '🍌 Boing', '🍆 Pernacchia', '🎧 Call', '🎮 Partite', '🎉 Feste', '📺 Live', '⌨️ Scorciatoie', '✂️ Taglio al millesimo', '⏺ Registra', '🔁 Si aggiorna da sola', '🕹️ GG', '👾 Headshot', '💀 Rage quit', '🏆 Clutch', '🎙️ Voce da robot', '🐿️ Voce da scoiattolo'];
 for (const id of ['marq1', 'marq2']) {
   const t = $('#' + id);
   const list = id === 'marq2' ? [...words].reverse() : words;
@@ -553,12 +781,12 @@ for (const id of ['marq1', 'marq2']) {
 /* ---------- parata ---------- */
 (function parade() {
   const box = $('#parade');
-  const order = ['zucchino', 'banana', 'melanzana', 'cetriolo', 'fungo'];
+  const order = ['zucchino', 'joystick', 'banana', 'razzo', 'melanzana', 'birillo', 'cetriolo', 'ghiacciolo', 'pad', 'fungo'];
   order.forEach((id, i) => {
     const w = document.createElement('div');
     w.className = 'walker';
-    w.style.animationDelay = `${-i * 5.2}s`;
-    if (id === 'fungo') { w.style.width = '150px'; w.style.height = '170px'; }
+    w.style.animationDelay = `${-i * 4.4}s`;
+    if (id === 'fungo') { w.style.width = '140px'; w.style.height = '160px'; }
     w.innerHTML = charSvg(id);
     box.appendChild(w);
   });
@@ -577,6 +805,36 @@ for (const id of ['marq1', 'marq2']) {
     s.style.setProperty('--r', `${(Math.random() - .5) * 90}deg`);
     s.style.animationDelay = `${i * .7}s`;
     st.appendChild(s);
+  });
+})();
+
+/* ---------- sprite pixel da videogioco ---------- */
+function pixSvg(rows, pal) {
+  const w = rows[0].length, h = rows.length;
+  let r = '';
+  rows.forEach((row, y) => [...row].forEach((ch, x) => { if (pal[ch]) r += `<rect x="${x}" y="${y}" width="1.02" height="1.02" fill="${pal[ch]}"/>`; }));
+  return `<svg viewBox="0 0 ${w} ${h}">${r}</svg>`;
+}
+const PIX = {
+  heart: [['.XX.XX.', 'XXXXXXX', 'XXXXXXX', '.XXXXX.', '..XXX..', '...X...'], { X: '#ff4d5e' }],
+  coin: [['..XXXX..', '.XYYYYX.', 'XYYXYYYX', 'XYYXYYYX', 'XYYXYYYX', 'XYYXYYYX', '.XYYYYX.', '..XXXX..'], { X: '#b8860b', Y: '#ffd23f' }],
+  pad: [['.XXXXXXXXX.', 'XXYXXXXXRXX', 'XYYYXXXRXGX', 'XXYXXXXXBXX', 'XXXXX.XXXXX', '.XXX...XXX.'], { X: '#23272a', Y: '#fff', R: '#ff4d5e', G: '#57f287', B: '#00b0f4' }],
+  star: [['...X...', '...X...', 'XXXXXXX', '.XXXXX.', '..XXX..', '.XX.XX.', 'X.....X'], { X: '#ffd23f' }],
+};
+(function sprites() {
+  const hero = $('.hero');
+  const list = [
+    ['heart', 6, 18, 44], ['coin', 46, 12, 40], ['pad', 88, 30, 90], ['star', 3, 62, 38], ['coin', 93, 64, 34],
+    ['heart', 52, 78, 30], ['txt:GG', 40, 4, 0], ['txt:1UP', 80, 8, 0], ['txt:+100', 30, 70, 0], ['star', 70, 54, 30],
+  ];
+  list.forEach(([k, left, top, size], i) => {
+    const d = document.createElement('div');
+    d.className = 'sprite';
+    d.style.left = left + '%'; d.style.top = top + '%';
+    d.style.animationDelay = `${-i * .9}s`;
+    if (k.startsWith('txt:')) { d.classList.add('txt'); d.textContent = k.slice(4); }
+    else { d.style.width = size + 'px'; d.style.height = size + 'px'; d.innerHTML = pixSvg(...PIX[k]); }
+    hero.appendChild(d);
   });
 })();
 
@@ -620,26 +878,55 @@ const fg = fx.getContext('2d');
 let parts = [];
 const sizeFx = () => { fx.width = innerWidth * devicePixelRatio; fx.height = innerHeight * devicePixelRatio; };
 sizeFx(); addEventListener('resize', sizeFx);
+// Ogni emoji viene disegnata una volta sola su una piccola tela e poi copiata: scrivere centinaia di emoji
+// a ogni fotogramma era ciò che rallentava tutto cliccando a raffica.
+const SPRITE = 64;
+const emojiCache = new Map();
+function emojiSprite(e) {
+  let c = emojiCache.get(e);
+  if (!c) {
+    c = document.createElement('canvas');
+    c.width = c.height = SPRITE * 2;
+    const g = c.getContext('2d');
+    g.font = `${SPRITE * 1.5}px serif`; g.textAlign = 'center'; g.textBaseline = 'middle';
+    g.fillText(e, SPRITE, SPRITE * 1.08);
+    emojiCache.set(e, c);
+  }
+  return c;
+}
+const MAX_PARTS = 150;
 function burst(x, y, emojis, n = 18) {
+  // con tante particelle già in volo ne aggiungo meno, e oltre il tetto tolgo le più vecchie
+  if (parts.length > MAX_PARTS / 2) n = Math.ceil(n / 3);
   for (let i = 0; i < n; i++) {
     const a = Math.random() * Math.PI * 2;
     const v = 6 + Math.random() * 9;
-    parts.push({ x, y, vx: Math.cos(a) * v, vy: Math.sin(a) * v - 7, life: 1, rot: Math.random() * 6, vr: (Math.random() - .5) * .3, e: emojis[i % emojis.length], s: 22 + Math.random() * 22 });
+    parts.push({ x, y, vx: Math.cos(a) * v, vy: Math.sin(a) * v - 7, life: 1, rot: Math.random() * 6, vr: (Math.random() - .5) * .3, img: emojiSprite(emojis[i % emojis.length]), s: 22 + Math.random() * 22 });
   }
+  if (parts.length > MAX_PARTS) parts.splice(0, parts.length - MAX_PARTS);
 }
+let fxDirty = false;
 (function fxFrame() {
-  fg.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
-  fg.clearRect(0, 0, innerWidth, innerHeight);
-  parts = parts.filter((p) => p.life > 0);
-  for (const p of parts) {
-    p.x += p.vx; p.y += p.vy; p.vy += .45; p.vx *= .99; p.rot += p.vr; p.life -= .013;
-    fg.save(); fg.globalAlpha = Math.max(0, p.life); fg.translate(p.x, p.y); fg.rotate(p.rot);
-    fg.font = `${p.s}px serif`; fg.textAlign = 'center'; fg.textBaseline = 'middle'; fg.fillText(p.e, 0, 0); fg.restore();
+  if (parts.length || fxDirty) {
+    const dpr = devicePixelRatio;
+    fg.setTransform(dpr, 0, 0, dpr, 0, 0);
+    fg.globalAlpha = 1;
+    fg.clearRect(0, 0, innerWidth, innerHeight);
+    parts = parts.filter((p) => p.life > 0 && p.y < innerHeight + 80);
+    for (const p of parts) {
+      p.x += p.vx; p.y += p.vy; p.vy += .45; p.vx *= .99; p.rot += p.vr; p.life -= .016;
+      const c = Math.cos(p.rot) * dpr, sn = Math.sin(p.rot) * dpr;
+      fg.setTransform(c, sn, -sn, c, p.x * dpr, p.y * dpr);
+      fg.globalAlpha = Math.max(0, p.life);
+      const z = p.s * 1.35; // la tela ha un margine attorno all'emoji
+      fg.drawImage(p.img, -z / 2, -z / 2, z, z);
+    }
+    fxDirty = parts.length > 0; // un ultimo fotogramma vuoto per pulire la tela, poi si ferma
   }
   requestAnimationFrame(fxFrame);
 })();
 document.querySelectorAll('.dl, #heroDl').forEach((a) => a.addEventListener('click', (e) => {
-  burst(e.clientX, e.clientY, ['🍄', '🥒', '🍌', '🍆', '🎉', '✨'], 40);
+  burst(e.clientX, e.clientY, ['🍄', '🥒', '🍌', '🍆', '🕹️', '🚀', '🪙', '🎮'], 40);
 }));
 
 /* ---------- motore audio della demo (tutti suoni sintetizzati, niente file) ---------- */
@@ -722,6 +1009,23 @@ const SFX = {
     }
     return 1.8;
   },
+  coin() {
+    const a = ctx(); const t = a.currentTime;
+    const o = a.createOscillator(); o.type = 'square';
+    o.frequency.setValueAtTime(988, t); o.frequency.setValueAtTime(1319, t + .08);
+    const g = a.createGain(); g.gain.setValueAtTime(.12, t); g.gain.setValueAtTime(.12, t + .1); g.gain.exponentialRampToValueAtTime(.0001, t + .55);
+    o.connect(g).connect(out()); o.start(t); o.stop(t + .56); return .55;
+  },
+  gameover() {
+    const a = ctx(); const t = a.currentTime;
+    [523, 494, 466, 440, 415, 392, 262].forEach((f, k) => {
+      const tt = t + k * .17; const len = k === 6 ? .8 : .15;
+      const o = a.createOscillator(); o.type = 'square'; o.frequency.value = f;
+      const g = a.createGain(); g.gain.setValueAtTime(.1, tt); g.gain.exponentialRampToValueAtTime(.0001, tt + len);
+      o.connect(g).connect(out()); o.start(tt); o.stop(tt + len + .02);
+    });
+    return 1.9;
+  },
   ding() {
     const a = ctx(); const t = a.currentTime;
     [[1320, .35], [2640, .12], [3960, .06]].forEach(([f, v]) => {
@@ -735,17 +1039,19 @@ const PADS = [
   { key: 'badumtss', label: 'Ba-dum-tss', em: '🥁', c: '#5b4bff', who: 'zucchino' },
   { key: 'boing', label: 'Boing', em: '🦘', c: '#ffbf1f', who: 'banana' },
   { key: 'pernacchia', label: 'Pernacchia', em: '💨', c: '#9b5de5', who: 'melanzana' },
-  { key: 'laser', label: 'Pew pew', em: '🔫', c: '#00b0f4', who: 'cetriolo' },
-  { key: 'sirena', label: 'Sirena', em: '🚨', c: '#ff5fa2', who: 'zucchino' },
-  { key: 'applausi', label: 'Applausi', em: '👏', c: '#3ba55d', who: 'banana' },
-  { key: 'ding', label: 'Ding!', em: '🔔', c: '#faa61a', who: 'fungo' },
+  { key: 'laser', label: 'Pew pew', em: '🔫', c: '#00b0f4', who: 'razzo' },
+  { key: 'sirena', label: 'Sirena', em: '🚨', c: '#ff5fa2', who: 'cetriolo' },
+  { key: 'applausi', label: 'Applausi', em: '👏', c: '#3ba55d', who: 'birillo' },
+  { key: 'ding', label: 'Ding!', em: '🔔', c: '#faa61a', who: 'ghiacciolo' },
+  { key: 'coin', label: 'Moneta', em: '🪙', c: '#e0a800', who: 'joystick' },
+  { key: 'gameover', label: 'Game over', em: '💀', c: '#4f545c', who: 'pad' },
 ];
 (function buildDemo() {
   const row = $('#stageRow');
-  for (const id of ['zucchino', 'banana', 'fungo', 'melanzana', 'cetriolo']) {
+  for (const id of ['joystick', 'zucchino', 'razzo', 'banana', 'birillo', 'fungo', 'melanzana', 'ghiacciolo', 'cetriolo', 'pad']) {
     const d = document.createElement('div');
     d.className = 'chr'; d.dataset.who = id; d.innerHTML = charSvg(id);
-    if (id === 'fungo') { d.style.width = 'clamp(90px, 15vw, 170px)'; }
+    if (id === 'fungo') { d.style.width = 'clamp(48px, 11vw, 150px)'; }
     row.appendChild(d);
   }
   const grid = $('#pads');
@@ -757,27 +1063,81 @@ const PADS = [
     grid.appendChild(b);
   });
   addEventListener('keydown', (e) => {
-    const n = parseInt(e.key, 10);
-    if (n >= 1 && n <= PADS.length && !e.repeat) {
-      const r = grid.children[n - 1].getBoundingClientRect();
-      play(n - 1, r.left + r.width / 2, r.top + r.height / 2);
+    if (!/^[0-9]$/.test(e.key) || e.repeat || e.target.closest('input, textarea')) return;
+    const i = e.key === '0' ? 9 : Number(e.key) - 1;
+    if (i < PADS.length) {
+      const r = grid.children[i].getBoundingClientRect();
+      play(i, r.left + r.width / 2, r.top + r.height / 2);
     }
   });
 })();
+const demoBox = document.querySelector('.demo .wrap') || document.querySelector('.demo');
 function play(i, x, y) {
   const p = PADS[i];
   const dur = SFX[p.key]();
   const pad = $('#pads').children[i];
   pad.classList.add('hit'); setTimeout(() => pad.classList.remove('hit'), 120);
   const bar = pad.querySelector('.bar');
-  gsap.fromTo(bar, { width: '0%' }, { width: '100%', duration: dur, ease: 'none', onComplete: () => gsap.set(bar, { width: 0 }) });
+  gsap.fromTo(bar, { width: '0%' }, { width: '100%', duration: dur, ease: 'none', overwrite: true, onComplete: () => gsap.set(bar, { width: 0 }) });
   const who = document.querySelector(`#stageRow .chr[data-who="${p.who}"]`);
   who.classList.remove('jump'); void who.offsetWidth; who.classList.add('jump');
   burst(x, y, [p.em, '✨', '💥', '🎵'], 20);
-  if (p.key === 'airhorn' || p.key === 'pernacchia') {
-    document.body.classList.remove('shake'); void document.body.offsetWidth; document.body.classList.add('shake');
+  scoreHit(p.key, x, y);
+  if ((p.key === 'airhorn' || p.key === 'pernacchia') && !demoBox.classList.contains('shake')) {
+    demoBox.classList.add('shake');
+    setTimeout(() => demoBox.classList.remove('shake'), 360);
   }
 }
+
+/* ---------- punteggio, combo, codice segreto ---------- */
+let score = 0, combo = 0, lastHit = 0, hi = 0;
+try { hi = Number(localStorage.getItem('tbf-hi')) || 0; } catch {}
+const pad6 = (n) => String(Math.min(n, 999999)).padStart(6, '0');
+$('#hi').textContent = pad6(hi);
+function pop(text, x, y, big) {
+  const live = document.querySelectorAll('.pop');
+  if (live.length >= 8) { gsap.killTweensOf(live[0]); live[0].remove(); }
+  const d = document.createElement('div');
+  d.className = 'pop' + (big ? ' big' : ''); d.textContent = text;
+  d.style.left = x + 'px'; d.style.top = y + 'px';
+  document.body.appendChild(d);
+  gsap.fromTo(d, { y: 0, opacity: 1, scale: .6 }, { y: -90, opacity: 0, scale: 1.2, duration: 1.1, ease: 'power2.out', onComplete: () => d.remove() });
+}
+function scoreHit(key, x, y) {
+  const now = performance.now();
+  if (key === 'gameover') {
+    combo = 0; $('#combo').textContent = 'x0';
+    const h = $('#hearts'); h.classList.remove('hurt'); void h.offsetWidth; h.classList.add('hurt');
+    pop('GAME OVER', x, y - 30, true);
+    return;
+  }
+  combo = now - lastHit < 900 ? combo + 1 : 1;
+  lastHit = now;
+  const gain = 100 * combo;
+  score += gain;
+  $('#score').textContent = pad6(score);
+  $('#combo').textContent = 'x' + combo;
+  if (score > hi) { hi = score; $('#hi').textContent = pad6(hi); try { localStorage.setItem('tbf-hi', hi); } catch {} }
+  pop('+' + gain, x, y - 30);
+  if (combo === 5) pop('COMBO!', x, y - 80, true);
+  if (combo === 10) pop('PERFECT!', x, y - 80, true);
+  if (combo === 20) pop('SEI MALATO', x, y - 80, true);
+}
+(function konami() {
+  const seq = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+  let pos = 0;
+  addEventListener('keydown', (e) => {
+    const k = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+    pos = k === seq[pos] ? pos + 1 : (k === seq[0] ? 1 : 0);
+    if (pos < seq.length) return;
+    pos = 0;
+    SFX.coin(); setTimeout(() => SFX.airhorn(), 250);
+    document.querySelectorAll('#stageRow .chr').forEach((c, i) => setTimeout(() => { c.classList.remove('jump'); void c.offsetWidth; c.classList.add('jump'); }, i * 70));
+    burst(innerWidth / 2, innerHeight / 2, ['🍄', '🥒', '🍌', '🍆', '🕹️', '🚀', '🎳', '🍭', '🎮', '🪙'], 70);
+    pop('+30 VITE', innerWidth / 2, innerHeight / 2, true);
+    score += 30000; $('#score').textContent = pad6(score);
+  });
+})();
 
 /* ---------- gang ---------- */
 (function gang() {
@@ -785,7 +1145,8 @@ function play(i, x, y) {
   for (const [id, c] of Object.entries(CHARS)) {
     const d = document.createElement('div');
     d.className = 'card'; d.style.background = c.bg;
-    d.innerHTML = `<div class="chr">${charSvg(id)}</div><h3>${c.name}</h3><div class="role">${c.role}</div>`;
+    const bars = ['Volume', 'Caos', 'Vergogna'].map((n, k) => `<div class="stat">${n}<i style="--v:${c.st[k]}%"></i></div>`).join('');
+    d.innerHTML = `<span class="p1">P1</span><div class="chr">${charSvg(id)}</div><h3>${c.name}</h3><div class="role">${c.role}</div><div class="stats">${bars}</div>`;
     d.addEventListener('pointermove', (e) => {
       const r = d.getBoundingClientRect();
       const rx = ((e.clientY - r.top) / r.height - .5) * -18;
@@ -799,6 +1160,161 @@ function play(i, x, y) {
     });
     box.appendChild(d);
   }
+})();
+
+/* ---------- changelog (tono serio: zero) ---------- */
+const LOG = [
+  { v: 'Sito', d: '31 ottobre 2026', t: 'La gang si allarga', l: [
+    'Cinque nuovi membri: Stick il joystick, Missile, Strike, Freezer e Big Pad. Le forme sono puramente casuali. Puramente.',
+    'Scarpe giganti per tutti. Nessuno ha chiesto perché, nessuno risponderà.',
+    'La demo ora dà punti, combo e un record. C\'è anche un codice segreto. Non te lo diciamo. (È quello lì.)'] },
+  { v: '0.16.0', d: '31 ottobre 2026', t: 'Tre voci di donna', l: [
+    '👧 Ragazza, 👩 Donna, 👵 Signora: ora in call puoi essere tua zia.',
+    'Niente effetto cartone animato: cambia il tono ma non ti trasforma in un criceto. Quello è Scoiattolo, ed è un\'altra storia.'] },
+  { v: '0.15.0', d: '31 ottobre 2026', t: 'La voce cambia dal vivo', l: [
+    '✨ Voce: Robot, Scoiattolo, Orco, Eco, Riverbero, Radio, Megafono. Con la manopola, perché le manopole sono belle.',
+    'Ti senti in cuffia prima di rovinarti la reputazione davanti a tutti.',
+    'Scorciatoia per accendere e spegnere l\'effetto senza mollare la partita.'] },
+  { v: '0.14.1', d: '31 ottobre 2026', t: 'Esorcizzato il suono doppio', l: [
+    'In call a volte il suono partiva due volte. Era un fantasma. Ora è un ex fantasma.',
+    'Impostazioni in riquadri ordinati, come la cameretta il giorno che arrivano gli ospiti.'] },
+  { v: '0.14.0', d: '31 ottobre 2026', t: 'Non se ne va più', l: [
+    'Chiudi la finestra e lei resta lì col fungo nella barra in alto, come l\'amico che non lascia mai la festa. E la tua voce continua a passare.',
+    'Si avvia da sola quando accendi il computer. Tipo caffè, ma rumoroso.'] },
+  { v: '0.13', d: '31 ottobre 2026', t: 'Emoji che esplodono', l: [
+    'Ogni pad ha la sua emoji, e quando lo premi ti esplode in faccia a metà schermo. Con rimbalzo.',
+    'Le persone si scelgono di nuovo per davvero (prima facevano finta).'] },
+  { v: '0.12.0', d: '31 ottobre 2026', t: 'Volume sul pad', l: [
+    'Passi sopra al pad e trascini il volume. Fine. Rivoluzione.',
+    'Il Mac smette di chiederti i permessi a ogni aggiornamento, come un buttafuori smemorato.'] },
+  { v: '0.11', d: '31 ottobre 2026', t: 'Vestito nuovo', l: [
+    'Grafica nuova, viola notte, coriandoli a ogni pad. Elegantissima, per i nostri standard.',
+    'Un tasto STOP gigante per quando hai esagerato (spesso).',
+    'Guida rapida col «?»: ti prende per mano e ti porta in call.'] },
+  { v: '0.10', d: '31 ottobre 2026', t: 'È nato il sito', l: [
+    'Si aggiorna da GitHub. Ed è nato questo sito. Ciao mamma.'] },
+  { v: '0.9', d: '31 ottobre 2026', t: 'Si aggiorna da sola', l: [
+    'Compare il fungo «È uscito l\'aggiornamento», clicchi, fatto. Più facile che spegnere il forno.',
+    'Il microfono virtuale si installa con un clic. Al massimo ti chiede la password, non il codice fiscale.'] },
+  { v: '0.8.0', d: '31 ottobre 2026', t: 'Ogni suono ha un colpevole', l: [
+    'Persone: dici chi ha detto cosa, e il pad se lo ricorda per sempre. Per sempre.',
+    'Zoom sulla forma d\'onda fino al millesimo, per tagliare il respiro prima della pernacchia.'] },
+  { v: '0.7.0', d: '31 ottobre 2026', t: 'Privato o pubblico', l: [
+    'Ogni pad è 🔒 privato o 🌐 pubblico. I privati restano tuoi. Non facciamo domande.'] },
+  { v: '0.6.0', d: '31 ottobre 2026', t: 'REC', l: [
+    '⏺ Registri l\'audio del computer, di un\'app o della call, e diventa subito un pad. Usalo per il bene. O no.'] },
+];
+(function changelog() {
+  const box = $('#entries');
+  const SHOW = 4;
+  LOG.forEach((e, i) => {
+    const d = document.createElement('article');
+    d.className = 'entry' + (i >= SHOW ? ' hidden' : '');
+    d.dataset.v = e.v;
+    d.innerHTML = `<div class="v">${e.v === 'Sito' ? 'SITO' : 'v' + e.v}<small>${e.d}</small></div><div><h3>${e.t}</h3><ul>${e.l.map((x) => `<li>${x}</li>`).join('')}</ul></div>`;
+    box.appendChild(d);
+  });
+  $('#moreLog').addEventListener('click', (ev) => {
+    box.querySelectorAll('.entry.hidden').forEach((x) => x.classList.remove('hidden'));
+    ev.currentTarget.remove();
+    ScrollTrigger.refresh();
+  });
+  // versioni non ancora pubblicate: etichetta «in arrivo»
+  const num = (v) => v.replace(/^v/, '').split('.').map(Number);
+  const newer = (a, b) => { const x = num(a), y = num(b); for (let i = 0; i < 3; i++) { if ((x[i] || 0) !== (y[i] || 0)) return (x[i] || 0) > (y[i] || 0); } return false; };
+  fetch(`https://api.github.com/repos/${REPO}/releases/latest`).then((r) => r.json()).then((r) => {
+    if (!r || !r.tag_name) return;
+    box.querySelectorAll('.entry').forEach((el) => {
+      if (/^\d/.test(el.dataset.v) && newer(el.dataset.v, r.tag_name)) el.querySelector('.v').insertAdjacentHTML('beforeend', '<span class="new">IN ARRIVO</span>');
+    });
+  }).catch(() => {});
+})();
+
+/* ---------- voce dal vivo nel browser ---------- */
+(function voice() {
+  const FX = [
+    { k: 'none', n: '🙂 Nessuno' }, { k: 'robot', n: '🤖 Robot' }, { k: 'eco', n: '🏔️ Eco' }, { k: 'cave', n: '⛪ Riverbero' },
+    { k: 'radio', n: '📻 Radio' }, { k: 'mega', n: '📢 Megafono' },
+    { k: 'app', n: '🐿️ Scoiattolo' }, { k: 'app', n: '👹 Orco' }, { k: 'app', n: '👧 Ragazza' }, { k: 'app', n: '👵 Signora' },
+  ];
+  const grid = $('#fxGrid');
+  let cur = 'robot', stream = null, src = null, chain = null, an = null;
+  FX.forEach((f) => {
+    const b = document.createElement('button');
+    b.className = 'fx-btn' + (f.k === 'app' ? ' app' : '') + (f.k === cur ? ' on' : '');
+    b.textContent = f.n;
+    b.addEventListener('click', (e) => {
+      if (f.k === 'app') { pop('SOLO NELL\'APP', e.clientX, e.clientY - 20, true); return; }
+      grid.querySelectorAll('.fx-btn').forEach((x) => x.classList.toggle('on', x === b));
+      cur = f.k; if (src) wire();
+    });
+    grid.appendChild(b);
+  });
+  function curve(k) { const c = new Float32Array(1024); for (let i = 0; i < 1024; i++) { const x = i / 512 - 1; c[i] = Math.tanh(k * x); } return c; }
+  function impulse(a, sec) {
+    const b = a.createBuffer(2, a.sampleRate * sec, a.sampleRate);
+    for (let ch = 0; ch < 2; ch++) { const d = b.getChannelData(ch); for (let i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / d.length, 3); }
+    return b;
+  }
+  function build(a, k) {
+    const inp = a.createGain(), outp = a.createGain(), stop = [];
+    if (k === 'none') { inp.connect(outp); }
+    if (k === 'robot') {
+      const ring = a.createGain(); ring.gain.value = 0;
+      const osc = a.createOscillator(); osc.frequency.value = 55; osc.connect(ring.gain); osc.start(); stop.push(osc);
+      const comb = a.createDelay(); comb.delayTime.value = .011; const fb = a.createGain(); fb.gain.value = .55;
+      inp.connect(ring); ring.connect(comb); comb.connect(fb).connect(comb); ring.connect(outp); comb.connect(outp);
+      outp.gain.value = 1.6;
+    }
+    if (k === 'eco') {
+      const d = a.createDelay(2); d.delayTime.value = .33; const fb = a.createGain(); fb.gain.value = .45;
+      inp.connect(outp); inp.connect(d); d.connect(fb).connect(d); d.connect(outp);
+    }
+    if (k === 'cave') {
+      const cv = a.createConvolver(); cv.buffer = impulse(a, 3); const wet = a.createGain(); wet.gain.value = .9;
+      inp.connect(outp); inp.connect(cv).connect(wet).connect(outp);
+    }
+    if (k === 'radio' || k === 'mega') {
+      const hp = a.createBiquadFilter(); hp.type = 'highpass'; hp.frequency.value = k === 'radio' ? 500 : 900;
+      const lp = a.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = k === 'radio' ? 3200 : 2600;
+      const ws = a.createWaveShaper(); ws.curve = curve(k === 'radio' ? 3 : 14);
+      inp.connect(hp).connect(ws).connect(lp).connect(outp); outp.gain.value = k === 'radio' ? 1.4 : .9;
+    }
+    return { inp, outp, stop };
+  }
+  function wire() {
+    const a = ctx();
+    if (chain) { try { src.disconnect(); chain.outp.disconnect(); chain.stop.forEach((o) => o.stop()); } catch {} }
+    chain = build(a, cur);
+    src.connect(chain.inp); src.connect(an);
+    chain.outp.connect(a.destination);
+  }
+  const btn = $('#micBtn');
+  btn.addEventListener('click', async () => {
+    if (stream) {
+      stream.getTracks().forEach((t) => t.stop()); stream = null;
+      try { src.disconnect(); chain.outp.disconnect(); chain.stop.forEach((o) => o.stop()); } catch {}
+      src = chain = null; btn.textContent = '🎙️ Prova con la tua voce'; return;
+    }
+    try {
+      stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: false, noiseSuppression: false, autoGainControl: false } });
+    } catch {
+      $('#micNote').textContent = 'Niente microfono: il browser ha detto di no. Nell\'app funziona uguale, giuriamo sul fungo.'; return;
+    }
+    const a = ctx(); await a.resume();
+    src = a.createMediaStreamSource(stream);
+    an = a.createAnalyser(); an.fftSize = 512;
+    wire();
+    btn.textContent = '⏹ Basta, mi vergogno';
+    const buf = new Uint8Array(an.fftSize);
+    (function meter() {
+      if (!stream) { $('#micLevel').style.width = '0'; return; }
+      an.getByteTimeDomainData(buf);
+      let m = 0; for (const v of buf) m = Math.max(m, Math.abs(v - 128));
+      $('#micLevel').style.width = Math.min(100, m / 1.0) + '%';
+      requestAnimationFrame(meter);
+    })();
+  });
 })();
 
 /* ---------- animazioni GSAP ---------- */
@@ -818,6 +1334,9 @@ document.querySelectorAll('.reveal-art').forEach((el) => {
   gsap.from(chr, { y: 260, rotate: 25, duration: 1.2, ease: 'elastic.out(1, .6)', scrollTrigger: { trigger: el, start: 'top 80%' } });
   gsap.to(chr, { y: -40, ease: 'none', scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: true } });
   el.querySelectorAll('.deco').forEach((d, i) => gsap.to(d, { y: i ? -90 : 90, rotate: i ? 30 : -30, ease: 'none', scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: true } }));
+});
+document.querySelectorAll('.reveal-pic').forEach((el) => {
+  gsap.from(el, { y: 80, scale: .9, opacity: 0, duration: 1.1, ease: 'back.out(1.5)', scrollTrigger: { trigger: el, start: 'top 88%' } });
 });
 gsap.fromTo('#cards .card', { y: 120, opacity: 0, rotate: () => gsap.utils.random(-12, 12) }, { y: 0, opacity: 1, rotate: 0, duration: 1, ease: 'back.out(1.7)', stagger: .1, clearProps: 'transform,opacity', scrollTrigger: { trigger: '#cards', start: 'top 85%' } });
 gsap.fromTo('#stageRow .chr', { y: 140, opacity: 0 }, { y: 0, opacity: 1, duration: .9, ease: 'back.out(2)', stagger: .08, clearProps: 'transform,opacity', scrollTrigger: { trigger: '#stageRow', start: 'top 85%' } });
