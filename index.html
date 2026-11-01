@@ -295,6 +295,32 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; j
 @media (max-width: 860px) { .log .head { grid-template-columns: 1fr; } }
 @media (max-width: 560px) { .entry { grid-template-columns: 1fr; gap: 10px; } }
 
+/* ---------- account ---------- */
+.acct-open { margin-left: 0; }
+@media (max-width: 760px) { nav.top .acct-open { margin-left: auto; } nav.top .acct-open + .btn.small { margin-left: 0; } }
+dialog.acct { width: min(460px, calc(100vw - 32px)); max-height: calc(100vh - 40px); border: 4px solid #fff; border-radius: 28px; padding: 30px 26px 22px;
+  background: linear-gradient(160deg, #3a2bd6, #1d1450); color: #fff; box-shadow: 10px 10px 0 var(--green), 0 40px 80px rgba(0,0,0,.5); }
+dialog.acct::backdrop { background: rgba(10,6,30,.7); backdrop-filter: blur(6px); }
+.acct h3 { font-size: 30px; margin-bottom: 10px; text-transform: uppercase; }
+.acct p { color: #e6e2ff; font-size: 16px; margin: 0 0 14px; }
+.acct label { display: block; font-weight: 700; font-size: 14px; margin: 0 0 12px; color: var(--muted); }
+.acct input { display: block; width: 100%; margin-top: 6px; padding: 13px 15px; border-radius: 14px; border: 2px solid rgba(255,255,255,.25); background: rgba(0,0,0,.25); color: #fff; font: 500 17px Rubik, sans-serif; }
+.acct input:focus { outline: none; border-color: var(--green); }
+.acct input.code { font: 700 26px ui-monospace, Menlo, monospace; letter-spacing: .3em; text-align: center; }
+.acct .btn { margin: 6px 0 10px; }
+.acct .links2 { font-size: 15px; color: var(--muted); }
+.acct .links2 a { color: var(--green); font-weight: 700; cursor: pointer; }
+.acct-x { position: absolute; top: 14px; right: 16px; border: 0; background: transparent; color: #fff; font-size: 22px; cursor: pointer; }
+.acct-err { color: var(--yellow); font-weight: 700; min-height: 1em; margin: 6px 0 0 !important; }
+.acct ul { list-style: none; padding: 0; margin: 0 0 16px; display: grid; gap: 8px; }
+.acct li { background: rgba(255,255,255,.08); border-radius: 14px; padding: 10px 14px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; font-size: 15px; }
+.acct li .sp { flex: 1; }
+.acct li code { font: 700 15px ui-monospace, Menlo, monospace; color: var(--yellow); }
+.acct .mini { font: 700 13px Rubik, sans-serif; border: 2px solid #fff; background: transparent; color: #fff; border-radius: 999px; padding: 5px 12px; cursor: pointer; }
+.acct .danger { color: var(--red); border-color: var(--red); }
+.acct details { margin: 6px 0 14px; }
+.acct summary { cursor: pointer; color: var(--muted); font-weight: 700; }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001s !important; animation-iteration-count: 1 !important; transition: none !important; }
 }
@@ -548,9 +574,17 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; j
       <a href="#novita">Novità</a>
       <a href="#scarica">Scarica</a>
     </div>
+    <button class="btn small dark acct-open" id="acctOpen" type="button">👤 Entra</button>
     <a class="btn small" href="#scarica">Scarica</a>
   </div>
 </nav>
+
+<!-- ======================= ACCOUNT ======================= -->
+<dialog id="acct" class="acct">
+  <button class="acct-x" id="acctX" type="button" aria-label="Chiudi">✕</button>
+  <div id="acctBody"></div>
+  <p class="acct-err" id="acctErr"></p>
+</dialog>
 
 <!-- ======================= HERO ======================= -->
 <header class="hero" id="top">
@@ -716,6 +750,101 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; j
   </div>
 </footer>
 
+<script>
+'use strict';
+/* ---------- 👤 account: stesso account dell'app (server su soundboard.athost.it/team/) ---------- */
+(function account() {
+  const API = 'https://soundboard.athost.it/team/api/index.php';
+  const dlg = document.getElementById('acct'), body = document.getElementById('acctBody'), errEl = document.getElementById('acctErr');
+  const esc = (t) => String(t ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const store = { get: (k) => { try { return localStorage.getItem(k) || ''; } catch { return ''; } }, set: (k, v) => { try { v ? localStorage.setItem(k, v) : localStorage.removeItem(k); } catch {} } };
+  let token = store.get('tbf-token'), email = store.get('tbf-email'), profile = null, view = 'login';
+  const device = () => `Sito · ${/Mobi/.test(navigator.userAgent) ? 'telefono' : /Mac/.test(navigator.platform) ? 'Mac' : /Win/.test(navigator.platform) ? 'Windows' : 'browser'}`;
+  async function call(route, json, auth) {
+    const r = await fetch(`${API}?r=${route}`, { method: json ? 'POST' : 'GET', headers: { ...(json ? { 'Content-Type': 'application/json' } : {}), ...(auth ? { Authorization: `Bearer ${auth}` } : {}) }, body: json ? JSON.stringify(json) : undefined });
+    let d; try { d = await r.json(); } catch { throw new Error('Il server ha fatto le bizze, riprova tra un attimo'); }
+    if (!r.ok || d.error) throw Object.assign(new Error(d.error || 'Errore'), { code: d.code });
+    return d;
+  }
+  const navBtn = document.getElementById('acctOpen');
+  const setNav = () => { navBtn.textContent = token && profile ? `👤 ${profile.user.name}` : '👤 Entra'; };
+  const ago = (ms) => { const m = Math.round((Date.now() - ms) / 60000); return m < 2 ? 'adesso' : m < 60 ? `${m} min fa` : m < 2880 ? `${Math.round(m / 60)} ore fa` : `${Math.round(m / 1440)} giorni fa`; };
+  const V = {
+    login: () => `<h3>👤 Entra</h3><p>Lo stesso account dell'app: ritrovi i tuoi team su ogni computer.</p>
+      <label>Email<input id="aEmail" type="email" autocomplete="username" value="${esc(email)}"></label>
+      <label>Password<input id="aPass" type="password" autocomplete="current-password"></label>
+      <button class="btn" data-do="login">Entra</button>
+      <div class="links2"><a data-v="forgot">Password dimenticata?</a> · Non hai un account? <a data-v="register">Registrati</a></div>`,
+    register: () => `<h3>✨ Unisciti alla gang</h3><p>Ti mando un codice di 6 cifre per confermare l'email. Zero spam, promesso sul fungo.</p>
+      <label>Il tuo nome<input id="aName" type="text" maxlength="30" placeholder="Draghyon"></label>
+      <label>Email<input id="aEmail" type="email" autocomplete="username" value="${esc(email)}"></label>
+      <label>Password (almeno 8 caratteri)<input id="aPass" type="password" autocomplete="new-password"></label>
+      <button class="btn" data-do="register">Crea account</button>
+      <div class="links2">Hai già un account? <a data-v="login">Entra</a></div>`,
+    confirm: () => `<h3>📬 Guarda la posta</h3><p>Codice mandato a <b>${esc(email)}</b>. Vale 30 minuti (sbircia anche nello spam).</p>
+      <label>Codice<input id="aCode" class="code" inputmode="numeric" maxlength="7" autocomplete="one-time-code" placeholder="123456"></label>
+      <button class="btn" data-do="confirm">Conferma</button>
+      <div class="links2"><a data-do="resend">Rimandami il codice</a></div>`,
+    forgot: () => `<h3>🔑 Password persa</h3><p>Capita. Scrivi la tua email e ti mando un codice.</p>
+      <label>Email<input id="aEmail" type="email" autocomplete="username" value="${esc(email)}"></label>
+      <button class="btn" data-do="forgot">Mandami il codice</button>
+      <div class="links2"><a data-v="login">← Torna a «Entra»</a></div>`,
+    reset: () => `<h3>🔑 Nuova password</h3><p>Se <b>${esc(email)}</b> ha un account, il codice è in arrivo.</p>
+      <label>Codice<input id="aCode" class="code" inputmode="numeric" maxlength="7" autocomplete="one-time-code" placeholder="123456"></label>
+      <label>Nuova password (almeno 8 caratteri)<input id="aPass" type="password" autocomplete="new-password"></label>
+      <button class="btn" data-do="reset">Cambia password</button>`,
+    profile: () => !profile ? '<p>Carico…</p>' : `<h3>👤 Ciao ${esc(profile.user.name)}!</h3><p>${esc(profile.user.email)}</p>
+      <label>Nome<input id="aName" type="text" maxlength="30" value="${esc(profile.user.name)}"></label>
+      <button class="mini" data-do="name">Salva nome</button>
+      <p style="margin-top:18px"><b>I tuoi team</b></p>
+      <ul>${profile.teams.length ? profile.teams.map((t) => `<li><b>${esc(t.name)}</b><span class="sp"></span>codice <code>${esc(t.code)}</code></li>`).join('') : '<li>Ancora nessuno: nell\'app → 👥 Team → crea o entra con un codice.</li>'}</ul>
+      <p><b>Dove hai fatto l'accesso</b></p>
+      <ul>${profile.sessions.map((x) => `<li>${esc(x.device)}${x.current ? ' (qui)' : ''}<span class="sp"></span>${ago(x.lastSeen)}${x.current ? '' : ` <button class="mini" data-out="${x.id}">Scollega</button>`}</li>`).join('')}</ul>
+      <details><summary>Cambia password</summary>
+        <label>Password attuale<input id="aOld" type="password" autocomplete="current-password"></label>
+        <label>Nuova password<input id="aNew" type="password" autocomplete="new-password"></label>
+        <button class="mini" data-do="password">Cambia</button></details>
+      <button class="btn" data-do="logout">🚪 Esci</button>
+      <details><summary>Elimina l'account</summary><p>I team e i suoni restano, sparisce solo il tuo account.</p>
+        <label>Password<input id="aDel" type="password"></label><button class="mini danger" data-do="delete">💣 Elimina per sempre</button></details>`,
+  };
+  const render = () => { body.innerHTML = V[view](); errEl.textContent = ''; setTimeout(() => body.querySelector('input:not([value]),input[value=""]')?.focus(), 40); };
+  const go = (v) => { view = v; render(); };
+  const val = (id) => (document.getElementById(id)?.value || '').trim();
+  const signed = (d) => { token = d.token; store.set('tbf-token', token); profile = d; email = d.user.email; store.set('tbf-email', email); setNav(); go('profile'); };
+  async function load() {
+    if (!token) { setNav(); return; }
+    try { profile = await call('auth/me', null, token); } catch (e) { if (e.code === 'noauth') { token = ''; store.set('tbf-token', ''); profile = null; } }
+    setNav();
+  }
+  const D = {
+    login: async () => { email = val('aEmail'); store.set('tbf-email', email); try { signed(await call('auth/login', { email, password: document.getElementById('aPass').value, device: device() })); } catch (e) { if (e.code === 'unconfirmed') go('confirm'); throw e; } },
+    register: async () => { email = val('aEmail'); store.set('tbf-email', email); await call('auth/register', { email, password: document.getElementById('aPass').value, name: val('aName') }); go('confirm'); },
+    confirm: async () => signed(await call('auth/confirm', { email, code: val('aCode'), device: device() })),
+    resend: async () => { await call('auth/resend', { email }); errEl.textContent = '📬 Codice nuovo in arrivo'; },
+    forgot: async () => { email = val('aEmail'); store.set('tbf-email', email); await call('auth/forgot', { email }); go('reset'); },
+    reset: async () => signed(await call('auth/reset', { email, code: val('aCode'), password: document.getElementById('aPass').value, device: device() })),
+    name: async () => { profile = await call('auth/update', { name: val('aName') }, token); setNav(); render(); errEl.textContent = '✅ Salvato'; },
+    password: async () => { profile = await call('auth/password', { old: document.getElementById('aOld').value, password: document.getElementById('aNew').value }, token); render(); errEl.textContent = '🔑 Password cambiata'; },
+    logout: async () => { try { await call('auth/logout', {}, token); } catch {} token = ''; profile = null; store.set('tbf-token', ''); setNav(); go('login'); errEl.textContent = '🚪 Uscito. Torna presto.'; },
+    delete: async () => { if (!confirm('Eliminare il tuo account per sempre?')) return; await call('auth/delete', { password: document.getElementById('aDel').value }, token); token = ''; profile = null; store.set('tbf-token', ''); setNav(); go('register'); errEl.textContent = '💣 Account eliminato. Ci mancherai (forse).'; },
+  };
+  body.addEventListener('click', async (e) => {
+    const v = e.target.closest('[data-v]'); if (v) { go(v.dataset.v); return; }
+    const out = e.target.closest('[data-out]');
+    if (out) { try { profile = await call('auth/logout', { sessionId: Number(out.dataset.out) }, token); render(); } catch (er) { errEl.textContent = er.message; } return; }
+    const b = e.target.closest('[data-do]'); if (!b) return;
+    if (b.disabled) return; b.disabled = true; errEl.textContent = '';
+    try { await D[b.dataset.do](); } catch (er) { errEl.textContent = er.message; } finally { b.disabled = false; }
+  });
+  body.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); body.querySelector('.btn[data-do]')?.click(); } });
+  body.addEventListener('keydown', (e) => e.stopPropagation()); // niente pad della demo mentre scrivi
+  navBtn.addEventListener('click', () => { view = token ? 'profile' : (email ? 'login' : 'register'); render(); dlg.showModal(); if (token) load().then(render); });
+  document.getElementById('acctX').addEventListener('click', () => dlg.close());
+  dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+  load();
+})();
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
@@ -1164,6 +1293,11 @@ function scoreHit(key, x, y) {
 
 /* ---------- changelog (tono serio: zero) ---------- */
 const LOG = [
+  { v: '0.21.0', d: '1 novembre 2026', t: 'Ora hai un\'identità (digitale)', l: [
+    '👤 Account: ti registri con l\'email, arriva un codice di 6 cifre, lo scrivi. Più facile che ricordarsi il PIN del bancomat.',
+    'Cambi computer? Accedi e i tuoi team sono lì, con «Rientra». Torni come te stesso, non come un clone sospetto.',
+    'Password dimenticata? Codice via email e via. Non giudichiamo (un po\' sì).',
+    'Si fa anche da qui, dal sito: pulsante «👤 Entra» in alto.'] },
   { v: '0.20.0', d: '31 ottobre 2026', t: 'La gang ha un codice segreto', l: [
     '👥 Team: crei un team, ti dà un codice tipo ABCD-1234, lo mandi agli amici e loro entrano. Come un club, ma senza tessera e senza dignità.',
     'Clic destro su un pad → Condividi: il suono arriva da solo a tutti in pochi secondi. La pernacchia è finalmente un bene comune.',
