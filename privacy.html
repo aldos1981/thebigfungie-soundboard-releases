@@ -35,18 +35,19 @@
 <li>La tua <b>voce e il microfono non passano dai nostri server</b>: effetti e soundboard lavorano sul tuo computer.</li>
 <li>I tuoi pad personali restano sul tuo computer finché non li condividi in un gruppo.</li>
 <li>Niente pubblicità, niente tracciamento, niente cookie di profilazione, nessuna vendita di dati.</li>
-<li>L'email serve solo per accedere e per i codici di conferma; gli altri utenti non la vedono.</li>
+<li>L'email serve solo per accedere e per i codici di conferma; gli altri utenti non la vedono. <b>Email e nome sono cifrati sul server</b> e la password non viene mai salvata: ne resta solo un'impronta che non si può decifrare.</li>
+<li>Puoi <b>scaricare tutti i tuoi dati</b> ed <b>eliminare l'account</b> da solo, dall'app: 👥 Gruppi → Account.</li>
 </ul></div>
 <h2>Quali dati trattiamo</h2>
 <table>
 <tr><th>Dati</th><th>Perché</th><th>Base giuridica</th><th>Per quanto</th></tr>
-<tr><td>Account: email, nome, password (salvata solo come hash), date di accettazione di Termini e dichiarazione sui diritti</td><td>Creare e gestire l'account, dimostrare l'accettazione</td><td>Contratto (art. 6.1.b)</td><td>Finché non elimini l'account</td></tr>
+<tr><td>Account: email e nome (cifrati sul server, con la chiave fuori dal database), impronta della password (Argon2id: la password in sé non viene mai salvata), date di accettazione di Termini e dichiarazione sui diritti</td><td>Creare e gestire l'account, dimostrare l'accettazione</td><td>Contratto (art. 6.1.b)</td><td>Finché non elimini l'account</td></tr>
 <tr><td>Dispositivi collegati: nome del computer, date di accesso</td><td>Mostrarti dove sei collegato e permetterti di scollegarli</td><td>Contratto</td><td>Fino all'uscita o allo scollegamento</td></tr>
 <tr><td>Gruppi: nome visualizzato, ruolo, appartenenza, blocchi, sospensioni, ban (con motivo)</td><td>Far funzionare i gruppi e la loro moderazione</td><td>Contratto; legittimo interesse alla sicurezza (art. 6.1.f)</td><td>Finché sei nel gruppo; i ban finché vengono tolti</td></tr>
 <tr><td>Suoni caricati e loro dati (nome, emoji, taglio, chi li ha caricati e quando)</td><td>Condividerli con i membri del gruppo</td><td>Contratto</td><td>Finché restano nel gruppo</td></tr>
 <tr><td>Segnalazioni</td><td>Gestire contenuti illeciti e diritti d'autore</td><td>Obbligo di legge e legittimo interesse</td><td>Il tempo necessario alla gestione</td></tr>
 <tr><td>Codici via email</td><td>Confermare l'email, recuperare la password</td><td>Contratto</td><td>30 minuti</td></tr>
-<tr><td>Dati tecnici: indirizzo IP e orari delle richieste</td><td>Sicurezza, limiti contro gli abusi, funzionamento del server</td><td>Legittimo interesse</td><td>Al massimo 1 ora per i limiti anti-abuso; i registri dell'hosting secondo le sue regole</td></tr>
+<tr><td>Dati tecnici: impronta dell'indirizzo IP (non reversibile) e orari delle richieste</td><td>Sicurezza, limiti contro gli abusi, funzionamento del server</td><td>Legittimo interesse</td><td>Al massimo qualche ora per i limiti anti-abuso; i registri dell'hosting secondo le sue regole</td></tr>
 </table>
 <h2>Sito</h2>
 <p>Il sito non usa cookie. Se accedi dal sito, il browser conserva in memoria locale il «gettone» di accesso e la tua email, solo per ricordarti: puoi cancellarli uscendo o pulendo i dati del sito. Font e librerie sono serviti dal nostro server, senza richieste a servizi esterni durante la navigazione.</p>
@@ -58,11 +59,11 @@
 <li>Autorità, solo se richiesto dalla legge.</li>
 </ul>
 <h2>I tuoi diritti</h2>
-<p>Puoi chiedere accesso, rettifica, cancellazione, limitazione, portabilità e opporti al trattamento basato sul legittimo interesse scrivendo a <a href="mailto:soundboard@athost.it">soundboard@athost.it</a>. Puoi eliminare l'account in autonomia dall'app o dal sito: i suoni che hai caricato restano nei gruppi come parte del gruppo, scollegati dal tuo account, salvo che tu li elimini prima o ci chieda di rimuoverli. Hai diritto di proporre reclamo al <a href="https://www.garanteprivacy.it" target="_blank" rel="noopener">Garante per la protezione dei dati personali</a>.</p>
+<p>Puoi chiedere accesso, rettifica, cancellazione, limitazione, portabilità e opporti al trattamento basato sul legittimo interesse scrivendo a <a href="mailto:soundboard@athost.it">soundboard@athost.it</a>. Dall'app (👥 Gruppi → Account) puoi <b>scaricare i tuoi dati</b> in un file ed <b>eliminare l'account</b> in autonomia: esci da tutti i gruppi e vengono cancellati email, nome, dispositivi, codici e backup nel cloud; le tue segnalazioni diventano anonime. Scegli tu se eliminare anche i suoni e le immagini che hai caricato nei gruppi, oppure lasciarli ai gruppi senza il tuo nome. Hai diritto di proporre reclamo al <a href="https://www.garanteprivacy.it" target="_blank" rel="noopener">Garante per la protezione dei dati personali</a>.</p>
 <h2>Minori</h2>
 <p>L'account è riservato a chi ha almeno 14 anni (età prevista in Italia per il consenso ai servizi online).</p>
 <h2>Sicurezza</h2>
-<p>Connessioni cifrate (HTTPS), password salvate solo come hash, codici monouso con scadenza, limiti ai tentativi, gettoni di accesso cifrati nel portachiavi del tuo computer.</p>
+<p>Connessioni cifrate (HTTPS); email e nome cifrati nel database (AES-256-GCM) con la chiave custodita fuori dal database; password mai salvata, solo come impronta Argon2id; indirizzi IP conservati solo come impronte; codici monouso con scadenza; limiti ai tentativi e anti-abuso a scalare; gettoni di accesso cifrati nel portachiavi del tuo computer.</p>
 <h2>Modifiche</h2>
 <p>Se cambiamo questa informativa in modo importante te lo chiederemo di nuovo al primo accesso.</p>
 

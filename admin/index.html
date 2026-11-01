@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Admin · RagePad</title>
+<link rel="icon" href="../icon.png">
+<link rel="stylesheet" href="../fonts.css">
+<link rel="stylesheet" href="../vendor/fontawesome/css/fontawesome.min.css">
+<link rel="stylesheet" href="../vendor/fontawesome/css/solid.min.css">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<!-- accesso: solo l'account del developer passa (lo decide il server) -->
+<div id="login" class="login hidden">
+  <form id="loginForm" class="login-box">
+    <img src="../icon.png" alt="" width="56" height="56">
+    <h1>Admin RagePad</h1>
+    <p class="hint">Entra con il tuo account. Il server fa passare solo chi è nell'elenco dei developer.</p>
+    <label>Email<input id="lgEmail" type="email" autocomplete="username" required></label>
+    <label>Password<input id="lgPass" type="password" autocomplete="current-password" required></label>
+    <label id="lgTermsRow" class="check hidden"><input id="lgAccept" type="checkbox"> Accetto i Termini d'uso e la Privacy aggiornati</label>
+    <button class="btn primary" type="submit">Entra</button>
+    <p id="lgErr" class="err"></p>
+  </form>
+</div>
+
+<div id="app" class="app hidden">
+  <aside class="side">
+    <div class="brand"><img src="../icon.png" alt="" width="34" height="34"><div><b>RagePad</b><small>pannello admin</small></div></div>
+    <nav id="nav">
+      <a href="#oggi" data-view="oggi"><i class="fa-solid fa-chart-simple"></i> Oggi</a>
+      <a href="#utenti" data-view="utenti"><i class="fa-solid fa-user"></i> Utenti <span class="cnt" data-cnt="users"></span></a>
+      <a href="#gruppi" data-view="gruppi"><i class="fa-solid fa-users"></i> Gruppi <span class="cnt" data-cnt="teams"></span></a>
+      <a href="#audio" data-view="audio"><i class="fa-solid fa-volume-high"></i> Audio <span class="cnt" data-cnt="sounds"></span></a>
+      <a href="#immagini" data-view="immagini"><i class="fa-solid fa-image"></i> Immagini <span class="cnt" data-cnt="media"></span></a>
+      <a href="#segnalazioni" data-view="segnalazioni"><i class="fa-solid fa-flag"></i> Segnalazioni <span class="cnt hot" data-cnt="reportsOpen"></span></a>
+      <a href="#feedback" data-view="feedback"><i class="fa-solid fa-bug"></i> Feedback <span class="cnt hot" data-cnt="feedbackOpen"></span></a>
+      <a href="#antispam" data-view="antispam"><i class="fa-solid fa-hand"></i> Anti-spam <span class="cnt" data-cnt="limitsBlocked"></span></a>
+      <a href="#impostazioni" data-view="impostazioni"><i class="fa-solid fa-sliders"></i> Impostazioni</a>
+      <a href="#registro" data-view="registro"><i class="fa-solid fa-clock-rotate-left"></i> Registro</a>
+    </nav>
+    <div class="me"><span id="meName"></span><button id="logout" class="btn small ghost" type="button" title="Esci">Esci</button></div>
+  </aside>
+
+  <main class="main">
+    <header class="bar">
+      <h2 id="title">Oggi</h2>
+      <label class="search" id="searchBox"><i class="fa-solid fa-magnifying-glass"></i><input id="q" type="search" placeholder="Cerca…" autocomplete="off"></label>
+      <div id="filters" class="filters"></div>
+      <button id="reload" class="btn small ghost" type="button" title="Ricarica"><i class="fa-solid fa-rotate"></i></button>
+    </header>
+    <section id="content" class="content"></section>
+    <footer id="pager" class="pager hidden"><button id="prev" class="btn small" type="button">‹</button><span id="pageInfo"></span><button id="next" class="btn small" type="button">›</button></footer>
+  </main>
+
+  <!-- scheda di dettaglio (utente, gruppo, suono) -->
+  <aside id="drawer" class="drawer hidden"><div class="drawer-head"><b id="drawerTitle"></b><button id="drawerClose" class="btn small ghost" type="button">✕</button></div><div id="drawerBody" class="drawer-body"></div></aside>
+  <div id="toast" class="toast hidden"></div>
+</div>
+
+<script src="admin.js"></script>
+</body>
+</html>
