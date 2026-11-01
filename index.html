@@ -230,10 +230,10 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; j
 footer .legal { margin-top: 26px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.1); font-size: 13.5px; }
 footer .legal nav { display: flex; flex-wrap: wrap; gap: 8px 18px; }
 footer .legal a { color: #c9c3ff; text-decoration: none; } footer .legal a:hover { color: #fff; text-decoration: underline; }
-/* ---------- team ---------- */
+/* ---------- gruppo ---------- */
 .teamsec { padding: 130px 0 110px; background: radial-gradient(900px 500px at 80% 20%, #57f28722, transparent 60%), radial-gradient(800px 500px at 10% 80%, #ff5fa222, transparent 60%); }
 .teamsec .head { text-align: center; max-width: 760px; margin: 0 auto 50px; }
-.team-pic { margin: 6px auto 26px; max-width: 640px; rotate: -1.5deg; box-shadow: 10px 10px 0 var(--green), 0 30px 60px rgba(0,0,0,.4); }
+.gruppo-pic { margin: 6px auto 26px; max-width: 640px; rotate: -1.5deg; box-shadow: 10px 10px 0 var(--green), 0 30px 60px rgba(0,0,0,.4); }
 .dl-pic { max-width: 900px; margin: 0 auto 40px; rotate: 1deg; box-shadow: 10px 10px 0 var(--yellow), 0 30px 60px rgba(0,0,0,.4); }
 .teamsec h2 { font-size: clamp(38px, 5vw, 72px); margin-bottom: 16px; }
 .teamsec .head p { color: var(--muted); font-size: 20px; }
@@ -602,7 +602,7 @@ dialog.acct::backdrop { background: rgba(10,6,30,.7); backdrop-filter: blur(6px)
       <a href="#prova">Prova</a>
       <a href="#voce">Voce</a>
       <a href="#funzioni">Funzioni</a>
-      <a href="#team">Team</a>
+      <a href="#team">Gruppi</a>
       <a href="#novita">Novità</a>
       <a href="#scarica">Scarica</a>
     </div>
@@ -740,17 +740,17 @@ dialog.acct::backdrop { background: rgba(10,6,30,.7); backdrop-filter: blur(6px)
 <section class="teamsec" id="team">
   <div class="wrap">
     <div class="head">
-      <span class="kicker k-green">👥 Team con codice</span>
+      <span class="kicker k-green">👥 Gruppi con codice</span>
       <h2 class="reveal">La pernacchia diventa un bene comune</h2>
-      <div class="pic team-pic reveal-pic"><img src="img/funzioni/team.jpg" alt="La gang che si dà il cinque attorno a una nuvola di suoni" loading="lazy"></div>
-      <p class="reveal">Crei un team, mandi il codice agli amici e i suoni che trascinate nella sua tab arrivano a tutti in pochi secondi. Ognuno risponde di quello che carica, come in ogni gruppo serio (più o meno).</p>
+      <div class="pic gruppo-pic reveal-pic"><img src="img/funzioni/team.jpg" alt="La gang che si dà il cinque attorno a una nuvola di suoni" loading="lazy"></div>
+      <p class="reveal">Crei un gruppo, mandi il codice agli amici e i suoni che trascinate nella sua tab arrivano a tutti in pochi secondi. Ognuno risponde di quello che carica, come in ogni gruppo serio (più o meno).</p>
     </div>
     <div class="tcards">
-      <div class="tcard reveal"><div class="ic">🔑</div><h3>Un codice, tutti dentro</h3><p>«Crea un team», copia l'invito e mandalo su WhatsApp o Discord. Chi lo scrive nell'app entra. Se vuoi, i nuovi ingressi li approvi tu uno per uno.</p></div>
-      <div class="tcard reveal"><div class="ic">☁️</div><h3>Trascina e vola</h3><p>Trascini un pad sulla tab del team e parte per tutti, con nome, emoji, colore e taglio. Massimo 5 MB a suono: niente audiolibri.</p></div>
+      <div class="tcard reveal"><div class="ic">🔑</div><h3>Un codice, tutti dentro</h3><p>«Crea un gruppo», copia l'invito e mandalo su WhatsApp o Discord. Chi lo scrive nell'app entra. Se vuoi, i nuovi ingressi li approvi tu uno per uno.</p></div>
+      <div class="tcard reveal"><div class="ic">☁️</div><h3>Trascina e vola</h3><p>Trascini un pad sulla tab del gruppo e parte per tutti, con nome, emoji, colore e taglio. Massimo 5 MB a suono: niente audiolibri.</p></div>
       <div class="tcard reveal"><div class="ic">👑</div><h3>Ruoli veri</h3><p>Capo, Admin, Moderatore, Membro. Si può bloccare, espellere, sospendere o bannare: chi viene bannato ha i suoi audio nascosti finché un admin non lo grazia.</p></div>
       <div class="tcard reveal"><div class="ic">🗄️</div><h3>Archivia, non distruggere</h3><p>Un suono ti dà fastidio? Archivialo: sparisce solo da te. Eliminarlo per tutti può solo chi l'ha caricato o un admin.</p></div>
-      <div class="tcard reveal"><div class="ic">👤</div><h3>Account con email</h3><p>Per entrare nei team serve un account con l'email confermata (codice di 6 cifre). Così chi viene bannato resta fuori anche reinstallando l'app. L'email non la vede nessuno.</p></div>
+      <div class="tcard reveal"><div class="ic">👤</div><h3>Account con email</h3><p>Per entrare nei gruppi serve un account con l'email confermata (codice di 6 cifre). Così chi viene bannato resta fuori anche reinstallando l'app. L'email non la vede nessuno.</p></div>
       <div class="tcard reveal"><div class="ic">🚩</div><h3>Segnala</h3><p>Un suono viola il diritto d'autore o è offensivo? Clic destro → Segnala. Lo controlliamo e, se serve, lo togliamo.</p></div>
     </div>
     <p class="note">Prima di caricare il primo suono dichiari di averne i diritti. Leggi le <a href="regole.html">Regole</a> e i <a href="termini.html">Termini d'uso</a>.</p>
@@ -810,9 +810,9 @@ dialog.acct::backdrop { background: rgba(10,6,30,.7); backdrop-filter: blur(6px)
 
 <script>
 'use strict';
-/* ---------- 👤 account: stesso account dell'app (server su soundboard.athost.it/team/) ---------- */
+/* ---------- 👤 account: stesso account dell'app (server su soundboard.athost.it/gruppo/) ---------- */
 (function account() {
-  const API = 'https://soundboard.athost.it/team/api/index.php';
+  const API = 'https://soundboard.athost.it/gruppo/api/index.php';
   const dlg = document.getElementById('acct'), body = document.getElementById('acctBody'), errEl = document.getElementById('acctErr');
   const esc = (t) => String(t ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const store = { get: (k) => { try { return localStorage.getItem(k) || ''; } catch { return ''; } }, set: (k, v) => { try { v ? localStorage.setItem(k, v) : localStorage.removeItem(k); } catch {} } };
@@ -828,7 +828,7 @@ dialog.acct::backdrop { background: rgba(10,6,30,.7); backdrop-filter: blur(6px)
   const setNav = () => { navBtn.textContent = token && profile ? `👤 ${profile.user.name}` : '👤 Entra'; };
   const ago = (ms) => { const m = Math.round((Date.now() - ms) / 60000); return m < 2 ? 'adesso' : m < 60 ? `${m} min fa` : m < 2880 ? `${Math.round(m / 60)} ore fa` : `${Math.round(m / 1440)} giorni fa`; };
   const V = {
-    login: () => `<h3>👤 Entra</h3><p>Lo stesso account dell'app: ritrovi i tuoi team su ogni computer.</p>
+    login: () => `<h3>👤 Entra</h3><p>Lo stesso account dell'app: ritrovi i tuoi gruppi su ogni computer.</p>
       <label>Email<input id="aEmail" type="email" autocomplete="username" value="${esc(email)}"></label>
       <label>Password<input id="aPass" type="password" autocomplete="current-password"></label>
       <label class="chk" id="aTermsRow" style="display:none"><input id="aAccept" type="checkbox"><span>Ho almeno 14 anni e accetto i <a href="termini.html" target="_blank">Termini d'uso</a> e l'<a href="privacy.html" target="_blank">Informativa privacy</a> aggiornati.</span></label>
@@ -856,8 +856,8 @@ dialog.acct::backdrop { background: rgba(10,6,30,.7); backdrop-filter: blur(6px)
     profile: () => !profile ? '<p>Carico…</p>' : `<h3>👤 Ciao ${esc(profile.user.name)}!</h3><p>${esc(profile.user.email)}</p>
       <label>Nome<input id="aName" type="text" maxlength="30" value="${esc(profile.user.name)}"></label>
       <button class="mini" data-do="name">Salva nome</button>
-      <p style="margin-top:18px"><b>I tuoi team</b></p>
-      <ul>${profile.teams.length ? profile.teams.map((t) => `<li><b>${esc(t.name)}</b><span class="sp"></span>codice <code>${esc(t.code)}</code></li>`).join('') : '<li>Ancora nessuno: nell\'app → 👥 Team → crea o entra con un codice.</li>'}</ul>
+      <p style="margin-top:18px"><b>I tuoi gruppi</b></p>
+      <ul>${profile.teams.length ? profile.teams.map((t) => `<li><b>${esc(t.name)}</b><span class="sp"></span>codice <code>${esc(t.code)}</code></li>`).join('') : '<li>Ancora nessuno: nell\'app → 👥 Gruppi → crea o entra con un codice.</li>'}</ul>
       <p><b>Dove hai fatto l'accesso</b></p>
       <ul>${profile.sessions.map((x) => `<li>${esc(x.device)}${x.current ? ' (qui)' : ''}<span class="sp"></span>${ago(x.lastSeen)}${x.current ? '' : ` <button class="mini" data-out="${x.id}">Scollega</button>`}</li>`).join('')}</ul>
       <details><summary>Cambia password</summary>
@@ -865,7 +865,7 @@ dialog.acct::backdrop { background: rgba(10,6,30,.7); backdrop-filter: blur(6px)
         <label>Nuova password<input id="aNew" type="password" autocomplete="new-password"></label>
         <button class="mini" data-do="password">Cambia</button></details>
       <button class="btn" data-do="logout">🚪 Esci</button>
-      <details><summary>Elimina l'account</summary><p>I team e i suoni restano, sparisce solo il tuo account.</p>
+      <details><summary>Elimina l'account</summary><p>I gruppi e i suoni restano, sparisce solo il tuo account.</p>
         <label>Password<input id="aDel" type="password"></label><button class="mini danger" data-do="delete">💣 Elimina per sempre</button></details>`,
   };
   const render = () => { body.innerHTML = V[view](); errEl.textContent = ''; setTimeout(() => body.querySelector('input:not([value]),input[value=""]')?.focus(), 40); };
@@ -1383,28 +1383,28 @@ const LOG = [
     'Trascini un pad e una linea ti dice dove atterra. Niente più pad dispersi in fondo alla griglia.'] },
   { v: '0.35.0', t: 'I tuoi pad, ovunque', l: [
     '☁️ Backup privato nel cloud: cambi computer e i tuoi pad ti seguono. Anche da solo, una volta al giorno.',
-    'Gli audio del team vengono compressi prima del caricamento: più veloci e più leggeri.',
-    'Se un suono non entra nel team, ora te lo dice sul pad, con il motivo e «Riprova».',
+    'Gli audio del gruppo vengono compressi prima del caricamento: più veloci e più leggeri.',
+    'Se un suono non entra nel gruppo, ora te lo dice sul pad, con il motivo e «Riprova».',
     'Sistemato «Gestisci» su Mac: le voci ora fanno davvero quello che dicono.'] },
   { v: '0.32.0', t: 'Il pacchetto «non ci credo»', l: [
     'Timer: «suona tra 5 minuti» o «ogni sera alle 21». La sveglia più rumorosa della gang.',
     'Overlay per OBS con GIF animate, scritte che compaiono sullo schermo degli amici e «suona per tutti»: la pernacchia arriva ovunque.',
-    'Reazioni ai suoni del team e classifica dei più amati. Finalmente un premio per la pernacchia dell\'anno.',
+    'Reazioni ai suoni del gruppo e classifica dei più amati. Finalmente un premio per la pernacchia dell\'anno.',
     '«Ultimi secondi»: è successo qualcosa di epico? Un tasto e diventa un pad (su Mac).',
     'Profili, dissolvenze, voce in priorità, volume normalizzato, cestino e statistiche. Sì, tutto in una volta.'] },
   { v: '0.31.0', t: 'La libreria Media', l: [
-    'Immagini della gang e delle feste da usare come sfondo dei pad, e immagini condivise del team.'] },
+    'Immagini della gang e delle feste da usare come sfondo dei pad, e immagini condivise del gruppo.'] },
   { v: '0.30.0', t: 'Parla la tua lingua (anche il fungo)', l: [
     'Italiano, English, Español, Français, Deutsch, Português: l\'app sceglie da sola la lingua del tuo computer.',
     'Link d\'invito cliccabile: lo mandi su WhatsApp, l\'amico lo clicca e la soundboard si apre con il codice già scritto.',
-    'Quando un amico carica un suono nel team ti arriva la notifica. Niente più «ma l\'hai sentito il nuovo?».',
+    'Quando un amico carica un suono nel gruppo ti arriva la notifica. Niente più «ma l\'hai sentito il nuovo?».',
     'Un piccolo «ta-da» in cuffia quando esce un aggiornamento.'] },
   { v: '0.28.0', t: 'Prima ti presenti, poi spari suoni', l: [
     'Serve un account per usare la soundboard: gratis, con un codice via email. Se l\'hai già fatto, funziona anche offline.',
     'Icone vere al posto delle emoji in tutta l\'app. Le emoji dei tuoi pad restano, quelle non si toccano.'] },
   { v: '0.27.0', d: '1 novembre 2026', t: 'Siamo diventati seri (solo sulla carta)', l: [
     'Termini d\'uso, Regole, Privacy e Crediti: tutto in chiaro, scritto in italiano normale. Leggili, poi torna a fare pernacchie.',
-    'Chi carica un suono nel team dichiara di averne i diritti e se ne prende la responsabilità. Il resto lo segnali con 🚩.',
+    'Chi carica un suono nel gruppo dichiara di averne i diritti e se ne prende la responsabilità. Il resto lo segnali con 🚩.',
     'Immagine di sfondo sui pad, con o senza colore sopra. Finalmente la faccia del colpevole sul suo pad.',
     'Mini-finestra più pulita e con l\'opacità regolabile: la vedi, ma non ti copre il boss finale.'] },
   { v: '0.26.0', d: '1 novembre 2026', t: 'Icone da grandi', l: [
@@ -1412,10 +1412,10 @@ const LOG = [
   { v: '0.25.0', d: '1 novembre 2026', t: 'C\'è uno sceriffo in città', l: [
     'Ruoli: Capo 👑, Admin, Moderatore, Membro. Il capo comanda, gli admin fanno finta di comandare.',
     'Blocca, espelli, sospendi, banna per sempre. Chi viene bannato ha tutti i suoi audio nascosti finché un admin non lo grazia.',
-    'Per entrare in un team serve un account con email confermata: niente più furbetti che reinstallano l\'app. L\'email resta segreta.',
-    'Clic destro su un suono del team: chi l\'ha caricato, quando, e «Scarica il file». Le prove del delitto.'] },
+    'Per entrare in un gruppo serve un account con email confermata: niente più furbetti che reinstallano l\'app. L\'email resta segreta.',
+    'Clic destro su un suono del gruppo: chi l\'ha caricato, quando, e «Scarica il file». Le prove del delitto.'] },
   { v: '0.24.0', d: '1 novembre 2026', t: 'Archivia, non distruggere', l: [
-    'Un suono del team ti dà fastidio? Archivialo: sparisce solo da te. Gli altri continuano a soffrire in pace.',
+    'Un suono del gruppo ti dà fastidio? Archivialo: sparisce solo da te. Gli altri continuano a soffrire in pace.',
     'Eliminare per tutti può solo chi l\'ha caricato o l\'admin. La democrazia, ma con un capo.'] },
   { v: '0.23.0', d: '1 novembre 2026', t: 'Tasti veri, eco gentile', l: [
     'Effetti del pad uno alla volta: Eco, Riverbero, Cattedrale, Radio, Telefono, Megafono, Robot, con l\'intensità. L\'eco non ti spacca più le orecchie al 10%.',
@@ -1425,14 +1425,14 @@ const LOG = [
   { v: '0.22.0', d: '1 novembre 2026', t: 'Clicca la versione, scopri la verità', l: [
     'Clic sul numerino della versione in alto a sinistra: tutte le novità, dalla prima all\'ultima. Per chi legge i bugiardini.'] },
   { v: '0.21.1', d: '1 novembre 2026', t: 'Trascina e vola nel cloud', l: [
-    'Trascini un pad sulla tab del team e parte davvero per tutti. Prima faceva finta. Ci scusiamo con i pad coinvolti.'] },
+    'Trascini un pad sulla tab del gruppo e parte davvero per tutti. Prima faceva finta. Ci scusiamo con i pad coinvolti.'] },
   { v: '0.21.0', d: '1 novembre 2026', t: 'Ora hai un\'identità (digitale)', l: [
     '👤 Account: ti registri con l\'email, arriva un codice di 6 cifre, lo scrivi. Più facile che ricordarsi il PIN del bancomat.',
-    'Cambi computer? Accedi e i tuoi team sono lì, con «Rientra». Torni come te stesso, non come un clone sospetto.',
+    'Cambi computer? Accedi e i tuoi gruppi sono lì, con «Rientra». Torni come te stesso, non come un clone sospetto.',
     'Password dimenticata? Codice via email e via. Non giudichiamo (un po\' sì).',
     'Si fa anche da qui, dal sito: pulsante «👤 Entra» in alto.'] },
   { v: '0.20.0', d: '31 ottobre 2026', t: 'La gang ha un codice segreto', l: [
-    '👥 Team: crei un team, ti dà un codice tipo ABCD-1234, lo mandi agli amici e loro entrano. Come un club, ma senza tessera e senza dignità.',
+    '👥 Gruppi: crei un gruppo, ti dà un codice tipo ABCD-1234, lo mandi agli amici e loro entrano. Come un club, ma senza tessera e senza dignità.',
     'Clic destro su un pad → Condividi: il suono arriva da solo a tutti in pochi secondi. La pernacchia è finalmente un bene comune.',
     'Massimo 5 MB a suono: niente audiolibri. Abbiamo controllato, qualcuno ci aveva provato.',
     'Ruoli: Membro, Moderatore, Admin 👑. Il moderatore può espellere. Usalo con saggezza (non lo farai).'] },
