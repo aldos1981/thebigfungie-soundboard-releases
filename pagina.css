@@ -40,3 +40,6 @@ footer a { color: #c9c3ff; text-decoration: none; } footer a:hover { color: #fff
 .banner img { display: block; width: 100%; height: auto; }
 .feat-img { display: block; width: calc(100% + 44px); margin: -18px -22px 14px; border-radius: 18px 18px 0 0; aspect-ratio: 16 / 9; object-fit: cover; }
 .feat { overflow: hidden; }
+
+.beta-badge { display: inline-flex; align-items: center; margin-left: 10px; padding: 3px 9px; border-radius: 999px; background: #ffd23f; color: #23272a; font: 700 11px/1.2 Rubik, sans-serif; letter-spacing: .02em; white-space: nowrap; vertical-align: middle; box-shadow: 0 3px 0 #b8930b; }
+@media (max-width: 560px) { .beta-badge { display: none; } }

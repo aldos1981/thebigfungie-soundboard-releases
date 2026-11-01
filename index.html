@@ -14,6 +14,9 @@
 <link rel="stylesheet" href="vendor/fontawesome/css/fontawesome.min.css">
 <link rel="stylesheet" href="vendor/fontawesome/css/solid.min.css">
 <style>
+.beta-badge { display: inline-flex; align-items: center; margin-left: 10px; padding: 3px 9px; border-radius: 999px; background: #ffd23f; color: #23272a; font: 700 11px/1.2 Rubik, sans-serif; letter-spacing: .02em; white-space: nowrap; vertical-align: middle; box-shadow: 0 3px 0 #b8930b; }
+@media (max-width: 560px) { .beta-badge { display: none; } }
+
 :root {
   --blurple: #5b4bff;
   --deep: #1d1450;
@@ -594,7 +597,7 @@ dialog.acct::backdrop { background: rgba(10,6,30,.7); backdrop-filter: blur(6px)
 <!-- ======================= NAV ======================= -->
 <nav class="top" id="nav">
   <div class="wrap">
-    <a class="logo" href="#top"><img src="icon.png" alt="">TheBigFungie's</a>
+    <a class="logo" href="#top"><img src="icon.png" alt="">TheBigFungie's</a><span class="beta-badge" title="Versione in sviluppo: la ricevi solo con il link">🚧 BETA · in sviluppo</span>
     <div class="links">
       <a href="#prova">Prova</a>
       <a href="#voce">Voce</a>
@@ -1360,6 +1363,9 @@ function scoreHit(key, x, y) {
 
 /* ---------- changelog (tono serio: zero) ---------- */
 const LOG = [
+  { v: '0.38.0', t: 'Un pad, mille case', l: [
+    'Lo stesso pad in più schede: Meme, Musica e «Cose da non far sentire a mia madre». Contemporaneamente.',
+    'In cima c\'è una striscia gialla che dice BETA. Vuol dire che qualcosa si rompe. Se succede, il pulsante 🐞 è lì apposta.'] },
   { v: '0.37.0', t: 'Segnala, e ti diciamo grazie', l: [
     '🐞 Un pulsante per dirci cosa non va. Quando lo sistemiamo ti arriva una mail che ti ringrazia. Sì, ti ringraziamo davvero.',
     'I pad si piegano verso il mouse, fanno l\'onda quando li clicchi e ballano mentre suonano. Non li abbiamo drogati.',

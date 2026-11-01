@@ -12,6 +12,9 @@
 <link rel="stylesheet" href="vendor/fontawesome/css/solid.min.css">
 <link rel="stylesheet" href="pagina.css">
 <style>
+.beta-badge { display: inline-flex; align-items: center; margin-left: 10px; padding: 3px 9px; border-radius: 999px; background: #ffd23f; color: #23272a; font: 700 11px/1.2 Rubik, sans-serif; letter-spacing: .02em; white-space: nowrap; vertical-align: middle; box-shadow: 0 3px 0 #b8930b; }
+@media (max-width: 560px) { .beta-badge { display: none; } }
+
   .invite { text-align: center; padding: 50px 0 80px; }
   .invite img.hero-img { width: min(560px, 100%); border-radius: 26px; border: 4px solid #fff; box-shadow: 10px 10px 0 var(--green), 0 30px 60px rgba(0,0,0,.4); }
   .invite h1 { font-size: clamp(32px, 6vw, 58px); margin: 34px 0 10px; text-transform: uppercase; }
@@ -24,7 +27,7 @@
 </head>
 <body>
 <nav class="top"><div class="wrap">
-  <a class="logo" href="index.html"><img src="icon.png" alt="">TheBigFungie's</a>
+  <a class="logo" href="index.html"><img src="icon.png" alt="">TheBigFungie's</a><span class="beta-badge" title="Versione in sviluppo: la ricevi solo con il link">🚧 BETA · in sviluppo</span>
   <div class="links"><a href="funzioni.html">Funzioni</a><a href="regole.html">Regole</a></div>
   <a class="btn" href="index.html#scarica">Scarica</a>
 </div></nav>
