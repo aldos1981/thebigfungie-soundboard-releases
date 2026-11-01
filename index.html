@@ -56,8 +56,8 @@ nav.top.scrolled { background: rgba(18,12,51,.7); backdrop-filter: blur(14px); }
 nav.top .wrap { display: flex; align-items: center; gap: 22px; height: 76px; }
 .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: "Dela Gothic One"; font-size: 18px; }
 .logo img { width: 40px; height: 40px; }
-nav.top .links { display: flex; gap: 26px; margin-left: auto; font-weight: 700; }
-nav.top .links a { text-decoration: none; opacity: .85; }
+nav.top .links { display: flex; gap: 24px; margin-left: auto; font-weight: 700; }
+nav.top .links a { text-decoration: none; opacity: .85; white-space: nowrap; }
 nav.top .links a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 6px; }
 .btn {
   display: inline-flex; align-items: center; gap: 10px; border: 0; cursor: pointer; text-decoration: none;
@@ -603,7 +603,6 @@ dialog.acct::backdrop { background: rgba(10,6,30,.7); backdrop-filter: blur(6px)
       <a href="#voce">Voce</a>
       <a href="#funzioni">Funzioni</a>
       <a href="#team">Team</a>
-      <a href="funzioni.html">Funzioni</a>
       <a href="#novita">Novità</a>
       <a href="#scarica">Scarica</a>
     </div>
@@ -957,7 +956,7 @@ function detectOS() {
     $('#otherDl').textContent = 'Disponibile per Mac e Windows.';
   }
   fetch('version.json', { cache: 'no-store' }).then((r) => r.json()).then((r) => {
-    if (r && r.version) $('#version').textContent = `Ultima versione: v${r.version} · ${new Date(r.date).toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' })}`;
+    if (r && r.version) { const en = document.documentElement.lang === 'en'; $('#version').textContent = `${en ? 'Latest version' : 'Ultima versione'}: v${r.version} · ${new Date(r.date).toLocaleDateString(en ? 'en-US' : 'it-IT', { day: 'numeric', month: 'long', year: 'numeric' })}`; }
   }).catch(() => { $('#version').textContent = ''; });
 })();
 
@@ -1363,6 +1362,12 @@ function scoreHit(key, x, y) {
 
 /* ---------- changelog (tono serio: zero) ---------- */
 const LOG = [
+  { v: '0.39.0', t: 'Più gruppi, più casino', l: [
+    'Stai in tutti i gruppi che vuoi, insieme: amici del calcetto, gilda del giovedì, cugini. Ognuno ha la sua scheda con i suoi suoni.',
+    'Icona e colore per ogni gruppo: riconosci la scheda della gilda prima ancora di leggerla.',
+    '🔕 Silenzia un gruppo senza uscirne: i suoni arrivano lo stesso, ma senza avvisi e senza pernacchie a sorpresa.',
+    '«Aggiungi» apre prima l\'editor, con la scheda in cui sei già scelta. Niente più pad orfani.',
+    'Il server fa meno fatica: un solo controllo per tutti i gruppi. Lui ringrazia, il pianeta pure.'] },
   { v: '0.38.0', t: 'Un pad, mille case', l: [
     'Lo stesso pad in più schede: Meme, Musica e «Cose da non far sentire a mia madre». Contemporaneamente.',
     'In cima c\'è una striscia gialla che dice BETA. Vuol dire che qualcosa si rompe. Se succede, il pulsante 🐞 è lì apposta.'] },
@@ -1611,5 +1616,6 @@ gsap.fromTo('#stageRow .chr', { y: 140, opacity: 0 }, { y: 0, opacity: 1, durati
 gsap.fromTo('#pads .pad', { scale: 0, rotate: () => gsap.utils.random(-25, 25) }, { scale: 1, rotate: 0, duration: .6, ease: 'back.out(2.2)', stagger: { each: .05, from: 'random' }, clearProps: 'transform', scrollTrigger: { trigger: '#pads', start: 'top 88%' } });
 gsap.fromTo('.dl', { y: 100, opacity: 0, rotate: (i) => [-8, 0, 8][i] }, { y: 0, opacity: 1, rotate: 0, duration: 1, ease: 'back.out(1.6)', stagger: .12, clearProps: 'transform,opacity', scrollTrigger: { trigger: '.dl-grid', start: 'top 88%' } });
 </script>
+<script src="lang.js"></script>
 </body>
 </html>

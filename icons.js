@@ -31,10 +31,10 @@
         if (m.index > last) f.appendChild(document.createTextNode(t.slice(last, m.index)));
         const e = m[1];
         if (CHAR[e] && hasSym(CHAR[e])) {
-          const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); s.setAttribute('class', 'ico-char'); s.setAttribute('aria-hidden', 'true');
+          const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); s.setAttribute('class', 'ico-char'); s.setAttribute('aria-hidden', 'true'); s.setAttribute('data-e', e);
           const u = document.createElementNS('http://www.w3.org/2000/svg', 'use'); u.setAttribute('href', '#c-' + CHAR[e]); s.appendChild(u); f.appendChild(s);
-        } else if (ICON[e]) { const i = document.createElement('i'); i.className = `fa-solid fa-${ICON[e]} ico-inline`; f.appendChild(i); }
-        else if (CHAR[e]) { const i = document.createElement('i'); i.className = 'fa-solid fa-star ico-inline'; f.appendChild(i); }
+        } else if (ICON[e]) { const i = document.createElement('i'); i.className = `fa-solid fa-${ICON[e]} ico-inline`; i.dataset.e = e; f.appendChild(i); }
+        else if (CHAR[e]) { const i = document.createElement('i'); i.className = 'fa-solid fa-star ico-inline'; i.dataset.e = e; f.appendChild(i); }
         last = m.index + m[0].length;
       }
       if (last < t.length) f.appendChild(document.createTextNode(t.slice(last)));
