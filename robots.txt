@@ -1,0 +1,3 @@
+# Beta privata: il sito si raggiunge solo con il link
+User-agent: *
+Disallow: /
