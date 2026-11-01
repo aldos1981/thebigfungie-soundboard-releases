@@ -335,9 +335,15 @@ dialog.acct::backdrop { background: rgba(10,6,30,.7); backdrop-filter: blur(6px)
 .acct .danger { color: var(--red); border-color: var(--red); }
 .acct details { margin: 6px 0 14px; }
 .acct summary { cursor: pointer; color: var(--muted); font-weight: 700; }
-.acct label.chk { display: flex; gap: 10px; align-items: flex-start; color: #fff; font-weight: 500; font-size: 14px; }
-.acct label.chk input { width: 20px; height: 20px; margin: 1px 0 0; flex: none; accent-color: var(--green); }
-.acct label.chk a { color: var(--green); }
+.acct label.chk { display: flex; gap: 12px; align-items: flex-start; margin: 4px 0 16px; padding: 12px 14px; border-radius: 14px;
+  background: rgba(0,0,0,.22); border: 2px solid rgba(255,255,255,.14); color: #fff; font-weight: 500; font-size: 14.5px; line-height: 1.45; cursor: pointer; }
+.acct label.chk:has(input:checked) { border-color: var(--green); }
+.acct label.chk input { width: 20px; height: 20px; margin: 1px 0 0; padding: 0; flex: none; accent-color: var(--green); display: inline-block; }
+.acct label.chk span { flex: 1; }
+.acct label.chk a { color: var(--green); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.acct h3 { line-height: 1.05; }
+.acct .btn[data-do] { width: 100%; justify-content: center; }
+.acct .links2 { text-align: center; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001s !important; animation-iteration-count: 1 !important; transition: none !important; }
@@ -816,14 +822,14 @@ dialog.acct::backdrop { background: rgba(10,6,30,.7); backdrop-filter: blur(6px)
     login: () => `<h3>👤 Entra</h3><p>Lo stesso account dell'app: ritrovi i tuoi team su ogni computer.</p>
       <label>Email<input id="aEmail" type="email" autocomplete="username" value="${esc(email)}"></label>
       <label>Password<input id="aPass" type="password" autocomplete="current-password"></label>
-      <label class="chk" id="aTermsRow" style="display:none"><input id="aAccept" type="checkbox"> Ho almeno 14 anni e accetto i <a href="termini.html" target="_blank">Termini d'uso</a> e la <a href="privacy.html" target="_blank">Privacy</a> aggiornati</label>
+      <label class="chk" id="aTermsRow" style="display:none"><input id="aAccept" type="checkbox"><span>Ho almeno 14 anni e accetto i <a href="termini.html" target="_blank">Termini d'uso</a> e l'<a href="privacy.html" target="_blank">Informativa privacy</a> aggiornati.</span></label>
       <button class="btn" data-do="login">Entra</button>
       <div class="links2"><a data-v="forgot">Password dimenticata?</a> · Non hai un account? <a data-v="register">Registrati</a></div>`,
     register: () => `<h3>✨ Unisciti alla gang</h3><p>Ti mando un codice di 6 cifre per confermare l'email. Zero spam, promesso sul fungo.</p>
-      <label>Il tuo nome<input id="aName" type="text" maxlength="30" placeholder="Draghyon"></label>
+      <label>Il tuo nome<input id="aName" type="text" maxlength="30" placeholder="Come ti vedranno gli altri" autocomplete="nickname"></label>
       <label>Email<input id="aEmail" type="email" autocomplete="username" value="${esc(email)}"></label>
       <label>Password (almeno 8 caratteri)<input id="aPass" type="password" autocomplete="new-password"></label>
-      <label class="chk"><input id="aAccept" type="checkbox"> Ho almeno 14 anni e accetto i <a href="termini.html" target="_blank">Termini d'uso</a>, le <a href="regole.html" target="_blank">Regole</a> e la <a href="privacy.html" target="_blank">Privacy</a></label>
+      <label class="chk"><input id="aAccept" type="checkbox"><span>Ho almeno 14 anni e accetto i <a href="termini.html" target="_blank">Termini d'uso</a>, le <a href="regole.html" target="_blank">Regole</a> e l'<a href="privacy.html" target="_blank">Informativa privacy</a>.</span></label>
       <button class="btn" data-do="register">Crea account</button>
       <div class="links2">Hai già un account? <a data-v="login">Entra</a></div>`,
     confirm: () => `<h3>📬 Guarda la posta</h3><p>Codice mandato a <b>${esc(email)}</b>. Vale 30 minuti (sbircia anche nello spam).</p>
