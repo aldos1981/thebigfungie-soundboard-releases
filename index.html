@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>TheBigFungie's Soundboard</title>
+<title>RagePad — la soundboard per call, live e partite</title>
 <meta name="description" content="La soundboard per tutte le occasioni: call, live, partite, feste. Pad, scorciatoie e i tuoi suoni dritti nel microfono. Mac e Windows, gratis.">
 <link rel="icon" href="icon.png">
-<meta property="og:title" content="TheBigFungie's Soundboard">
+<meta property="og:title" content="RagePad">
 <meta property="og:description" content="Spara suoni ovunque. Ridono tutti.">
 <meta property="og:image" content="icon.png">
 <link rel="stylesheet" href="fonts.css">
@@ -597,7 +597,7 @@ dialog.acct::backdrop { background: rgba(10,6,30,.7); backdrop-filter: blur(6px)
 <!-- ======================= NAV ======================= -->
 <nav class="top" id="nav">
   <div class="wrap">
-    <a class="logo" href="#top"><img src="icon.png" alt="">TheBigFungie's</a><span class="beta-badge" title="Versione in sviluppo: la ricevi solo con il link">🚧 BETA · in sviluppo</span>
+    <a class="logo" href="#top"><img src="icon.png" alt="">RagePad</a><span class="beta-badge" title="Versione in sviluppo: la ricevi solo con il link">🚧 BETA · in sviluppo</span>
     <div class="links">
       <a href="#prova">Prova</a>
       <a href="#voce">Voce</a>
@@ -743,11 +743,11 @@ dialog.acct::backdrop { background: rgba(10,6,30,.7); backdrop-filter: blur(6px)
       <span class="kicker k-green">👥 Team con codice</span>
       <h2 class="reveal">La pernacchia diventa un bene comune</h2>
       <div class="pic team-pic reveal-pic"><img src="img/funzioni/team.jpg" alt="La gang che si dà il cinque attorno a una nuvola di suoni" loading="lazy"></div>
-      <p class="reveal">Crei un team, mandi il codice agli amici e i suoni che trascinate nella sua scheda arrivano a tutti in pochi secondi. Ognuno risponde di quello che carica, come in ogni gruppo serio (più o meno).</p>
+      <p class="reveal">Crei un team, mandi il codice agli amici e i suoni che trascinate nella sua tab arrivano a tutti in pochi secondi. Ognuno risponde di quello che carica, come in ogni gruppo serio (più o meno).</p>
     </div>
     <div class="tcards">
       <div class="tcard reveal"><div class="ic">🔑</div><h3>Un codice, tutti dentro</h3><p>«Crea un team», copia l'invito e mandalo su WhatsApp o Discord. Chi lo scrive nell'app entra. Se vuoi, i nuovi ingressi li approvi tu uno per uno.</p></div>
-      <div class="tcard reveal"><div class="ic">☁️</div><h3>Trascina e vola</h3><p>Trascini un pad sulla scheda del team e parte per tutti, con nome, emoji, colore e taglio. Massimo 5 MB a suono: niente audiolibri.</p></div>
+      <div class="tcard reveal"><div class="ic">☁️</div><h3>Trascina e vola</h3><p>Trascini un pad sulla tab del team e parte per tutti, con nome, emoji, colore e taglio. Massimo 5 MB a suono: niente audiolibri.</p></div>
       <div class="tcard reveal"><div class="ic">👑</div><h3>Ruoli veri</h3><p>Capo, Admin, Moderatore, Membro. Si può bloccare, espellere, sospendere o bannare: chi viene bannato ha i suoi audio nascosti finché un admin non lo grazia.</p></div>
       <div class="tcard reveal"><div class="ic">🗄️</div><h3>Archivia, non distruggere</h3><p>Un suono ti dà fastidio? Archivialo: sparisce solo da te. Eliminarlo per tutti può solo chi l'ha caricato o un admin.</p></div>
       <div class="tcard reveal"><div class="ic">👤</div><h3>Account con email</h3><p>Per entrare nei team serve un account con l'email confermata (codice di 6 cifre). Così chi viene bannato resta fuori anche reinstallando l'app. L'email non la vede nessuno.</p></div>
@@ -799,7 +799,7 @@ dialog.acct::backdrop { background: rgba(10,6,30,.7); backdrop-filter: blur(6px)
 
 <footer>
   <div class="wrap">
-    <a class="logo" href="#top"><img src="icon.png" alt="">TheBigFungie's Soundboard</a>
+    <a class="logo" href="#top"><img src="icon.png" alt="">RagePad</a>
     <span>Fatto per gli amici, con amore e un pizzico di vergogna. 🍄🥒🍌🍆🕹️🚀🎳🍭💄 GG.</span>
   </div>
   <div class="wrap legal">
@@ -1362,14 +1362,20 @@ function scoreHit(key, x, y) {
 
 /* ---------- changelog (tono serio: zero) ---------- */
 const LOG = [
+  { v: '0.42.0', t: 'Si chiama RagePad', l: [
+    'Nuovo nome: RagePad. Perché alla fine è un controller di pad, e la rabbia in call la conosciamo tutti.',
+    'Le schede ora si chiamano tab. I pad restano pad. Nessun pad è stato maltrattato.',
+    '☑️ Selezioni più pad insieme con ⌘ o Ctrl e li aggiungi a un gruppo o li butti, tutti in un colpo.',
+    '🛑 Anti-spam: chi preme lo stesso pulsante cento volte al minuto resta fermo un po\'. Gli altri pulsanti funzionano, la dignità no.',
+    '⏪ Gli ultimi secondi registrati non suonano più come uno scoiattolo accelerato.'] },
   { v: '0.39.0', t: 'Più gruppi, più casino', l: [
-    'Stai in tutti i gruppi che vuoi, insieme: amici del calcetto, gilda del giovedì, cugini. Ognuno ha la sua scheda con i suoi suoni.',
-    'Icona e colore per ogni gruppo: riconosci la scheda della gilda prima ancora di leggerla.',
+    'Stai in tutti i gruppi che vuoi, insieme: amici del calcetto, gilda del giovedì, cugini. Ognuno ha la sua tab con i suoi suoni.',
+    'Icona e colore per ogni gruppo: riconosci la tab della gilda prima ancora di leggerla.',
     '🔕 Silenzia un gruppo senza uscirne: i suoni arrivano lo stesso, ma senza avvisi e senza pernacchie a sorpresa.',
-    '«Aggiungi» apre prima l\'editor, con la scheda in cui sei già scelta. Niente più pad orfani.',
+    '«Aggiungi» apre prima l\'editor, con la tab in cui sei già scelta. Niente più pad orfani.',
     'Il server fa meno fatica: un solo controllo per tutti i gruppi. Lui ringrazia, il pianeta pure.'] },
   { v: '0.38.0', t: 'Un pad, mille case', l: [
-    'Lo stesso pad in più schede: Meme, Musica e «Cose da non far sentire a mia madre». Contemporaneamente.',
+    'Lo stesso pad in più tab: Meme, Musica e «Cose da non far sentire a mia madre». Contemporaneamente.',
     'In cima c\'è una striscia gialla che dice BETA. Vuol dire che qualcosa si rompe. Se succede, il pulsante 🐞 è lì apposta.'] },
   { v: '0.37.0', t: 'Segnala, e ti diciamo grazie', l: [
     '🐞 Un pulsante per dirci cosa non va. Quando lo sistemiamo ti arriva una mail che ti ringrazia. Sì, ti ringraziamo davvero.',
@@ -1419,7 +1425,7 @@ const LOG = [
   { v: '0.22.0', d: '1 novembre 2026', t: 'Clicca la versione, scopri la verità', l: [
     'Clic sul numerino della versione in alto a sinistra: tutte le novità, dalla prima all\'ultima. Per chi legge i bugiardini.'] },
   { v: '0.21.1', d: '1 novembre 2026', t: 'Trascina e vola nel cloud', l: [
-    'Trascini un pad sulla scheda del team e parte davvero per tutti. Prima faceva finta. Ci scusiamo con i pad coinvolti.'] },
+    'Trascini un pad sulla tab del team e parte davvero per tutti. Prima faceva finta. Ci scusiamo con i pad coinvolti.'] },
   { v: '0.21.0', d: '1 novembre 2026', t: 'Ora hai un\'identità (digitale)', l: [
     '👤 Account: ti registri con l\'email, arriva un codice di 6 cifre, lo scrivi. Più facile che ricordarsi il PIN del bancomat.',
     'Cambi computer? Accedi e i tuoi team sono lì, con «Rientra». Torni come te stesso, non come un clone sospetto.',
