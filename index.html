@@ -10,6 +10,8 @@
 <meta property="og:description" content="Spara suoni ovunque. Ridono tutti.">
 <meta property="og:image" content="icon.png">
 <link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="vendor/fontawesome/css/fontawesome.min.css">
+<link rel="stylesheet" href="vendor/fontawesome/css/solid.min.css">
 <style>
 :root {
   --blurple: #5b4bff;
@@ -227,6 +229,8 @@ footer .legal a { color: #c9c3ff; text-decoration: none; } footer .legal a:hover
 /* ---------- team ---------- */
 .teamsec { padding: 130px 0 110px; background: radial-gradient(900px 500px at 80% 20%, #57f28722, transparent 60%), radial-gradient(800px 500px at 10% 80%, #ff5fa222, transparent 60%); }
 .teamsec .head { text-align: center; max-width: 760px; margin: 0 auto 50px; }
+.team-pic { margin: 6px auto 26px; max-width: 640px; rotate: -1.5deg; box-shadow: 10px 10px 0 var(--green), 0 30px 60px rgba(0,0,0,.4); }
+.dl-pic { max-width: 900px; margin: 0 auto 40px; rotate: 1deg; box-shadow: 10px 10px 0 var(--yellow), 0 30px 60px rgba(0,0,0,.4); }
 .teamsec h2 { font-size: clamp(38px, 5vw, 72px); margin-bottom: 16px; }
 .teamsec .head p { color: var(--muted); font-size: 20px; }
 .tcards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
@@ -735,6 +739,7 @@ dialog.acct::backdrop { background: rgba(10,6,30,.7); backdrop-filter: blur(6px)
     <div class="head">
       <span class="kicker k-green">👥 Team con codice</span>
       <h2 class="reveal">La pernacchia diventa un bene comune</h2>
+      <div class="pic team-pic reveal-pic"><img src="img/funzioni/team.jpg" alt="La gang che si dà il cinque attorno a una nuvola di suoni" loading="lazy"></div>
       <p class="reveal">Crei un team, mandi il codice agli amici e i suoni che trascinate nella sua scheda arrivano a tutti in pochi secondi. Ognuno risponde di quello che carica, come in ogni gruppo serio (più o meno).</p>
     </div>
     <div class="tcards">
@@ -768,6 +773,7 @@ dialog.acct::backdrop { background: rgba(10,6,30,.7); backdrop-filter: blur(6px)
 <!-- ======================= DOWNLOAD ======================= -->
 <section class="download" id="scarica">
   <div class="wrap">
+    <div class="pic dl-pic reveal-pic"><img src="img/banner/scarica.jpg" alt="I personaggi che escono da una scatola con il computer" loading="lazy"></div>
     <h2 class="reveal">Pronto a fare<br>casino?</h2>
     <p class="sub reveal">Gratis, per Mac e Windows. Pesa poco e si aggiorna da sola.</p>
     <div class="dl-grid">
@@ -896,6 +902,7 @@ dialog.acct::backdrop { background: rgba(10,6,30,.7); backdrop-filter: blur(6px)
   load();
 })();
 </script>
+<script src="icons.js"></script>
 <script src="vendor/gsap.min.js"></script>
 <script src="vendor/ScrollTrigger.min.js"></script>
 <script>
@@ -1068,8 +1075,16 @@ function emojiSprite(e) {
     c = document.createElement('canvas');
     c.width = c.height = SPRITE * 2;
     const g = c.getContext('2d');
-    g.font = `${SPRITE * 1.5}px serif`; g.textAlign = 'center'; g.textBaseline = 'middle';
-    g.fillText(e, SPRITE, SPRITE * 1.08);
+    // coriandoli colorati (niente emoji): colore e forma scelti in base al «tipo» chiesto
+    let h = 0; for (const ch of String(e)) h = (h * 31 + ch.codePointAt(0)) >>> 0;
+    const COLS = ['#57f287', '#ff5fa2', '#ffd23f', '#5b4bff', '#00b0f4', '#ff4d5e', '#ffffff'];
+    g.fillStyle = COLS[h % COLS.length];
+    g.translate(SPRITE, SPRITE);
+    const k = (h >> 3) % 4, r = SPRITE * 0.42;
+    if (k === 0) g.fillRect(-r, -r / 2.2, r * 2, r / 1.1);
+    else if (k === 1) { g.beginPath(); g.arc(0, 0, r * 0.7, 0, 7); g.fill(); }
+    else if (k === 2) { g.beginPath(); g.moveTo(0, -r); g.lineTo(r, r * 0.8); g.lineTo(-r, r * 0.8); g.closePath(); g.fill(); }
+    else { g.beginPath(); for (let i = 0; i < 10; i++) { const a = (i * Math.PI) / 5 - Math.PI / 2, rr = i % 2 ? r * 0.45 : r; g.lineTo(Math.cos(a) * rr, Math.sin(a) * rr); } g.closePath(); g.fill(); }
     emojiCache.set(e, c);
   }
   return c;
@@ -1344,6 +1359,9 @@ function scoreHit(key, x, y) {
 
 /* ---------- changelog (tono serio: zero) ---------- */
 const LOG = [
+  { v: '0.28.0', t: 'Prima ti presenti, poi spari suoni', l: [
+    'Serve un account per usare la soundboard: gratis, con un codice via email. Se l\'hai già fatto, funziona anche offline.',
+    'Icone vere al posto delle emoji in tutta l\'app. Le emoji dei tuoi pad restano, quelle non si toccano.'] },
   { v: '0.27.0', d: '1 novembre 2026', t: 'Siamo diventati seri (solo sulla carta)', l: [
     'Termini d\'uso, Regole, Privacy e Crediti: tutto in chiaro, scritto in italiano normale. Leggili, poi torna a fare pernacchie.',
     'Chi carica un suono nel team dichiara di averne i diritti e se ne prende la responsabilità. Il resto lo segnali con 🚩.',
@@ -1432,7 +1450,7 @@ const LOG = [
     const d = document.createElement('article');
     d.className = 'entry' + (i >= SHOW ? ' hidden' : '');
     d.dataset.v = e.v;
-    d.innerHTML = `<div class="v">${e.v === 'Sito' ? 'SITO' : 'v' + e.v}<small>${e.d}</small></div><div><h3>${e.t}</h3><ul>${e.l.map((x) => `<li>${x}</li>`).join('')}</ul></div>`;
+    d.innerHTML = `<div class="v">${e.v === 'Sito' ? 'SITO' : 'v' + e.v}</div><div><h3>${e.t}</h3><ul>${e.l.map((x) => `<li>${x}</li>`).join('')}</ul></div>`;
     box.appendChild(d);
   });
   $('#moreLog').addEventListener('click', (ev) => {
