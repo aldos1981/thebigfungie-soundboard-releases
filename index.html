@@ -9,9 +9,7 @@
 <meta property="og:title" content="TheBigFungie's Soundboard">
 <meta property="og:description" content="Spara suoni ovunque. Ridono tutti.">
 <meta property="og:image" content="icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Press+Start+2P&family=Rubik:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="fonts.css">
 <style>
 :root {
   --blurple: #5b4bff;
@@ -223,6 +221,23 @@ section { position: relative; }
 
 footer { background: #0b0722; padding: 50px 0; color: #9d97cc; font-size: 15px; }
 footer .wrap { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between; }
+footer .legal { margin-top: 26px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.1); font-size: 13.5px; }
+footer .legal nav { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+footer .legal a { color: #c9c3ff; text-decoration: none; } footer .legal a:hover { color: #fff; text-decoration: underline; }
+/* ---------- team ---------- */
+.teamsec { padding: 130px 0 110px; background: radial-gradient(900px 500px at 80% 20%, #57f28722, transparent 60%), radial-gradient(800px 500px at 10% 80%, #ff5fa222, transparent 60%); }
+.teamsec .head { text-align: center; max-width: 760px; margin: 0 auto 50px; }
+.teamsec h2 { font-size: clamp(38px, 5vw, 72px); margin-bottom: 16px; }
+.teamsec .head p { color: var(--muted); font-size: 20px; }
+.tcards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.tcard { background: rgba(255,255,255,.07); border: 3px solid rgba(255,255,255,.16); border-radius: 24px; padding: 24px; }
+.tcard .ic { font-size: 34px; }
+.tcard h3 { font-size: 22px; margin: 10px 0 8px; }
+.tcard p { margin: 0; color: #e6e2ff; font-size: 16px; }
+.teamsec .note { text-align: center; margin-top: 34px; color: var(--muted); font-size: 15px; }
+.teamsec .note a { color: var(--green); font-weight: 700; }
+@media (max-width: 900px) { .tcards { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .tcards { grid-template-columns: 1fr; } }
 
 /* particelle */
 #fx { position: fixed; inset: 0; pointer-events: none; z-index: 60; }
@@ -320,6 +335,9 @@ dialog.acct::backdrop { background: rgba(10,6,30,.7); backdrop-filter: blur(6px)
 .acct .danger { color: var(--red); border-color: var(--red); }
 .acct details { margin: 6px 0 14px; }
 .acct summary { cursor: pointer; color: var(--muted); font-weight: 700; }
+.acct label.chk { display: flex; gap: 10px; align-items: flex-start; color: #fff; font-weight: 500; font-size: 14px; }
+.acct label.chk input { width: 20px; height: 20px; margin: 1px 0 0; flex: none; accent-color: var(--green); }
+.acct label.chk a { color: var(--green); }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001s !important; animation-iteration-count: 1 !important; transition: none !important; }
@@ -492,7 +510,7 @@ dialog.acct::backdrop { background: rgba(10,6,30,.7); backdrop-filter: blur(6px)
         <circle cx="130" cy="166" r="25" fill="#7fd3ff" stroke="#2b1d14" stroke-width="8"/>
         <path d="M118 158 Q124 150 134 150" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round"/>
         <use href="#face" transform="translate(130 262)"/>
-        <text x="130" y="372" text-anchor="middle" font-family="'Press Start 2P', monospace" font-size="20" fill="#5b4bff">1UP</text>
+        <text x="130" y="372" text-anchor="middle" font-family="'Press Start 2P', monospace" font-size="20" fill="#5b4bff">GG</text>
       </g>
     </symbol>
 
@@ -570,7 +588,8 @@ dialog.acct::backdrop { background: rgba(10,6,30,.7); backdrop-filter: blur(6px)
       <a href="#prova">Prova</a>
       <a href="#voce">Voce</a>
       <a href="#funzioni">Funzioni</a>
-      <a href="#gang">La gang</a>
+      <a href="#team">Team</a>
+      <a href="funzioni.html">Funzioni</a>
       <a href="#novita">Novità</a>
       <a href="#scarica">Scarica</a>
     </div>
@@ -704,6 +723,26 @@ dialog.acct::backdrop { background: rgba(10,6,30,.7); backdrop-filter: blur(6px)
   </div>
 </section>
 
+<!-- ======================= TEAM ======================= -->
+<section class="teamsec" id="team">
+  <div class="wrap">
+    <div class="head">
+      <span class="kicker k-green">👥 Team con codice</span>
+      <h2 class="reveal">La pernacchia diventa un bene comune</h2>
+      <p class="reveal">Crei un team, mandi il codice agli amici e i suoni che trascinate nella sua scheda arrivano a tutti in pochi secondi. Ognuno risponde di quello che carica, come in ogni gruppo serio (più o meno).</p>
+    </div>
+    <div class="tcards">
+      <div class="tcard reveal"><div class="ic">🔑</div><h3>Un codice, tutti dentro</h3><p>«Crea un team», copia l'invito e mandalo su WhatsApp o Discord. Chi lo scrive nell'app entra. Se vuoi, i nuovi ingressi li approvi tu uno per uno.</p></div>
+      <div class="tcard reveal"><div class="ic">☁️</div><h3>Trascina e vola</h3><p>Trascini un pad sulla scheda del team e parte per tutti, con nome, emoji, colore e taglio. Massimo 5 MB a suono: niente audiolibri.</p></div>
+      <div class="tcard reveal"><div class="ic">👑</div><h3>Ruoli veri</h3><p>Capo, Admin, Moderatore, Membro. Si può bloccare, espellere, sospendere o bannare: chi viene bannato ha i suoi audio nascosti finché un admin non lo grazia.</p></div>
+      <div class="tcard reveal"><div class="ic">🗄️</div><h3>Archivia, non distruggere</h3><p>Un suono ti dà fastidio? Archivialo: sparisce solo da te. Eliminarlo per tutti può solo chi l'ha caricato o un admin.</p></div>
+      <div class="tcard reveal"><div class="ic">👤</div><h3>Account con email</h3><p>Per entrare nei team serve un account con l'email confermata (codice di 6 cifre). Così chi viene bannato resta fuori anche reinstallando l'app. L'email non la vede nessuno.</p></div>
+      <div class="tcard reveal"><div class="ic">🚩</div><h3>Segnala</h3><p>Un suono viola il diritto d'autore o è offensivo? Clic destro → Segnala. Lo controlliamo e, se serve, lo togliamo.</p></div>
+    </div>
+    <p class="note">Prima di caricare il primo suono dichiari di averne i diritti. Leggi le <a href="regole.html">Regole</a> e i <a href="termini.html">Termini d'uso</a>.</p>
+  </div>
+</section>
+
 <!-- ======================= CHANGELOG ======================= -->
 <section class="log" id="novita">
   <div class="wrap">
@@ -748,6 +787,10 @@ dialog.acct::backdrop { background: rgba(10,6,30,.7); backdrop-filter: blur(6px)
     <a class="logo" href="#top"><img src="icon.png" alt="">TheBigFungie's Soundboard</a>
     <span>Fatto per gli amici, con amore e un pizzico di vergogna. 🍄🥒🍌🍆🕹️🚀🎳🍭💄 GG.</span>
   </div>
+  <div class="wrap legal">
+    <nav><a href="funzioni.html">Tutte le funzioni</a><a href="regole.html">Regole</a><a href="termini.html">Termini d'uso</a><a href="privacy.html">Privacy</a><a href="crediti.html">Crediti e licenze</a><a href="mailto:soundboard@athost.it">soundboard@athost.it</a></nav>
+    <span>© 2026 Aldo Torrisi. Tutti i diritti riservati. I suoni caricati dagli utenti sono responsabilità di chi li carica.</span>
+  </div>
 </footer>
 
 <script>
@@ -773,12 +816,14 @@ dialog.acct::backdrop { background: rgba(10,6,30,.7); backdrop-filter: blur(6px)
     login: () => `<h3>👤 Entra</h3><p>Lo stesso account dell'app: ritrovi i tuoi team su ogni computer.</p>
       <label>Email<input id="aEmail" type="email" autocomplete="username" value="${esc(email)}"></label>
       <label>Password<input id="aPass" type="password" autocomplete="current-password"></label>
+      <label class="chk" id="aTermsRow" style="display:none"><input id="aAccept" type="checkbox"> Ho almeno 14 anni e accetto i <a href="termini.html" target="_blank">Termini d'uso</a> e la <a href="privacy.html" target="_blank">Privacy</a> aggiornati</label>
       <button class="btn" data-do="login">Entra</button>
       <div class="links2"><a data-v="forgot">Password dimenticata?</a> · Non hai un account? <a data-v="register">Registrati</a></div>`,
     register: () => `<h3>✨ Unisciti alla gang</h3><p>Ti mando un codice di 6 cifre per confermare l'email. Zero spam, promesso sul fungo.</p>
       <label>Il tuo nome<input id="aName" type="text" maxlength="30" placeholder="Draghyon"></label>
       <label>Email<input id="aEmail" type="email" autocomplete="username" value="${esc(email)}"></label>
       <label>Password (almeno 8 caratteri)<input id="aPass" type="password" autocomplete="new-password"></label>
+      <label class="chk"><input id="aAccept" type="checkbox"> Ho almeno 14 anni e accetto i <a href="termini.html" target="_blank">Termini d'uso</a>, le <a href="regole.html" target="_blank">Regole</a> e la <a href="privacy.html" target="_blank">Privacy</a></label>
       <button class="btn" data-do="register">Crea account</button>
       <div class="links2">Hai già un account? <a data-v="login">Entra</a></div>`,
     confirm: () => `<h3>📬 Guarda la posta</h3><p>Codice mandato a <b>${esc(email)}</b>. Vale 30 minuti (sbircia anche nello spam).</p>
@@ -818,8 +863,8 @@ dialog.acct::backdrop { background: rgba(10,6,30,.7); backdrop-filter: blur(6px)
     setNav();
   }
   const D = {
-    login: async () => { email = val('aEmail'); store.set('tbf-email', email); try { signed(await call('auth/login', { email, password: document.getElementById('aPass').value, device: device() })); } catch (e) { if (e.code === 'unconfirmed') go('confirm'); throw e; } },
-    register: async () => { email = val('aEmail'); store.set('tbf-email', email); await call('auth/register', { email, password: document.getElementById('aPass').value, name: val('aName') }); go('confirm'); },
+    login: async () => { email = val('aEmail'); store.set('tbf-email', email); try { signed(await call('auth/login', { email, password: document.getElementById('aPass').value, device: device(), accept: !!document.getElementById('aAccept')?.checked })); } catch (e) { if (e.code === 'unconfirmed') go('confirm'); if (e.code === 'terms') document.getElementById('aTermsRow').style.display = ''; throw e; } },
+    register: async () => { if (!document.getElementById('aAccept').checked) throw new Error('Spunta la casella: almeno 14 anni e accetti Termini, Regole e Privacy'); email = val('aEmail'); store.set('tbf-email', email); await call('auth/register', { email, password: document.getElementById('aPass').value, name: val('aName'), accept: true }); go('confirm'); },
     confirm: async () => signed(await call('auth/confirm', { email, code: val('aCode'), device: device() })),
     resend: async () => { await call('auth/resend', { email }); errEl.textContent = '📬 Codice nuovo in arrivo'; },
     forgot: async () => { email = val('aEmail'); store.set('tbf-email', email); await call('auth/forgot', { email }); go('reset'); },
@@ -845,8 +890,8 @@ dialog.acct::backdrop { background: rgba(10,6,30,.7); backdrop-filter: blur(6px)
   load();
 })();
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/ScrollTrigger.min.js"></script>
 <script>
 'use strict';
 const $ = (s, r = document) => r.querySelector(s);
@@ -894,8 +939,8 @@ function detectOS() {
   } else {
     $('#otherDl').textContent = 'Disponibile per Mac e Windows.';
   }
-  fetch(`https://api.github.com/repos/${REPO}/releases/latest`).then((r) => r.json()).then((r) => {
-    if (r && r.tag_name) $('#version').textContent = `Ultima versione: ${r.tag_name} · ${new Date(r.published_at).toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' })}`;
+  fetch('version.json', { cache: 'no-store' }).then((r) => r.json()).then((r) => {
+    if (r && r.version) $('#version').textContent = `Ultima versione: v${r.version} · ${new Date(r.date).toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' })}`;
   }).catch(() => { $('#version').textContent = ''; });
 })();
 
@@ -1293,6 +1338,11 @@ function scoreHit(key, x, y) {
 
 /* ---------- changelog (tono serio: zero) ---------- */
 const LOG = [
+  { v: '0.27.0', d: '1 novembre 2026', t: 'Siamo diventati seri (solo sulla carta)', l: [
+    'Termini d\'uso, Regole, Privacy e Crediti: tutto in chiaro, scritto in italiano normale. Leggili, poi torna a fare pernacchie.',
+    'Chi carica un suono nel team dichiara di averne i diritti e se ne prende la responsabilità. Il resto lo segnali con 🚩.',
+    'Immagine di sfondo sui pad, con o senza colore sopra. Finalmente la faccia del colpevole sul suo pad.',
+    'Mini-finestra più pulita e con l\'opacità regolabile: la vedi, ma non ti copre il boss finale.'] },
   { v: '0.26.0', d: '1 novembre 2026', t: 'Icone da grandi', l: [
     'Via le icone disegnate col pennarello: ora sono quelle vere, nitide, anche offline. Le emoji dei pad restano, quelle non si toccano.'] },
   { v: '0.25.0', d: '1 novembre 2026', t: 'C\'è uno sceriffo in città', l: [
@@ -1387,10 +1437,10 @@ const LOG = [
   // versioni non ancora pubblicate: etichetta «in arrivo»
   const num = (v) => v.replace(/^v/, '').split('.').map(Number);
   const newer = (a, b) => { const x = num(a), y = num(b); for (let i = 0; i < 3; i++) { if ((x[i] || 0) !== (y[i] || 0)) return (x[i] || 0) > (y[i] || 0); } return false; };
-  fetch(`https://api.github.com/repos/${REPO}/releases/latest`).then((r) => r.json()).then((r) => {
-    if (!r || !r.tag_name) return;
+  fetch('version.json', { cache: 'no-store' }).then((r) => r.json()).then((r) => {
+    if (!r || !r.version) return;
     box.querySelectorAll('.entry').forEach((el) => {
-      if (/^\d/.test(el.dataset.v) && newer(el.dataset.v, r.tag_name)) el.querySelector('.v').insertAdjacentHTML('beforeend', '<span class="new">IN ARRIVO</span>');
+      if (/^\d/.test(el.dataset.v) && newer(el.dataset.v, r.version)) el.querySelector('.v').insertAdjacentHTML('beforeend', '<span class="new">IN ARRIVO</span>');
     });
   }).catch(() => {});
 })();

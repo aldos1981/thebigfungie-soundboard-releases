@@ -1,0 +1,38 @@
+/* Pagine secondarie del sito (Funzioni, Regole, Termini, Privacy, Crediti) */
+:root { --night: #120c33; --deep: #1d1450; --blurple: #5b4bff; --green: #57f287; --pink: #ff5fa2; --yellow: #ffd23f; --muted: #c9c3ff; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; color: #fff; background: var(--night); font: 400 17px/1.65 Rubik, system-ui, sans-serif; }
+a { color: var(--green); }
+h1, h2, h3 { font-family: "Dela Gothic One", Rubik, sans-serif; font-weight: 400; line-height: 1.1; }
+.wrap { width: min(920px, 100% - 32px); margin-inline: auto; }
+nav.top { position: sticky; top: 0; z-index: 10; background: rgba(18,12,51,.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,.08); }
+nav.top .wrap { width: min(1180px, 100% - 32px); display: flex; align-items: center; gap: 18px; height: 68px; }
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff; font-family: "Dela Gothic One"; font-size: 17px; }
+.logo img { width: 36px; height: 36px; }
+nav.top .links { margin-left: auto; display: flex; gap: 20px; font-weight: 700; font-size: 15px; }
+nav.top .links a { color: #fff; text-decoration: none; opacity: .8; }
+nav.top .links a:hover, nav.top .links a.on { opacity: 1; text-decoration: underline; text-underline-offset: 6px; }
+.btn { display: inline-flex; padding: 10px 20px; border-radius: 999px; background: #fff; color: #23272a; font-weight: 800; text-decoration: none; font-size: 15px; }
+@media (max-width: 760px) { nav.top .links { display: none; } nav.top .btn { margin-left: auto; } }
+header.hero { padding: 70px 0 40px; background: radial-gradient(900px 400px at 70% 0%, #5b4bff66, transparent 70%); }
+header.hero h1 { font-size: clamp(36px, 6vw, 64px); margin: 0 0 14px; text-transform: uppercase; }
+header.hero p { color: var(--muted); font-size: 19px; margin: 0; max-width: 680px; }
+.updated { display: inline-block; margin-top: 16px; font-size: 13px; background: rgba(255,255,255,.1); padding: 5px 12px; border-radius: 999px; color: var(--muted); }
+main { padding: 10px 0 90px; }
+main h2 { font-size: 26px; margin: 46px 0 12px; color: var(--yellow); }
+main h3 { font-size: 19px; margin: 26px 0 8px; }
+main p, main li { color: #ebe8ff; }
+main ul { padding-left: 22px; } main li + li { margin-top: 6px; }
+.box { background: rgba(255,255,255,.07); border: 2px solid rgba(255,255,255,.14); border-radius: 20px; padding: 18px 22px; margin: 18px 0; }
+.box.ok { border-color: var(--green); } .box.no { border-color: #ff4d5e; } .box.warn { border-color: var(--yellow); }
+.toc { columns: 2; gap: 30px; font-size: 15px; } .toc a { color: #fff; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 700px) { .grid2 { grid-template-columns: 1fr; } .toc { columns: 1; } }
+.feat h3 { margin-top: 0; }
+table { width: 100%; border-collapse: collapse; font-size: 15px; margin: 14px 0; }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,.12); vertical-align: top; }
+th { color: var(--yellow); font-weight: 700; }
+footer { background: #0b0722; padding: 40px 0; color: #9d97cc; font-size: 14px; }
+footer nav { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-bottom: 12px; }
+footer a { color: #c9c3ff; text-decoration: none; } footer a:hover { color: #fff; text-decoration: underline; }
